@@ -29,9 +29,9 @@
      ```
 
 * [Junit tutorial (tutorialspoint)]https://www.tutorialspoint.com/junit/index.htm
-* [Lab readme](../unit_test/java_test/readme_java.md)
+* [Lab readme](../demo-junit/Readme_junit.md)
 
-2. **Jest (JavaScript)**
+1. **Jest (JavaScript)**
    - **Overview**: Jest is a widely-used testing framework for JavaScript, particularly in React applications. It comes with a test runner, assertions, and mocking capabilities out of the box, making it easy to set up and use.
    - **Key Features**:
      - **Zero Configuration**: Works out of the box with minimal setup.
