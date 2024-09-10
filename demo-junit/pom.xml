@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>fcu</groupId>
-  <artifactId>my-junit01</artifactId>
+  <artifactId>demo-junit</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>demo-junit</name>
@@ -20,80 +20,79 @@
     </dependency> -->
 
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.9.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.9.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.9.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.9.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
-        <version>5.9.0</version>
-        <scope>test</scope>
-    </dependency>    
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.9.0</version>
+      <scope>test</scope>
+    </dependency>
 
-    
+
     <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.12.0</version>
-    </dependency>  
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
+    </dependency>
 
-</dependencies>
+  </dependencies>
 
 
-
-<build>
-  <plugins>
-    <!-- JaCoCo plugin -->
-    <plugin>
-      <groupId>org.jacoco</groupId>
-      <artifactId>jacoco-maven-plugin</artifactId>
-      <version>0.8.8</version> <!-- Use the latest version if available -->
-      <configuration>
+  <build>
+    <plugins>
+      <!-- JaCoCo plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.8</version> <!-- Use the latest version if available -->
+        <!-- <configuration>
           <encoding>UTF-8</encoding>
-      </configuration>        
-      <executions>
-        <execution>
-          <id>prepare-agent</id>
-          <goals>
-            <goal>prepare-agent</goal>
-          </goals>
-        </execution>
-        <execution>
-          <id>report</id>
-          <!-- <phase>prepare-package</phase> -->
-          <phase>test</phase> <!-- Change this to 'test' -->
+        </configuration> -->
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <!-- <phase>prepare-package</phase> -->
+            <phase>test</phase> <!-- Change this to 'test' -->
 
-          <goals>
-            <goal>report</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
-    <!-- javadoc -->
-     <plugin>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- javadoc -->
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.4.1</version> <!-- Use the latest version available -->
-            <executions>
-                <execution>
-                    <id>attach-javadocs</id>
-                    <goals>
-                        <goal>jar</goal> <!-- This goal generates a JAR file containing the Javadoc -->
-                    </goals>
-                    <phase>test</phase> <!-- Bind the Javadoc generation to the package phase -->
-                </execution>
-            </executions>
-        </plugin>
-  </plugins>
-</build>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.1</version> <!-- Use the latest version available -->
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal> <!-- This goal generates a JAR file containing the Javadoc -->
+            </goals>
+            <phase>test</phase> <!-- Bind the Javadoc generation to the package phase -->
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 
 </project>
