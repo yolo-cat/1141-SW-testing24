@@ -312,8 +312,3 @@ To revert the exclusion, simply remove or comment out the `excludes` configurati
 By using the `excludes` section in your Maven configuration, you can easily manage which files are included in the build process, allowing you to focus on specific parts of your project without permanently altering your codebase.
 
 ## Junt testing
-
-
-
-
-
