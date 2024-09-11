@@ -3,6 +3,7 @@ package medal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -29,6 +30,9 @@ public class MedalReader {
                 // Create and add the Medal object to the list
                 Medal medal = new Medal(country, gold, silver, bronze);
                 medalsList.add(medal);
+
+                medalsList.sort(Comparator.comparingInt(Medal::getGold).reversed());
+
             }
 
             // Output the parsed results
