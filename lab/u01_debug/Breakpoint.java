@@ -3,7 +3,7 @@ package fcu.debug;
 /*
  * 這是一個有錯的程式，請利用 breakpoint 來除錯
  */
-public class BreakpointDemo {
+public class Breakpoint {
 
 	public static void main(String[] args) {
 		int[] data = { 1, 2, 3, 10, 9, 6, 7 };
@@ -14,17 +14,18 @@ public class BreakpointDemo {
 		int len = data.length;
 		int a = (int) (Math.random() * len + 1);
 		int b = (int) (Math.random() * len + 1);
+
 		// 預期 data 內的資料不會受影響
 		int[] data2 = exchange(data, a, b);
 
 		System.out.print("data2:\t");
-		printArray(data2);//看看 交換後的狀況
+		printArray(data2);// 看看 交換後的狀況
 		System.out.print("data:\t");
-		printArray(data); //data 不該有異動
+		printArray(data); // data 不該有異動
 
-		sort(data); //這時候 data 會有異動
+		sort(data); // 這時候 data 會有異動
 		System.out.print("data:\t");
-		printArray(data);//看看排序是否正確
+		printArray(data);// 看看排序是否正確
 	}
 
 	public static int[] exchange(int[] data, int i, int j) {

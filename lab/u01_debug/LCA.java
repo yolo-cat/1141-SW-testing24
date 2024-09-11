@@ -10,7 +10,7 @@ class TreeNode {
     }
 }
 
-public class LowestCommonAncestor {
+public class LCA {
 
     public TreeNode findLCA(TreeNode root, TreeNode p, TreeNode q) {
         // 如果根節點為空，則返回空
@@ -45,7 +45,7 @@ public class LowestCommonAncestor {
         root.left.right.right = new TreeNode(5);
 
         // 測試範例：查找節點 2 和 8 的最小公共祖先
-        LowestCommonAncestor lca = new LowestCommonAncestor();
+        LCA lca = new LCA();
         TreeNode ancestor = lca.findLCA(root, root.left, root.right);
 
         System.out.println("The LCA of node 2 and node 8 is: " + ancestor.val);

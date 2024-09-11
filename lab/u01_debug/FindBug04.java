@@ -9,7 +9,7 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindBugsDemo4 {
+public class FindBug04 {
 	private List<String> dateList;
 
 	/**
@@ -38,7 +38,7 @@ public class FindBugsDemo4 {
 			}
 		}
 
-		if (dateInfo != null && dateInfo.length() >=1 ) {
+		if (dateInfo != null && dateInfo.length() >= 1) {
 			dateInfo.substring(1, dateInfo.length());
 		}
 		return dateInfo;
@@ -54,7 +54,7 @@ public class FindBugsDemo4 {
 	}
 
 	public static void main(String[] args) {
-		FindBugsDemo4 l3 = new FindBugsDemo4();
+		FindBug04 l3 = new FindBug04();
 		l3.parseLog();
 		l3.showAllDateInfo();
 	}

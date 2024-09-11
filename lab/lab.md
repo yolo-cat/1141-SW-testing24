@@ -1,13 +1,28 @@
 # Debug
 
-## Part 1
-1. BubbleSort
-[bubblesort](debug/BubbleSort.java) is an error program, please fix it!
+## Watch ouput
+### BubbleSort
+[bubblesort](u01_debug/BubbleSort.java) is an error program, please fix it!
   * Lesson lesson?
 
-2. Triangle
- 
-3. 字串處理功能
+## Breakpoint
+
+### GCD
+使用 while loop 及 recursive 寫最大公因數的程式，並用 breakpoint 執行之。
+
+4, 8 ==> 4
+10, 12 ==> 2
+
+### Fibonacci numbers
+使用 while loop 及 recursive 寫 Fibonacci number 的程式，並用 breakpoint 執行之。
+* 輸入一個數字，輸出最接近該數字且小於該數字的 fibonacci number 及其索引值
+
+60 ==> 55, 10
+```
+0 1 1 2 3 5 8 13 21 34 55 
+```
+
+### 字串處理功能
 寫一個函數，將一個句子中的所有單詞反轉（保留單詞的順序），但不改變標點符號的位置。
 - 單詞的反轉不應影響標點符號的位置。
 - 測試需要考慮不同的輸入，例如有標點符號的句子、沒有標點符號的句子、空字符串、只有一個單詞的句子等。
@@ -17,17 +32,13 @@ Input: "Hello, world!"
 Output: "olleH, dlrow!"
 ```
 
-3. 陣列重組功能
-寫一個函數，將一個整數陣列中的數字重新排列，使得所有偶數出現在前半部分，奇數出現在後半部分。
-- 測試需要考慮多種情況，例如只有偶數或只有奇數的陣列、混合正負數、空陣列、包含零的陣列等。
-- 測試應包括性能測試，確保在大型陣列上也能高效運行。
 
-```
-Input: [1, 2, 3, 4, 5]
-Output: [2, 4, 1, 3, 5]  （或其他任何偶數在前，奇數在後的排列）
-```
 
-4. 複雜的日期計算
+# Defensive Programming
+
+## Assertion
+
+### 複雜的日期計算
 寫一個函數，計算從今天開始的第 N 天是哪一天，且排除週末和假日（假日可以由函數參數傳入）。
 - 必須處理多種邊界情況，例如輸入0天、跨年、假日連續的情況。
 - 測試需要覆蓋多種輸入和情況，以確保邏輯的正確性。
@@ -37,45 +48,34 @@ Input: start_date = "2024-08-27", N = 5, holidays = ["2024-09-01"]
 Output: "2024-09-04"
 ```
 
-5. 複雜的數字處理
-寫一個函數，將一個整數轉換為羅馬數字。
-- 羅馬數字的生成有一套複雜的規則，需要仔細處理不同的數字組合（如 IV 表示 4，而不是 IIII）。
-- 測試需要涵蓋各種可能的數字範圍，特別是邊界數字（如 1, 4, 9, 40, 90 等）。
 
-```
-Input: 1987
-Output: "MCMLXXXVII"
-```
+## Exception 
 
-6. sin
+### Triangle
+有一function checkTriangle(int, int, int), 會輸入三邊長（a,b,c）
+- 有任一長度 <= 0 時，應該拋出例外
+- 須滿足任兩邊和大於第三邊，若違反則拋出一個字定義的例外：TriangleException
+- 依據條件回傳 正三角形、等腰三角形、直角三角形、一般三角形。（請注意定義直角三角形的定義）
+
+## Exercise
+
+### sin
 應用迴圈來寫一個程式計算 $sin(x)$,其中 $x$ 為一個徑度。30 度等於 $30*PI/180$ 徑度, 例如 $sin(30’) = sin(pi/6) = sin(3.14159/6)$ 約等於 $0.5$。使用 debug 的工具來協助你撰寫此程式。$sin(x)$ 的公式如下, 迴圈跑的越多次值會越精準, 當相鄰迴圈所跑出來的差異不大時，即可停止。
   
     $sin(x) = x - (x^3/3!) + (x^5/5!) - (x^7/7!)...$
 
 請利用 Debugger 的各種工具來協助擬進行此程式。
 
-## Part II
-
-1. Tree
+### Tree
 有一個 Tree 類別，一個 Node 類別。node1.add(node2) 可以把 node2 加到 node 的子節點。 tree.setRoot(node1) 可以設定 node1 為根節點。每個 node 內有一個數值，tree.getSum() 會傳回所有 node 的合。node.getSum() 會回傳該點和所有子節點的合。應用 assert 來寫這個程式。設計一些測試案例來測試此程式。(Hint: tree 不可以有 cyclic 的情形發生)
 
-2. Triangle
-有一function checkTriangle(int, int, int), 會輸入三邊長（a,b,c）
-- 有任一長度 <= 0 時，應該拋出例外
-- 須滿足任兩邊和大於第三邊，若違反則拋出一個字定義的例外：TriangleException
-- 依據條件回傳 正三角形、等腰三角形、直角三角形、一般三角形。（請注意定義直角三角形的定義）
 
-3. MaxHeap
+### MaxHeap
 了解 [MaxHeap](https://docs.google.com/presentation/d/11ajG_oQkdPvYaAa7-9oGG-bFU34YJMmq8zZZIFch-Y4/edit?usp=sharing) 的運作原理，針對 [MaxHeap](MaxHeap) 的程式碼進行追蹤測試，透過變數的變化、step into 的流程執行了解檢查該程式是否正確。
 
-#### MaxHeap
+[Reference code](u02_defensive/MaxHeap.java)
 
-Please fix the following code:
-```java=
-
-```
-
-這些題目都具有一定的挑戰性，學生在設計自動化測試時需要仔細思考測試用例的選擇，並且考慮邊界情況和異常處理，這將幫助他們更深入地理解軟體測試的重要性和複雜性。 
+# ETC
 
 ### 1. 青年貸款利率計算器
 **題目：** 寫一個函數，根據給定的本金、年利率、貸款期限（以年計），計算青年貸款的月供金額和總利息。考慮不同的還款方式（如等額本息、等額本金等）。

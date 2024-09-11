@@ -9,7 +9,7 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FingBugsDemo5 {
+public class FingBug05 {
 	private List<String> dateList = new ArrayList<String>();
 
 	/**
@@ -30,7 +30,7 @@ public class FingBugsDemo5 {
 				dateList.add(dateInfo);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();			
+			e.printStackTrace();
 			line = "";
 			String dateInfo = getDateInfo(line);
 			dateList.add(dateInfo);
@@ -67,7 +67,7 @@ public class FingBugsDemo5 {
 	}
 
 	public static void main(String[] args) {
-		FingBugsDemo5 l5 = new FingBugsDemo5();
+		FingBug05 l5 = new FingBug05();
 		l5.parseLog();
 		l5.showAllDateInfo();
 	}

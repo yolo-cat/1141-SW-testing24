@@ -3,7 +3,7 @@
  */
 package fcu.findbugs;
 
-public class FindBugsDemo2 {
+public class FindBug02 {
 	public static void main(String[] args) {
 
 		String greeting = "Hello World";
