@@ -1,4 +1,4 @@
-package xdemo;
+package demo;
 
 public class MaxHeap {
     private int[] heap;
@@ -12,15 +12,15 @@ public class MaxHeap {
     }
 
     private int getParentIndex(int index) {
-        return (index) / 2;
+        return (index-1) / 2;
     }
 
     private int getLeftChildIndex(int index) {
-        return 2 * index;
+        return 2 * index + 1;
     }
 
     private int getRightChildIndex(int index) {
-        return 2 * index + 1;
+        return 2 * index + 2;
     }
 
     private void swap(int index1, int index2) {
@@ -42,7 +42,8 @@ public class MaxHeap {
         // Perform "bubble-up" to maintain the max-heap property
         while (currentIndex > 0 && heap[currentIndex] > heap[getParentIndex(currentIndex)]) {
             swap(currentIndex, getParentIndex(currentIndex));
-            currentIndex = currentIndex-1;
+//            currentIndex = currentIndex-1;
+            currentIndex = getParentIndex(currentIndex);
         }
     }
 
@@ -96,14 +97,28 @@ public class MaxHeap {
 
         System.out.println("Insert 5 3 8 1 10 20 30");
         maxHeap.insert(5);
+        maxHeap.printHeap();
         maxHeap.insert(3);
+        maxHeap.printHeap();
         maxHeap.insert(8);
+        maxHeap.printHeap();
         maxHeap.insert(1);
+        maxHeap.printHeap();
         maxHeap.insert(10);
+        maxHeap.printHeap();
         maxHeap.insert(20);
+        maxHeap.printHeap();
         maxHeap.insert(30);
 
         System.out.println("Max Heap:");
+        maxHeap.printHeap();
+
+        System.out.println("Extracted Max: " + maxHeap.extractMax());
+        System.out.println("Updated Max Heap:");
+        maxHeap.printHeap();
+
+        System.out.println("Extracted Max: " + maxHeap.extractMax());
+        System.out.println("Updated Max Heap:");
         maxHeap.printHeap();
 
         System.out.println("Extracted Max: " + maxHeap.extractMax());

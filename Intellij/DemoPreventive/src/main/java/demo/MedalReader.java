@@ -2,11 +2,9 @@ package demo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import medal.Medal;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class MedalReader {
 
