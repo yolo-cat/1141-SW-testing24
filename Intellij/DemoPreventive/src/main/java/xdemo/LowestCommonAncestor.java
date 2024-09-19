@@ -1,11 +1,7 @@
-package xdemo;
-
-/**
- * Fix the bug of this program
- */
+package demo;
 
 class TreeNode {
-    protected int val;
+    int val;
     TreeNode left;
     TreeNode right;
 
@@ -19,6 +15,10 @@ public class LowestCommonAncestor {
     public TreeNode findLCA(TreeNode root, TreeNode p, TreeNode q) {
         // 如果根節點為空，則返回空
         if (root == null) {
+            return null;
+        }
+
+        if (!isFound(root, p) || !isFound(root, q)) {
             return null;
         }
 
@@ -53,11 +53,28 @@ public class LowestCommonAncestor {
         TreeNode a = root.left;
         TreeNode b = root.right;
         TreeNode ancestor = lca.findLCA(root, a, b);
-        System.out.printf("The LCA of node %d and node %d is: %d", a.val, b.val, ancestor.val);
+        System.out.printf("\nThe LCA of node %d and node %d is: %d", a.val, b.val, ancestor.val);
 
-//        TreeNode a = root.left.right.left;
-//        TreeNode b = root.left.right.right;
-//        TreeNode ancestor = lca.findLCA(root, a, b);
-//        System.out.printf("The LCA of node %d and node %d is: %d", a.val, b.val, ancestor.val);
+        a = root.left.right.left;
+        b = root.left.right.right;
+        ancestor = lca.findLCA(root, a, b);
+        System.out.printf("\nThe LCA of node %d and node %d is: %d", a.val, b.val, ancestor.val);
+
+        a = root.left.right.left;
+        b = new TreeNode(10);
+        ancestor = lca.findLCA(root, a, b);
+        String result = (ancestor == null) ? "null" : String.valueOf(ancestor.val);
+        System.out.printf("\nThe LCA of node %d and node %d is: %s", a.val, b.val, result);
+    }
+
+    public boolean isFound(TreeNode root, TreeNode node) {
+        if (root == null)
+            return false;
+        if (node.val > root.val) {
+            return isFound(root.right, node);
+        } else if (node.val < root.val) {
+            return isFound(root.left, node);
+        } else
+            return true;
     }
 }

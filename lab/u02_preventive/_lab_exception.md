@@ -120,14 +120,18 @@ public class Grade {
 ### Lab
 
 #### Lab01: People
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/People.java)
 * 那些不合理的生日
 
 #### Lab02: Triangle
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/Triangle.java)
 * 當長度是負的！
 
 #### Lab03: LowestCommonAncestor
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/LowestCommonAncestor.java)
 * 並沒有在樹上
 
 #### Lab04: Medal
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MedalReader.java)
 * 除了金銀銅還有其他的？
 * 不是數字的金銀銅？

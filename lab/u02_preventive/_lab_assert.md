@@ -168,17 +168,20 @@ public void playGame() {
 ### Lab
 
 #### Lab01: BubbleSort
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/BubbleSort.java)
 * 排序後確認一下順序
 
 #### Lab02: People
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/People.java)
 * BMI 的值應該有一個範圍
 * 父子之間是不是有些不變的關係？
 
 #### Lab03: Triangle
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/Triangle.java)
 * 三角形的長度可以是負的？該用 assert 嗎？
 
 #### Lab04: MaxHeap
 [MaxHeap 解說](https://docs.google.com/presentation/d/11ajG_oQkdPvYaAa7-9oGG-bFU34YJMmq8zZZIFch-Y4/edit#slide=id.p)
-
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MaxHeap.java)
 * 有滿足二元樹要求？
 * 真的是最大的？

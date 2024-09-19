@@ -60,7 +60,7 @@ public class BreakpointDemo {
 
 ### Lab01: bubble sort
 
-請利用 [BubbleSort](./BubbleSort.java) 的程式操作 breakpoint, 熟悉相關的工具操作
+請利用 [BubbleSort](../../Intellij/DemoDebug/src/main/java/xdemo/BubbleSort.java) 的程式操作 breakpoint, 熟悉相關的工具操作
 
 * 使用 watch，觀察 length-path-1 的變化
 * 使用 breakpoint 將程式中斷在兩個 for loop 的地方，透過 resume 快速的觀察每一個 path 的差異
@@ -68,16 +68,16 @@ public class BreakpointDemo {
 
 ### Lab02: GCD
 * 請用 while 和遞迴的方式寫一個最大公因數的程式
-* [參考程式](./GCD.java) （此程式有錯）
+* [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/GCD.java) （此程式有錯）
 
 ### Lab03: LowestCommonAncestor
 * 寫一個 binary tree (TreeNode)
 * 給定兩個點，求這兩個點的最低共同祖先節點
-* [參考程式](./LowestCommonAncestor.java) （此程式有錯）
+* [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/LowestCommonAncestor.java) （此程式有錯）
 
 ### Lab04: Sin
 * 透過泰勒展展開式計算 Sin(30)
-* [參考程式](./Sin.java) （此程式有錯）
+* [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/Sin.java) （此程式有錯）
 
 ---
 
