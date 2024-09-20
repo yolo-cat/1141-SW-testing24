@@ -6,6 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * LAB: use assert / exception to achieve preventive programming; make the program robust
+ */
+
 public class MedalReader {
 
     public static void main(String[] args) {

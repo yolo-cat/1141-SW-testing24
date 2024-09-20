@@ -1,5 +1,10 @@
 package xdemo;
 
+/**
+ * LAB: use assert / exception to achieve preventive programming; make the program robust
+ * - This program has significant bugs
+ */
+
 public class Triangle {
 
     public static void main(String[] args) {

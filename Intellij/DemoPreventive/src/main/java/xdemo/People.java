@@ -1,5 +1,9 @@
 package xdemo;
 
+/**
+ * LAB: use assert / exception to achieve preventive programming; make the program robust
+ */
+
 public class People {
     private String name;
     private double height;  // 身高 (以公尺為單位)

@@ -16,33 +16,39 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api -->
         <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>10.18.0</version>
+            <groupId>org.sonarsource.sonarqube</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>9.3.0.51899</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.2.1</version>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.25.0</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>src/main/resources/rule_set.xml</ruleset>
+                    </rulesets>
+                    <failOnViolation>false</failOnViolation>
+                    <minimumPriority>3</minimumPriority> <!-- Set to 3 for "warning" and below -->
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>validate</phase> <!-- or another phase like compile, test -->
+                        <phase> validate </phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <!-- fail the build if violations are found -->
-                    <failOnViolation>true</failOnViolation>
-                </configuration>
             </plugin>
+
         </plugins>
     </build>
 

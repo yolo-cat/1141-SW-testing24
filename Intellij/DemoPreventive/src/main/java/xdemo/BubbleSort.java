@@ -2,6 +2,10 @@ package xdemo;
 
 import java.util.Random;
 
+/**
+ * LAB: use assert / exception to achieve preventive programming; make the program robust
+ */
+
 public class BubbleSort {
 
     public static void main(String[] args) {

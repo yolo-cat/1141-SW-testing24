@@ -1,5 +1,11 @@
 package xdemo;
 
+/**
+ * LAB: use assert / exception to achieve preventive programming; make the program robust
+ * - This program has significant bugs
+ */
+
+
 public class MaxHeap {
     private int[] heap;
     private int size;
