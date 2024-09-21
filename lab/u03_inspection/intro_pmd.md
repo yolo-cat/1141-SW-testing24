@@ -102,11 +102,11 @@ PMD 是一個強大的靜態程式碼分析工具，可以幫助開發者自動�
 
 
 
-## Report
+### Report
 
 The error message indicates that PMD has found violations in your code, but it still generates a report. Here’s why that happens:
 
-### Explanation
+#### Explanation
 
 1. **Violations Count**: The message tells you that PMD has detected 113 rule violations in your code. This doesn't prevent the report from being generated; it merely indicates that there are issues that need attention.
 
@@ -114,7 +114,7 @@ The error message indicates that PMD has found violations in your code, but it s
 
 3. **Build Lifecycle**: In a Maven project, the PMD check goal can be configured to fail the build based on the severity of the violations. However, the actual report (`pmd.xml` or any other format you configured) will still be created. 
 
-### Managing Violations
+#### Managing Violations
 
 If you'd like to control the behavior of PMD regarding the severity of violations, you can adjust the configuration in your `pom.xml`. Here are a few options:
 
@@ -141,10 +141,60 @@ If you'd like to control the behavior of PMD regarding the severity of violation
 
 3. **Ignoring Certain Rules**: If some violations are not critical, consider excluding specific rules from your ruleset that generate excessive warnings or are not applicable to your project's context.
 
-### Conclusion
+#### Conclusion
 
 - The presence of violations does not prevent the report from being generated; it only indicates that issues were found.
 - You can configure PMD to control whether the build should fail based on the types and severities of violations.
 - Use the generated report to review and address the issues in your codebase.
 
 If you have any specific rules causing concern, you can consider excluding them or adjusting their severity in the ruleset.
+
+
+### 忽略 violation
+
+In PMD, to selectively ignore violations, such as one of the `AvoidArrayLoops` rule violations in your code, you can use **PMD suppression mechanisms**. There are three common approaches:
+
+1. **Suppressing Violations with Annotations**
+2. **Suppressing Violations with NOPMD Comments**
+3. **Using Suppressions in a PMD Configuration File**
+
+#### 1. Suppressing Violations with Annotations
+PMD supports Java annotations to suppress specific rules. You can use the `@SuppressWarnings` annotation with the rule name (e.g., `AvoidArrayLoops`) to suppress that violation on a specific method or class.
+
+```java
+@SuppressWarnings("PMD.AvoidArrayLoops")
+public void exampleMethod() {
+    // Code that would normally trigger AvoidArrayLoops rule
+}
+```
+
+This will suppress the `AvoidArrayLoops` violation for the annotated method or block of code.
+
+#### 2. Suppressing Violations with NOPMD Comments
+You can add a `//NOPMD` comment to suppress a violation at a specific line. This is helpful if you only want to suppress a single instance of a rule violation.
+
+```java
+for (int i = 0; i < array.length; i++) { //NOPMD - This loop is necessary for performance reasons
+    // Your loop code here
+}
+```
+
+The `NOPMD` comment will tell PMD to ignore the violation for that particular line. Make sure to include a reason after `//NOPMD` for better maintainability and clarity.
+
+#### 3. Suppressing Violations in a PMD Configuration File
+You can also configure suppression rules in your `ruleset.xml` or another PMD configuration file by specifying patterns or files to exclude from specific rules. For example, if you know you want to ignore violations in a certain class or method, you can use:
+
+```xml
+<rule ref="category/java/bestpractices.xml/AvoidArrayLoops">
+    <exclude-pattern>.*SomeSpecificFile.java</exclude-pattern>
+</rule>
+```
+
+This tells PMD to ignore `AvoidArrayLoops` violations in `SomeSpecificFile.java`.
+
+#### Choosing the Right Suppression Method
+- **Annotations** are best for suppressing rule violations at the method or class level.
+- **NOPMD comments** are useful for specific lines or blocks of code.
+- **Configuration file suppression** is ideal if you want to manage suppressions in bulk or ignore violations across multiple files.
+
+You can choose the approach that best fits your needs depending on the granularity and maintainability of the suppression.

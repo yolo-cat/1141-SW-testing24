@@ -1,5 +1,7 @@
 package demo;
 
+import xdemo.MyDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyDateTest {
