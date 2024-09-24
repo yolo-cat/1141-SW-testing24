@@ -17,6 +17,8 @@ public class RobustBubbleSort {
         // check the correctness
         checkSort(data);
 
+        assert sortOK(data);
+
         System.out.println("\nAfter Sort");
         printArray(data);
     }
@@ -29,6 +31,17 @@ public class RobustBubbleSort {
             if (data[i+1] < data[i])
                 System.err.println("Something wrong in sort");
         }
+    }
+
+    private static boolean sortOK(int[] data) {
+        int len = data.length;
+
+        // rewrite this by assert
+        for (int i=0; i< len-1; i++) {
+            if (data[i+1] < data[i])
+                return false;
+        }
+        return true;
     }
 
     /**
