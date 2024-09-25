@@ -15,8 +15,8 @@
 其語法為：
 
 ```java 
-// assert 後方接判斷句，例如 x<=100
-assert x<=100; 
+// assert 後方接 我們斷言為對的條件
+assert grade <= 100; 
 ```
 
 或
@@ -24,7 +24,7 @@ assert x<=100;
 ```java 
 // 如果沒有滿足錯誤，就顯示 errMessage 訊息
 // assert expression: errMessage
-assert x<=100 : "錯誤的總成績" ; 
+assert grade <= 100 : "錯誤的總成績" ; 
 ```
 
 其中 Expression1 是一個 boolean 表示式。errMessage 是一個含有值的表示式，當斷言不成立時，會拋出 java.lang.AssertionError 的例外，並把 errMessage 的值呈現出來。
@@ -33,7 +33,7 @@ assert x<=100 : "錯誤的總成績" ;
 
 :-1: 不好的寫法：
 ```java
-if (x>100) then
+if (grade > 100) then
    print("奇怪！");
 ```
 
