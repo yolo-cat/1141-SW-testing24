@@ -254,3 +254,13 @@ public class LoggingExample {
     }
 }
 ```
+
+## Lab
+
+### Lab01: Medal
+* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MedalReader.java)
+* 除了金銀銅還有其他的？
+* 不是數字的金銀銅？
+* 用 Log 把錯誤寫到檔案中
+
+

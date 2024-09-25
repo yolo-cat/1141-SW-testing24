@@ -11,7 +11,8 @@ Java 的例外處理機制（Exception Handling）是一種用來管理程式在
 
 ### 1. **例外類別層次結構**
 Java 中的例外都是基於 `Throwable` 類別。它分為兩大類：
-- **Checked Exception**（受檢例外）：這些是程式在編譯時就必須處理的例外，例如 `IOException`、`SQLException` 等。這類例外要求必須使用 `try-catch` 或在方法上宣告 `throws`。
+- **Checked Exception**（受檢例外）：這些是程式在編譯時就必須處理的例外，例如 `IOException`、`SQLException` 等。這類例外要求必須使用 `try-catch` 或在方法上宣告 `throws`。可能會發生，但程式設計師無法預防的。
+
 - **Unchecked Exception**（未檢例外）：這些是繼承自 `RuntimeException` 的例外，如 `NullPointerException`、`ArrayIndexOutOfBoundsException` 等。這些例外通常是程式邏輯錯誤，編譯時不強制要求處理。
 
 ### 2. **例外處理的語法**
