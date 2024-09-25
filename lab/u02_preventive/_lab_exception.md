@@ -11,14 +11,18 @@ Java 的例外處理機制（Exception Handling）是一種用來管理程式在
 
 ### 1. **例外類別層次結構**
 Java 中的例外都是基於 `Throwable` 類別。它分為兩大類：
-- **Checked Exception**（受檢例外）：這些是程式在編譯時就必須處理的例外，例如 `IOException`、`SQLException` 等。這類例外要求必須使用 `try-catch` 或在方法上宣告 `throws`。可能會發生，但程式設計師無法預防的。
+- **Checked Exception**（受檢例外）：這些是程式在編譯時就必須處理的例外，例如 `IOException`、`SQLException` 等。這類例外要求必須使用 `try-catch` 或在方法上宣告 `throws`。
+    - 可能會發生，但程式設計師無法預防的。
+    - 不處理則編譯錯誤。
 
-- **Unchecked Exception**（未檢例外）：這些是繼承自 `RuntimeException` 的例外，如 `NullPointerException`、`ArrayIndexOutOfBoundsException` 等。這些例外通常是程式邏輯錯誤，編譯時不強制要求處理。
+- **Unchecked Exception**（未檢例外）：這些是繼承自 `RuntimeException` 的例外，如 `NullPointerException`、`ArrayIndexOutOfBoundsException` 等。
+    - 這些例外通常是程式邏輯錯誤，編譯時不強制要求處理。
+    - 若發生但沒有 catch, 則會中斷程式。
 
 ### 2. **例外處理的語法**
 Java 例外處理主要使用以下三個關鍵字：
 
-- `try`：包含可能會拋出例外的代碼塊。
+- `try`：包含可能會拋出例外的程式塊。
 - `catch`：用來捕捉並處理特定的例外。
 - `finally`：無論是否發生例外，`finally` 區塊內的程式碼都會被執行（通常用來釋放資源）。
 
@@ -157,9 +161,9 @@ public class Main {
 
 ```java
 public class TriangleException extends Exception {
-    private double side1;
-    private double side2;
-    private double side3;
+    private double a;
+    private double b;
+    private double c;
 
     public TriangleException(String message, double a, double b, double c) {
         super(message);
