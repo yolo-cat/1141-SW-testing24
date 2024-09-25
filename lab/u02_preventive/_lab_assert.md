@@ -33,7 +33,7 @@ assert x<=100 : "錯誤的總成績" ;
 
 :-1: 不好的寫法：
 ```java
-if (x<0) then
+if (x>100) then
    print("奇怪！");
 ```
 

@@ -36,7 +36,7 @@ public class MedalReader02 {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
-            System.err.println("\n獎牌的數量必須是數字asfaf");
+            System.err.println("\n獎牌的數量必須是數字");
         }
     }
 }
