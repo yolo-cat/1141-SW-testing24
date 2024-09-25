@@ -6,13 +6,10 @@ public class ExceptionExample {
             int result = 10 / 0; // 這裡會引發 ArithmeticException
         } catch (ArithmeticException e) {
             System.out.println("捕捉到例外: " + e.getMessage());
-        } finally {
-            // usually used for closing files
-            System.out.println("無論如何都會執行");
         }
-        System.out.println("之後呢？");
+        System.out.println("Hello, Nice to meet you");
 
-        (new ExceptionExample()).divideByZero();;
+//        (new ExceptionExample()).divideByZero();;
     }
 
     public void divideByZero() {

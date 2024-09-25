@@ -21,21 +21,25 @@ public class People {
 
     // 計算 BMI (體重 / 身高的平方)
     public double bmi() {
+
+        // ? 應該要先確定一下 bmi 有沒有算錯
         return weight / (height * height);
     }
 
     // 設定生日年，並透過 assert 確保生日年的合理性 (例如：應在1900-今年之間)
     public void setBirthdayYear(int birthdayYear) {
         int currentYear = java.time.Year.now().getValue();
+
+        // ? 透過 assert 確保生日年的合理性 (例如：應在1900-今年之間)
         this.birthdayYear = birthdayYear;
     }
 
-    // 設定父親
     public void setFather(People father) {
         this.father = father;
+
+        // ? 應該確定一下父親的 birthdayYear 應該小於自己的
     }
 
-    // 獲取父親
     public People getFather() {
         return father;
     }

@@ -27,9 +27,10 @@ public class MedalReader {
             for (JsonNode node : rootNode.get("medals")) {
                 String[] parts = node.asText().split(" ");
 
-                // Is this assert good?
+                // ? Is this assert good?
                 assert parts.length == 4: "part number must be 4 for each medal line";
 
+                // ? 有考慮例外嗎
                 String country = parts[0].replace("-", " "); // replace hyphen with space in country names
                 int gold = Integer.parseInt(parts[1]);
                 int silver = Integer.parseInt(parts[2]);

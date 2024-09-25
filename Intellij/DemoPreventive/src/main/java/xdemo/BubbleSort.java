@@ -18,6 +18,10 @@ public class BubbleSort {
         // Sort the array using bubble sort
         bubbleSort(data);
 
+        data = generateRandomArray(10, 100);
+
+        // ? 排序後要不要檢查一下？
+
         System.out.println("\nAfter Sort");
         printArray(data);
     }

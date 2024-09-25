@@ -14,6 +14,9 @@ public class RobustBubbleSort {
         // Sort the array using bubble sort
         bubbleSort(data);
 
+        // 故意改成沒有排序的資料
+        data = generateRandomArray(10, 100);
+
         // check the correctness
         checkSort(data);
 
