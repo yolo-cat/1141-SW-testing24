@@ -181,7 +181,7 @@ public void playGame() {
 * 三角形的長度可以是負的？該用 assert 嗎？
 
 #### Lab04: MaxHeap
-[MaxHeap 解說](https://docs.google.com/presentation/d/11ajG_oQkdPvYaAa7-9oGG-bFU34YJMmq8zZZIFch-Y4/edit#slide=id.p)
+* [MaxHeap 解說](https://docs.google.com/presentation/d/11ajG_oQkdPvYaAa7-9oGG-bFU34YJMmq8zZZIFch-Y4/edit#slide=id.p)
 * [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MaxHeap.java)
 * 有滿足二元樹要求？
 * 真的是最大的？
