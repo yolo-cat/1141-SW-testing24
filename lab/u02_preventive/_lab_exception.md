@@ -57,7 +57,7 @@ public void readFile() throws IOException {
 ### 4. **throw 關鍵字**
 `throw` 關鍵字用來手動拋出例外。例如：
 ```java
-public void checkAge(int age) {
+public void checkAge(int age) throws IllegalArgumentException {
     if (age < 18) {
         throw new IllegalArgumentException("年齡必須大於18");
     }
