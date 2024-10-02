@@ -15,6 +15,14 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-java -->
         <dependency>
             <groupId>net.sourceforge.pmd</groupId>
@@ -34,8 +42,19 @@
                     <rulesets>
                         <ruleset>src/main/resources/rule_set.xml</ruleset>
                     </rulesets>
+
+                    <format>html</format> <!-- or "html", "text", "plain", etc. -->
+
+
+                    <!-- ture will cause building fail if violate -->
                     <failOnViolation>false</failOnViolation>
-                    <minimumPriority>3</minimumPriority> <!-- Set to 3 for "warning" and below -->
+
+                    <!-- 1 is the most critical violation;
+                         1: critical; 2: major; 3: normal;
+                         4: minor; 5: information
+                         if you set 5, the report will show all violation
+                    -->
+                    <minimumPriority> 3 </minimumPriority>
                 </configuration>
                 <executions>
                     <execution>
