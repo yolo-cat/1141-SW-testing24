@@ -9,7 +9,7 @@ import java.util.Random;
 public final class RobustBubbleSort {
 
     // the singleton design pattern
-    private static final RobustBubbleSort instance = new RobustBubbleSort();
+    private static final RobustBubbleSort INSTANCE = new RobustBubbleSort();
 
     private RobustBubbleSort() { }
 
@@ -18,7 +18,7 @@ public final class RobustBubbleSort {
      * @return th instance
      */
     public static RobustBubbleSort getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
