@@ -1,8 +1,8 @@
-package xdemo;
+package lab;
 
 import java.util.Scanner;
 
-public class TriangleType {
+public class Triangle {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

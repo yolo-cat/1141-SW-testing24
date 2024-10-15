@@ -1,4 +1,4 @@
-package medal;
+package lab.medals;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class MedalReader {
             medalsList = new ArrayList<>();
 
             // Loop through each medal entry
-            for (JsonNode node : rootNode.get("medals")) {
+            for (JsonNode node : rootNode.get("lab/medals")) {
                 String[] parts = node.asText().split(" ");
 
                 // Is this assert good?

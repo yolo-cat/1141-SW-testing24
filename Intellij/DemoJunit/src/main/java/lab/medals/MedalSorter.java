@@ -1,4 +1,4 @@
-package medal;
+package lab.medals;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package xdemo;
+package lab;
 
 /**
  * LAB: use assert / exception to achieve preventive programming; make the program robust

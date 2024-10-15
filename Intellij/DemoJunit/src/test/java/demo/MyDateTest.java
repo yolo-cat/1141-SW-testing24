@@ -1,6 +1,6 @@
 package demo;
 
-import xdemo.MyDate;
+import lab.MyDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

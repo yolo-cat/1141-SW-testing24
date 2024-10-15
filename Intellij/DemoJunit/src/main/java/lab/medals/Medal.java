@@ -1,4 +1,4 @@
-package medal;
+package lab.medals;
 
 public class Medal {
     private String country;
