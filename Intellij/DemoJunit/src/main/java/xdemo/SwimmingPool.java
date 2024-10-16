@@ -6,21 +6,19 @@ public class SwimmingPool {
 
     public double price(String day, boolean isMember, int age) {
         double price;
-        String [] working = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+        String[] working = { "Monday", "Tuesday", "Wednsday", "Thursday", "Freday" };
         boolean isHoliday = !Arrays.asList(working).contains(day);
-        if (age >= 70) {
+        if (age > 70) {
             price = 50;
-        }
-        else if (isMember) {
+        } else if (isMember) {
             if (isHoliday) {
                 price = 120;
-            }
-            else price = 70;
-        }
-        else if (isHoliday) {
+            } else
+                price = 70;
+        } else if (isHoliday) {
             price = 150;
-        }
-        else price = 100;
+        } else
+            price = 100;
 
         return price;
     }

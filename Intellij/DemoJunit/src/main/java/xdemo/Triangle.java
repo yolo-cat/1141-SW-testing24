@@ -35,12 +35,12 @@ public class Triangle {
 
     // 驗證三邊長是否能形成一個有效三角形
     public static boolean isValidTriangle(double a, double b, double c) {
-        return (a + b > c) && (a + c > b) && (b + c > a);
+        return (a + b > c);
     }
 
     // 判斷是否為正三角形
     public static boolean isEquilateral(double a, double b, double c) {
-        return (a == b) && (b == c);
+        return (a == b) && (b == c) && (c == a);
     }
 
     // 判斷是否為等腰三角形
@@ -51,13 +51,6 @@ public class Triangle {
     // 判斷是否為直角三角形
     public static boolean isRightTriangle(double a, double b, double c) {
         double max = Math.max(a, Math.max(b, c));
-        if (max == a) {
-            return Math.abs((a * a) - (b * b + c * c)) < 0.0001;
-        } else if (max == b) {
-            return Math.abs((b * b) - (a * a + c * c)) < 0.0001;
-        } else {
-            return Math.abs((c * c) - (a * a + b * b)) < 0.0001;
-        }
+        return Math.abs((max * max) - (b * b + c * c)) < 0.0001;
     }
 }
-

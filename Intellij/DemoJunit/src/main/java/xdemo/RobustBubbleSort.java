@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Sort the data
+ * 
  * @author nienlin hsueh
  */
 public final class RobustBubbleSort {
@@ -11,10 +12,12 @@ public final class RobustBubbleSort {
     // the singleton design pattern
     private static final RobustBubbleSort INSTANCE = new RobustBubbleSort();
 
-    private RobustBubbleSort() { }
+    private RobustBubbleSort() {
+    }
 
     /**
      * This is a utility class, so always return the instance
+     * 
      * @return th instance
      */
     public static RobustBubbleSort getInstance() {
@@ -23,6 +26,7 @@ public final class RobustBubbleSort {
 
     /**
      * Generate the data randomly, and sort them
+     * 
      * @param args: the arg to the main
      */
     public static void main(String[] args) {
@@ -49,14 +53,15 @@ public final class RobustBubbleSort {
 
     /**
      * check if the data are sort correctly.
+     * 
      * @param data the array to be checked
      */
     private static void checkSort(final int[] data) {
         final int len = data.length;
 
         // rewrite this by assert
-        for (int i=0; i< len-1; i++) {
-            if (data[i+1] < data[i]) {
+        for (int i = 1; i < len - 1; i++) {
+            if (data[i + 1] < data[i]) {
                 System.err.println("Something wrong in sort");
             }
         }
@@ -64,6 +69,7 @@ public final class RobustBubbleSort {
 
     /**
      * check if the sorting ok, will return boolean for 'assert' use
+     * 
      * @param data the data to be sorted
      * @return true means sorting is correct
      */
@@ -72,8 +78,8 @@ public final class RobustBubbleSort {
         boolean isOk = true;
 
         // rewrite this by assert
-        for (int i=0; i< len-1; i++) {
-            if (data[i+1] < data[i]) {
+        for (int i = 0; i < len - 1; i++) {
+            if (data[i + 1] < data[i]) {
                 isOk = false;
                 break;
             }
@@ -84,7 +90,7 @@ public final class RobustBubbleSort {
     /**
      * Generates an array with random integers.
      *
-     * @param size the size of the array to generate
+     * @param size  the size of the array to generate
      * @param bound the upper bound for the random integers
      * @return an array of random integers
      */
@@ -128,7 +134,7 @@ public final class RobustBubbleSort {
             boolean swapped = false;
 
             // Perform a single pass of the bubble sort
-            for (int i = 0; i < length - path - 1; i++) { //NOPMD
+            for (int i = 0; i < length - path - 1; i++) { // NOPMD
                 if (data[i] > data[i + 1]) {
                     // Swap elements
                     final int temp = data[i];
