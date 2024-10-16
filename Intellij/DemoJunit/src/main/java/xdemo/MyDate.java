@@ -1,14 +1,18 @@
-package lab;
+package xdemo;
 
 import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * This program may have BUGS
+ * Design test cases to test this program
+ */
 public class MyDate {
 
     int y, m, d;
     String month; // January, etc.
     static Integer[] solarMonth = { 1, 3, 5, 7, 8, 10, 12 };
-    static Integer[] lunarMonth = { 4, 6, 9, 11 };
+    static Integer[] lunarMonth = { 4, 6, 9, 10, 11 };
     static int[] leapDays = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     static int[] normalDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -30,11 +34,10 @@ public class MyDate {
      * 只要知道這天和 1900 的日期差即可推算。我們知道 1900/1/1 是 Monday。
      */
     public String dayOfWeek() {
-        String dayOfWeekString[] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        String[] dayOfWeekString = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         int diffTo1900 = diffTo1900_1_1(this);
-        int r = 1 + (diffTo1900 % 7); // 1 because 1900/1/1 is Monday
-        assert r <= 7 : "day of week error!!";
+        int r = diffTo1900 % 7; // 1 because 1900/1/1 is Monday
 
         return dayOfWeekString[r - 1];
     }

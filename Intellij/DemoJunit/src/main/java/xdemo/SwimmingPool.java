@@ -1,4 +1,4 @@
-package lab;
+package xdemo;
 
 import java.util.Arrays;
 

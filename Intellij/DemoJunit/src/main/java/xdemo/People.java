@@ -1,5 +1,9 @@
-package lab;
+package xdemo;
 
+/**
+ * This program may have BUGS
+ * Design test cases to test this program
+ */
 public class People {
     private String name;
     private double height; // 身高 (以公尺為單位)

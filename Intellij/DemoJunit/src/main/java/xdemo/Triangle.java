@@ -1,6 +1,11 @@
-package lab;
+
+package xdemo;
 
 import java.util.Scanner;
+
+/**
+ * Rewrite this program to make it "Testable"
+ */
 
 public class Triangle {
 
@@ -16,41 +21,23 @@ public class Triangle {
         double c = scanner.nextDouble();
 
         // 判斷是否為有效三角形
-        if (isValidTriangle(a, b, c)) {
-            if (isEquilateral(a, b, c)) {
+        if ((a + b > c) && (a + c > b)) {
+            if (a == b && b == c) {
                 System.out.println("這是正三角形。");
-            } else if (isIsosceles(a, b, c)) {
+            } else if (a == b || b == c || a == c) {
                 System.out.println("這是等腰三角形。");
-            } else if (isRightTriangle(a, b, c)) {
-                System.out.println("這是直角三角形。");
             } else {
-                System.out.println("這是一般三角形。");
+                // 判斷是否為直角三角形
+                double max = Math.max(a, Math.max(b, c));
+                if (Math.abs((max * max) - (a * a + b * b + c * c - max * max)) < 0.0001) {
+                    System.out.println("這是直角三角形。");
+                } else {
+                    System.out.println("這是一般三角形。");
+                }
             }
         } else {
             System.out.println("這不是一個有效的三角形。");
         }
-
         scanner.close();
-    }
-
-    // 驗證三邊長是否能形成一個有效三角形
-    public static boolean isValidTriangle(double a, double b, double c) {
-        return (a + b > c);
-    }
-
-    // 判斷是否為正三角形
-    public static boolean isEquilateral(double a, double b, double c) {
-        return (a == b) && (b == c) && (c == a);
-    }
-
-    // 判斷是否為等腰三角形
-    public static boolean isIsosceles(double a, double b, double c) {
-        return (a == b) || (b == c) || (a == c);
-    }
-
-    // 判斷是否為直角三角形
-    public static boolean isRightTriangle(double a, double b, double c) {
-        double max = Math.max(a, Math.max(b, c));
-        return Math.abs((max * max) - (b * b + c * c)) < 0.0001;
     }
 }
