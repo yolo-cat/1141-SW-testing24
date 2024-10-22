@@ -10,10 +10,20 @@ record CalculatorTest() {
 
     @Test
     @DisplayName("Calculator ok 的啦")
-    void add() {
+    void test_plus() {
         Calculator cal = new Calculator();
         int expected = 2;
-        int real = cal.add(1,1);
+        int real = cal.plus(1,1);
         assertEquals(expected, real);
     }
+
+    @Test
+    @DisplayName("Calculator div OK 的啦")
+    void test_div() throws Exception {
+        Calculator cal = new Calculator();
+        int expected = 2;
+        double real = cal.div(4,2);
+        assertEquals(expected, real);
+    }
+
 }

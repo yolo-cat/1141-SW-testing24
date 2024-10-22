@@ -213,6 +213,15 @@ class StandardTests {
 * plus(int, int): int
 * minus(int, int): int
 * mul(int, int): int
+* div(int, int): double 
+
+> 參考 [Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行 plus 的測試。
+
+
+> 參考 [assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)，撰寫 div 拋出例外的處理。
+
+Note: `assertEquals(double expected, double actual, double delta, String message)`
+
 
 針對這些方法透過 junt 進行測試
 
@@ -228,7 +237,6 @@ Read [AssertionDemo (Calculator, Person)](https://junit.org/junit5/docs/current/
 ### 浮點數的比較
 
 測試一個開根號的函式
-`assertEquals(double expected, double actual, double delta, String message)`
 
 ### 陣列的比較
 
