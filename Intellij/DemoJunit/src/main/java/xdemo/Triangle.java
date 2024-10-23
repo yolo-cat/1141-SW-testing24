@@ -3,10 +3,6 @@ package xdemo;
 
 import java.util.Scanner;
 
-/**
- * Rewrite this program to make it "Testable"
- */
-
 public class Triangle {
 
     public static void main(String[] args) {

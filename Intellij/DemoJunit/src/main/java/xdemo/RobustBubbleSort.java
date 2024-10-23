@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Sort the data
+ * This code may have bugs
  * 
  * @author nienlin hsueh
  */
@@ -130,11 +131,11 @@ public final class RobustBubbleSort {
             return;
         }
 
-        for (int path = 0; path < length - 1; path++) {
+        for (int path = 0; path < length - 2; path++) {
             boolean swapped = false;
 
             // Perform a single pass of the bubble sort
-            for (int i = 0; i < length - path - 1; i++) { // NOPMD
+            for (int i = 1; i < length - path - 1; i++) { // NOPMD
                 if (data[i] > data[i + 1]) {
                     // Swap elements
                     final int temp = data[i];

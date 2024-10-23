@@ -1,10 +1,9 @@
 
-JUnit Automatic Testing
-===
+## JUnit Automatic Testing
 
 > [Junit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 
-#### 測試先行原則
+#### Test First Development
 
 以前你是：設計 => 寫程式  => 測試。現在你應該：設計 => 寫測試碼 => 寫程式 => 測試
 
@@ -14,7 +13,7 @@ JUnit Automatic Testing
 - 撰寫程式
 - 執行測試碼：執行 JUnit 測試碼，錯誤應該會逐漸減少。
 
-#### 3A 原則
+#### 3A Principle
 
 3A 指的是：安排 Arrange, 測試 Act, 驗證 Assert：
 
@@ -22,7 +21,7 @@ JUnit Automatic Testing
 - Act：呼叫測試目標類別上要測試的方法。
 - Assert：驗證預期結果與 Act 所得到的實際結果，是否符合。
 
-## JUnit 簡介
+## JUnit Introduction
 
 JUnit 是一個用於 Java 程序的單元測試框架。它是開發人員用來測試他們的程式碼是否正確的一個重要工具。以下是一些有關 JUnit 的基本介紹：
 
@@ -156,9 +155,8 @@ class StandardTests {
 }
 ```
 
-![test life cycle](../img/junit_life_cycle.png)
 
-## JUnit assert
+## JUnit Demo & Lab (I)
 
 以下是 JUnit 5 中常用的斷言方法及其簡單說明：
 
@@ -208,43 +206,67 @@ class StandardTests {
 
 > Google `junit api` 來找出更多 Assertion 的方法。
 
-#### Calculator
+#### Demo: Calculator
 寫一個 Calculator 的類別，內有 
-* plus(int, int): int
-* minus(int, int): int
-* mul(int, int): int
-* div(int, int): double 
+* add(int, int): int
+* multiply(int, int): int
+* divide(int, int): double 
 
-> 參考 [Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行 plus 的測試。
+See Demo [Calculator](../../Intellij/DemoJunit/src/main/java/demo/Calculator.java)
 
+LAB: 
+1. 修改 Calculator, 增加 subtract() 減法
+2. 做一個會拋出例外的測試，例如 `5/0` （參考 [assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)）
+4. 參考 [Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
 
-> 參考 [assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)，撰寫 div 拋出例外的處理。
+Read more about my [assertAll()](#assertall)
 
-Note: `assertEquals(double expected, double actual, double delta, String message)`
+#### Demo: Life Cycle
 
+為了讓每一次的測試可以在一個乾淨的環境，我們可以設定 @BeforeEach, @AfterEach:
 
-針對這些方法透過 junt 進行測試
+![test life cycle](../img/junit_life_cycle.png)
 
-#### People name
-寫一個 People 的類別，內有
+See Demo [Life cycle](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java)
+
+#### Lab: People
+
+My [People](../../Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
+
+Lab:
+1. 針對進行 BMI 的測試，注意小數點誤差的情況，可使用 delta 的參數。
+2. 增加 addChild(People) 的功能，進行 getFather() 的測試。
+
+#### Demo: Person
+
+Person 類別，內有
 * getFirstName(): String
 * getLastName(): String
 
-針對這些方法透過 junt 進行測試
+Read [AssertionDemo (Calculator, Person)](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)
+* how String check
+* timeOut check
 
-Read [AssertionDemo (Calculator, Person)](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions) Example
+#### Lab: Improve Testability
 
-### 浮點數的比較
+My [Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) is a code for checking type of Triangle. But it is not easy to test- I can't use JUnit to test it.
 
-測試一個開根號的函式
+Lab
+1. Please refactoring the code, make it easy to test
+2. Use Juit to test your sort
 
-### 陣列的比較
+#### Lab: Testing array
 
-array 排序後的測試
+My [RobustBubbleSort](../../Intellij/DemoJunit/src/main/java/xdemo/RobustBubbleSort.java) is a code for sorting data. But it is not easy to test- I can't use JUnit to test it.
 
-`assertArrayEquals(int[] expected, int[] actual, String message)`
+Lab
+1. Please refactoring the code, make it easy to test
+2. Use assertArrayEquals() to test your sort
 
-### 延遲評估訊息
+
+### You Should Know
+
+#### Lazy Evaluating Message
 
 在 JUnit 中，Lazily evaluating message 是一種技巧，用於在斷言（assertions）中延遲評估訊息（lazy evaluating message）的建立，僅在斷言失敗時才進行評估。這種技巧可以提高執行效能，避免不必要的訊息建立和字串連接操作，特別是當訊息建立的過程很耗時或者涉及複雜的計算時。
 
@@ -272,7 +294,7 @@ public class CalculatorTest {
 
 這種方式可以避免在每次斷言時都執行 `getLastOperation` 方法，而僅在斷言失敗時才執行，從而節省了不必要的計算和訊息建立操作。
 
-### 測試不中斷 `assertAll()`
+#### `assertAll()`
 
 在 JUnit 中，`assertAll()` 方法是一個非常有用的斷言方法，它用於同時執行多個斷言，並在所有斷言完成後報告所有失敗的斷言。這對於進行多個相關斷言的測試非常有用，因為它可以讓你一次性檢查多個條件，而不需要分開處理每個斷言。
 
@@ -318,23 +340,7 @@ public class CalculatorTest {
 - 你想要避免在第一個斷言失敗後中止測試，並希望繼續檢查其他斷言。
 - 你想要清晰地顯示所有失敗的斷言，而不是一個接一個地報告。
 
-#### Exercise
-:::success
-==算成績==	傳入一個二維陣列，`{{90,100,70}, {40,50,60}}` 表示一群學生在 math, python, eng 三科的成績。回傳一個一維陣列，其一個元素是全班所有科目的平均，接下來 math, python, eng 的全班平均。
-- 請設計測試案例進行測試
-:::
-
-:::success
-==找出健康的== 輸入一個一維陣列，裡面放一群 `Person` 的物件，回傳一個一維陣列，記載健康的 `Person`。`Person` 內有身高體中，並依此可以算出 `bmi`。如果 `bmi` 的值在 `18-24` 之間，則為健康。
-- 請設計測試案例進行測試
-- Hint: assertArrayEquals(Object[] expected, Object[] actual)
-:::
-
-
-### 例外的測試
-
-See [AssertionDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)
-* 用 `assertThrows()` 來斷言例外的發生，而不是讓測試方法拋出例外。
+#### Testing Exception
 
 ```java
 @Test
@@ -345,82 +351,9 @@ void exceptionTesting() {
 }
 ```    
 
-### 效能測試
+## JUnit Demo & Lab (II)
 
-在 JUnit 中，`assertTimeout()` 方法用於測試執行時間，它允許你在指定的時間範圍內執行一個測試，如果超過該時間範圍，則將其視為失敗。
-
-以下是 `assertTimeout()` 方法的應用與範例：
-
-應用：
-- 測試長時間執行的程式碼，以確保其在預期的時間範圍內完成。
-- 檢查程式碼中是否存在性能問題或無限迴圈。
-- 測試多執行緒程式碼的正確性。
-
-範例：
-```java
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-public class MyServiceTest {
-
-    @Test
-    public void testLongRunningOperation() {
-        MyService myService = new MyService();
-
-        assertTimeout(Duration.ofSeconds(5), () -> {
-            String result = myService.longRunningOperation();
-            assertEquals("Expected Result", result);
-        });
-    }
-}
-```
-
-在上述範例中，我們使用了 `assertTimeout()` 方法來測試 `MyService` 類中的 `longRunningOperation()` 方法。我們希望該方法在5秒內完成並返回期望的結果。
-
-`assertTimeout()` 方法的第一個參數是一個 `Duration` 物件，用於指定允許的最大執行時間。在這個例子中，我們設定為5秒。
-
-第二個參數是一個 `Executable` 物件，它是一個表示要執行的程式碼塊的 lambda 運算式。在這個例子中，我們使用 lambda 運算式來執行 `longRunningOperation()` 方法，並在允許的時間範圍內進行斷言，驗證結果是否與期望相符。
-
-如果 `longRunningOperation()` 方法在5秒內成功完成並返回預期結果，則測試通過。否則，如果超過了指定的時間範圍，則測試將被視為失敗。
-
-使用 `assertTimeout()` 方法可以確保測試的執行時間在合理的範圍內，從而提供對程式碼執行時間的控制和驗證。這對於測試具有時間相關性或執行時間長的程式碼非常有用。
-
-
-## JUnit Life cycle
-
-![](https://howtodoinjava.com/wp-content/uploads/2021/11/JUnit-Test-Life-Cycle-1.jpg)
-
-In JUnit 5, the test lifecycle consists of a series of annotations that define when certain methods should be executed in relation to the tests themselves. Here's a brief description of each lifecycle annotation:
-
-1. **@BeforeAll**: 
-   - Runs once before any of the test methods in the class are executed.
-   - The method must be static unless you are using the `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` annotation.
-   - Used for setting up global resources like database connections.
-
-2. **@BeforeEach**:
-   - Runs before each individual test method.
-   - Used to set up resources or initial conditions needed for each test, like resetting mock objects or initializing values.
-
-3. **@Test**:
-   - Marks the method as a test case. Each test method typically contains assertions that check for expected outcomes.
-   - Can be combined with `@DisplayName` to provide a custom name for the test method when reporting.
-
-4. **@AfterEach**:
-   - Runs after each individual test method.
-   - Used to clean up resources or reset configurations after each test execution.
-
-5. **@AfterAll**:
-   - Runs once after all test methods have been executed.
-   - The method must be static unless using `@TestInstance(TestInstance.Lifecycle.PER_CLASS)`.
-   - Used for releasing resources like closing database connections or freeing up memory.
-
-These lifecycle methods help manage test setup and teardown efficiently, ensuring each test runs in isolation or with shared resources, as needed.
-
-## 進階內容
-
-### 測試結果之顯示 
-
+### Demo Display
 
 See [DisplayNameDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-names)
 * 可以讓測試的結果顯示更清楚，口語化
@@ -437,7 +370,12 @@ class DisplayNameDemo {
     }
 ```
 
-#### 進階：display name 的自動產生
+See my [LifeCycleTest](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java) to see how it works.
+
+See my [DisplayNameTest](../../Intellij/DemoJunit/src/test/java/demo/DisplayNameTest.java) to see how it works.
+
+
+### Lab: DisplayName Generator
 
 See [DisplayNameGeneratorDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator)
 * DisplayNameGenerator 共有四種
@@ -459,9 +397,7 @@ void if_it_is_negative(int year) {
 }
 ```
 
-### 巢狀測試
-
-巢狀測試 (Nested test)
+### Nested Test
 
 See [TestingAStackDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested)
 
@@ -476,12 +412,12 @@ class structure
 Result result:
 ![nest testing](https://hackmd.io/_uploads/r1_idz3W6.png)
 
-:::success
-==三角形面積== 輸入三個邊長，判斷是否 (1) 符合三角形規範 (2) 正三角形 (3) 等腰三角形 (4) 直角三角形 (5) 等腰直角三角形。
-- 請透過 Nested 與 DisplayNames 來組織測試案例。
-:::
+### Lab: Triangle
+* Re-write the [Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) using Nested testing
+* 輸入三個邊長，判斷是否 (1) 符合三角形規範 (2) 正三角形 (3) 等腰三角形 (4) 直角三角形 (5) 等腰直角三角形。
+* 請透過 Nested 與 DisplayNames 來組織測試案例。
 
-### 參數化測試
+### Parameterized Test
 
 See [ParameterizedTest doc](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
 
@@ -525,7 +461,19 @@ public class CalculatorTest {
 - `CsvSourceFile` 讀取 csv file
 - `MethodSource` 透過實踐某介面的方法回傳的資料
 
-#### test tomorrow
+
+參數化測試優點
+1. 減少重複的測試程式碼：使用 @ParameterizedTest 可以將多次類似的測試結合到一個測試方法中，減少了重複編寫相似測試邏輯的需要。這樣一來，可以提高測試程式碼的可維護性和可讀性。
+2. 一次性測試多個輸入值：通過參數化測試，你可以一次性測試多個輸入值。這使得可以在一個測試方法中檢查多個輸入組合下的預期行為，從而增加了測試的全面性和可靠性。
+3. 提高測試覆蓋率：使用 @ParameterizedTest 可以為各種輸入條件和邊界情況設置不同的測試案例，從而增加測試覆蓋率。這有助於捕捉潛在的錯誤或不正確的行為，並提高程式碼的品質。
+4. 測試報告和結果的可讀性：由於 @ParameterizedTest 將多個測試組合在一起，測試報告和結果將更清晰和易讀。它將以一個測試方法的形式呈現每個輸入組合的結果，使得報告更容易理解並追踪測試結果。
+5. 擴展性和靈活性：JUnit 5 提供了多種參數提供者（Parameter Providers），如 @ValueSource、@CsvSource、@MethodSource 等。這使得可以靈活地指定不同的參數值來驗證測試邏輯，並根據需要擴展和定制參數化測試。
+
+總之，@ParameterizedTest 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
+
+
+### Lab: Tomorrow
+
 以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。
 
 ```java
@@ -549,7 +497,7 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 
 test by using csv file
 
-```java=
+```java
 public class MyParaTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
@@ -565,32 +513,22 @@ public class MyParaTest {
 
 ![](https://hackmd.io/_uploads/SkhM5AEza.png)
 
-#### 參數化測試優點
 
-1. 減少重複的測試程式碼：使用 @ParameterizedTest 可以將多次類似的測試結合到一個測試方法中，減少了重複編寫相似測試邏輯的需要。這樣一來，可以提高測試程式碼的可維護性和可讀性。
-2. 一次性測試多個輸入值：通過參數化測試，你可以一次性測試多個輸入值。這使得可以在一個測試方法中檢查多個輸入組合下的預期行為，從而增加了測試的全面性和可靠性。
-3. 提高測試覆蓋率：使用 @ParameterizedTest 可以為各種輸入條件和邊界情況設置不同的測試案例，從而增加測試覆蓋率。這有助於捕捉潛在的錯誤或不正確的行為，並提高程式碼的品質。
-4. 測試報告和結果的可讀性：由於 @ParameterizedTest 將多個測試組合在一起，測試報告和結果將更清晰和易讀。它將以一個測試方法的形式呈現每個輸入組合的結果，使得報告更容易理解並追踪測試結果。
-5. 擴展性和靈活性：JUnit 5 提供了多種參數提供者（Parameter Providers），如 @ValueSource、@CsvSource、@MethodSource 等。這使得可以靈活地指定不同的參數值來驗證測試邏輯，並根據需要擴展和定制參數化測試。
+### Lab: BMI
 
-總之，@ParameterizedTest 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
+* 輸入身高體重，輸出 BMI，`bmi = h/(w**2)`
+* 使用參數化測試進行測試
 
-#### Exercise
 
-:::success
-==BMI==	輸入身高體重，輸出 BMI，`bmi = h/(w**2)`
-- 使用參數化測試進行測試
-:::
+### Lab: Which day
 
-:::success
-==星期幾==	2021/1/1 是星期五，輸入月份和日期（一樣是2021年），輸出是星期幾。
+2021/1/1 是星期五，輸入月份和日期（一樣是2021年），輸出是星期幾。
 1. 使用參數化測試進行測試 (CsvSource)
 2. 使用 CsvSourceFile 進行測試
-:::
 
-:::success
-==貨幣== 一個 Currency 的類別，內封裝金額與幣值的屬性，幣值可以有 NT 和 US 兩種幣值，其匯率為 30。如果是台幣+美金則回傳台幣，若美金+台幣則回傳為美金（由第一個決定），請設計程式與測試案例。
-- 使用參數化測試進行測試
+### Lab: Monday
+* 一個 Currency 的類別，內封裝金額與幣值的屬性，幣值可以有 NT 和 US 兩種幣值，其匯率為 30。如果是台幣+美金則回傳台幣，若美金+台幣則回傳為美金（由第一個決定），請設計程式與測試案例。
+* 使用參數化測試進行測試
 
 ```java=
 class Currency {
@@ -610,15 +548,7 @@ Currency us100 = new Currency(100, "US");
 ```
 :::
 
-:::success
-==明天==	寫一函式，輸入是一個 `y-m-d` 的日期(2023-01-02)，輸出同樣為 `y-m-d` 的格式
-- 使用參數化測試進行測試
-:::
-
-
-
-
-### 假設
+### Assume
 
 在JUnit 5中，Assumptions（前提條件）是一種用於定義測試前提條件的機制。它允許你在執行測試之前檢查某些條件，如果條件不滿足，則可以將測試視為已經通過，跳過執行測試。這在某些情況下非常有用，例如當測試需要特定的環境或資源時，如果條件不滿足，測試就沒有意義。
 
@@ -692,7 +622,7 @@ JUnit 5 中有許多重要的標記（annotations），每個注解都具有特�
 Read [更多 Junit 標記](https://junit.org/junit5/docs/current/user-guide/#writing-tests-annotations)
 
 
-## 練習
+## Exercise
 
 - 以下何者為真？（多選）	
 	- @Test 用以標記一個測試碼;
@@ -751,27 +681,24 @@ public class AdditionTest {
 - 針對一個排序程式設計測試案例 SortTest，每一次測試之前會先做一些初始化：從檔案中讀取資料，寫到陣列 data[]中，SortTest 中的 testSort() 再針對 data[] 中的資料做排序。請利用 @Before 來完成此工作。
 - 寫一個無窮迴圈的程式，並使用 junit 來測試。利用 timeout 的參數來跳出迴圈。
 
-#### mid-test-112-1
-:::success
+### mid-test-112-1
 112-1 期中考題
-:football: Q1 MLB 世界大賽票價 (50%)
+
+#### Q1 MLB 世界大賽票價 (50%)
 
 MLB 世界大賽的票價嚇人，起碼 2 萬元起跳。假設規則如下：(1) 一般票價 20,000 (2) 比賽當天若為六日，則價格為 25,000 (3) 如果是內野票價，比上述票價再高 5,000 元; 貴賓席則貴 15,000 元。(4) 如果透過 Ticketmaster 購買可以打九折。
 
 - 請以等價分割的「強涵蓋」設計測試案例，以表格的方式描述測試案例。
 - 撰寫程式碼並用JUnit 進行完整測試，並說明測試結果與你的完成度。
-:::
 
-:::success
-112-1 期中考題
-:football: Q2 德州遊騎兵 (50%)
+
+#### Q2 德州遊騎兵 (50%)
 
 2023 美國棒球大聯盟 MLB 落幕，恭喜德州遊騎兵打敗亞利桑那響尾蛇，拿到隊史成軍 63 年以來第一次的世界大賽冠軍。 `int score(inningA[], inningB[], playerA[], playerB[])` 會回傳 A 隊勝 B 隊的分數，其中：
 - `inningA[]`, `inningB[]` 分別紀錄各局的得分。原則上是打滿九局，但如果九上結束後攻者已經領先前攻者，則不需進行九下，分數以 -1 或 X 標記（不可標記為 0)。若九局結束仍然平分，則繼續進行第十局直到勝負。請檢查這兩個資料是否符合常規，若否則拋出例外。
 - `playerA[]`, `playerB[]` 分別紀錄兩隊隊員的得分，A 隊隊員得分之總和應與 `inningA[]` 之個局之總和相同，依此類推。若不符合常規則拋出例外。
 - 若資料檢查無誤，則回傳 A 隊勝 B 隊的分數。若為負數表示 A 隊輸，反之則 A 隊贏。不可能為零。
 - 撰寫程式碼並用 JUnit 進行完整測試，並說明測試結果與你的完成度。
-:::
 
 Hint
 
