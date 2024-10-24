@@ -212,12 +212,13 @@ class StandardTests {
 * multiply(int, int): int
 * divide(int, int): double 
 
-See Demo [Calculator](../../Intellij/DemoJunit/src/main/java/demo/Calculator.java)
+See Demo [demo/Calculator](../../Intellij/DemoJunit/src/main/java/demo/Calculator.java)
 
 LAB: 
 1. 修改 Calculator, 增加 subtract() 減法
 2. 做一個會拋出例外的測試，例如 `5/0` （參考 [assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)）
 4. 參考 [Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
+5. 修改 Calculator, 增加 arrayAdd(), 針對兩個大小一樣的陣列進行相加，回傳結果。(`assertArrayEquals()`)
 
 Read more about my [assertAll()](#assertall)
 
@@ -227,15 +228,16 @@ Read more about my [assertAll()](#assertall)
 
 ![test life cycle](../img/junit_life_cycle.png)
 
-See Demo [Life cycle](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java)
+See Demo [demo/Life cycle](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java)
 
 #### Lab: People
 
-My [People](../../Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
+My [xdemo/People](../../Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
 
 Lab:
 1. 針對進行 BMI 的測試，注意小數點誤差的情況，可使用 delta 的參數。
 2. 增加 addChild(People) 的功能，進行 getFather() 的測試。
+3. 增加 isSibling(People) 的功能，並進行測試。
 
 #### Demo: Person
 
@@ -249,7 +251,7 @@ Read [AssertionDemo (Calculator, Person)](https://junit.org/junit5/docs/current/
 
 #### Lab: Improve Testability
 
-My [Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) is a code for checking type of Triangle. But it is not easy to test- I can't use JUnit to test it.
+My [xdemo/Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) is a code for checking type of Triangle. But it is not easy to test- I can't use JUnit to test it.
 
 Lab
 1. Please refactoring the code, make it easy to test
@@ -263,6 +265,11 @@ Lab
 1. Please refactoring the code, make it easy to test
 2. Use assertArrayEquals() to test your sort
 
+### Demo: Condition
+
+See [Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
+* Some tests only execute on MAC environment
+* `@TestOnMac`
 
 ### You Should Know
 
@@ -471,6 +478,11 @@ public class CalculatorTest {
 
 總之，@ParameterizedTest 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
 
+### Lab: BMI
+
+* 輸入身高體重，輸出 BMI，`bmi = h/(w**2)`
+* 使用參數化測試進行測試
+
 
 ### Lab: Tomorrow
 
@@ -514,10 +526,6 @@ public class MyParaTest {
 ![](https://hackmd.io/_uploads/SkhM5AEza.png)
 
 
-### Lab: BMI
-
-* 輸入身高體重，輸出 BMI，`bmi = h/(w**2)`
-* 使用參數化測試進行測試
 
 
 ### Lab: Which day
@@ -589,38 +597,6 @@ void testSomething() {
 在上述範例中，使用Assumptions可以在測試執行之前進行條件檢查。如果條件滿足，測試將繼續執行；如果條件不滿足，測試將被視為已通過並跳過執行。這有助於確保測試在正確的環境或條件下執行，並減少無效或不必要的測試執行。
 
 Assumptions的使用方法能夠提供更靈活的控制，可以根據特定的前提條件來選擇是否執行測試，從而更好地管理和組織測試案例。
-
-#### 常用的標記
-
-JUnit 5 中有許多重要的標記（annotations），每個注解都具有特定的意義和用途。以下是幾個重要的注解以及它們的意義：
-
-1. `@Test`
-   - 意義：將一個方法標記為測試方法。
-   - 用途：用於標記要執行的單元測試方法。
-2. `@BeforeEach`、`@AfterEach`
-   - 意義：在每個測試方法執行之前（`@BeforeEach`）和之後（`@AfterEach`）執行指定的操作。
-   - 用途：用於在每個測試方法執行前後執行初始化、清理或重置操作。
-3. `@BeforeAll`、`@AfterAll`
-   - 意義：在所有測試方法執行之前（`@BeforeAll`）和之後（`@AfterAll`）執行指定的操作。
-   - 用途：用於在所有測試方法執行前後執行全局初始化、清理或重置操作。
-4. `@DisplayName`
-   - 意義：為測試方法或測試類指定自定義的顯示名稱。
-   - 用途：用於提供更具描述性和易讀的測試名稱，以改善測試報告的可讀性和理解性。
-5. `@Disabled`
-   - 意義：標記測試方法或測試類為禁用，不會執行。
-   - 用途：用於臨時禁用測試方法或測試類，通常在測試開發或維護過程中使用。
-6. `@ParameterizedTest`
-   - 意義：標記一個方法作為參數化測試方法，可以使用不同的輸入參數運行多次測試。
-   - 用途：用於在一個測試方法中執行多次相同邏輯的測試，並驗證不同輸入對於結果的正確性。
-7. `@RepeatedTest`
-   - 意義：標記一個方法作為重複測試方法，可以重複運行指定次數的測試。
-   - 用途：用於重複執行相同的測試多次，以驗證結果的一致性和可靠性。
-8. `@Timeout`
-   - 意義：指定測試方法或測試類的最大執行時間。
-   - 用途：用於確保測試方法或測試類在指定的時間內完成執行，並避免無限執行的情況。
-
-Read [更多 Junit 標記](https://junit.org/junit5/docs/current/user-guide/#writing-tests-annotations)
-
 
 ## Exercise
 
