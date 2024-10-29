@@ -206,7 +206,7 @@ class StandardTests {
 
 > Google `junit api` 來找出更多 Assertion 的方法。
 
-#### Demo: Calculator
+### Demo: Calculator
 寫一個 Calculator 的類別，內有 
 * add(int, int): int
 * multiply(int, int): int
@@ -222,7 +222,7 @@ LAB:
 
 Read more about my [assertAll()](#assertall)
 
-#### Demo: Life Cycle
+### Demo: Life Cycle
 
 為了讓每一次的測試可以在一個乾淨的環境，我們可以設定 @BeforeEach, @AfterEach:
 
@@ -239,7 +239,7 @@ Lab:
 2. 增加 addChild(People) 的功能，進行 getFather() 的測試。
 3. 增加 isSibling(People) 的功能，並進行測試。
 
-#### Demo: Person
+### Demo: Person
 
 Person 類別，內有
 * getFirstName(): String
@@ -360,7 +360,7 @@ void exceptionTesting() {
 
 ## JUnit Demo & Lab (II)
 
-### Demo Display
+### Demo: DisplayName
 
 See [DisplayNameDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-names)
 * 可以讓測試的結果顯示更清楚，口語化
@@ -382,7 +382,7 @@ See my [LifeCycleTest](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest
 See my [DisplayNameTest](../../Intellij/DemoJunit/src/test/java/demo/DisplayNameTest.java) to see how it works.
 
 
-### Lab: DisplayName Generator
+### Demo: DisplayName Generator
 
 See [DisplayNameGeneratorDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator)
 * DisplayNameGenerator 共有四種
@@ -419,10 +419,10 @@ class structure
 Result result:
 ![nest testing](https://hackmd.io/_uploads/r1_idz3W6.png)
 
-### Lab: Triangle
-* Re-write the [Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) using Nested testing
-* 輸入三個邊長，判斷是否 (1) 符合三角形規範 (2) 正三角形 (3) 等腰三角形 (4) 直角三角形 (5) 等腰直角三角形。
-* 請透過 Nested 與 DisplayNames 來組織測試案例。
+#### Lab: stack
+* 依上面的例子，設計一個 Stack class
+* 應用 Nested test, 檢驗 stack isFull 的時候是否正確; 檢驗 isFull 時再 push() 是否會拋出 Exception
+
 
 ### Parameterized Test
 
@@ -436,55 +436,60 @@ See [ParameterizedTest doc](https://junit.org/junit5/docs/current/user-guide/#wr
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CalculatorTest {
+public class MathTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    public void testAddition(int number) {
-        Calculator calculator = new Calculator();
-        int result = calculator.add(number, 2);
-        assertEquals(number + 2, result);
+    @ValueSource(ints = {2, 3, 5, 11})
+    public void testPrime(int number) {
+        Math math = new Math();
+        assertTrue(math.isPrime(number));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 100, 50, 99, 51})
+    public void testNotPrime(int number) {
+        Math math = new Math();
+        assertFalse(math.isPrime(number));
     }
 }
 ```
 
-在上述範例中，我們使用了 `@ParameterizedTest` 注解來標記 `testAddition()` 測試方法。該方法接受一個整數參數 `number`。
-
-使用 `@ValueSource` 注解，我們指定了整數陣列 `{1, 2, 3, 4, 5}` 作為輸入參數。這意味著 `testAddition()` 方法將使用這個陣列中的每個整數值來運行測試。
-
-在每次執行時，`number` 參數將被設置為陣列中的一個值，並在測試方法內進行驗證。在這個例子中，我們測試了將每個 `number` 與 2 相加的結果是否等於 `number + 2`。
-
-這樣一來，`testAddition()` 方法將以 `{1, 2, 3, 4, 5}` 中的每個數字運行五次，並在每次運行時驗證測試邏輯。
 
 使用 `@ParameterizedTest` 可以有效地減少重複的測試程式碼，並使你能夠輕鬆地在一個測試方法中執行多次測試。這對於驗證一個邏輯對於不同輸入值的行為是否正確非常有用，同時保持測試程式碼的簡潔和可讀性。
 
-除了 `@ValueSource`，JUnit 5 還提供了其他參數提供者（Parameter Providers）來更靈活地指定參數值，例如 `@CsvSource`、`@MethodSource`、`@ArgumentsSource` 等。
-
-- `@NullSource` null 的資料
-- `@EmptySource` 空的資料
-- `ValueSource` int, string 等資料
-- `@EnumSource` 列舉型資料
-- `CsvSource` csv 格式的資料
-- `CsvSourceFile` 讀取 csv file
-- `MethodSource` 透過實踐某介面的方法回傳的資料
-
-
 參數化測試優點
-1. 減少重複的測試程式碼：使用 @ParameterizedTest 可以將多次類似的測試結合到一個測試方法中，減少了重複編寫相似測試邏輯的需要。這樣一來，可以提高測試程式碼的可維護性和可讀性。
+1. 減少重複的測試程式碼：使用 `@ParameterizedTest` 可以將多次類似的測試結合到一個測試方法中，減少了重複編寫相似測試邏輯的需要。這樣一來，可以提高測試程式碼的可維護性和可讀性。
 2. 一次性測試多個輸入值：通過參數化測試，你可以一次性測試多個輸入值。這使得可以在一個測試方法中檢查多個輸入組合下的預期行為，從而增加了測試的全面性和可靠性。
-3. 提高測試覆蓋率：使用 @ParameterizedTest 可以為各種輸入條件和邊界情況設置不同的測試案例，從而增加測試覆蓋率。這有助於捕捉潛在的錯誤或不正確的行為，並提高程式碼的品質。
-4. 測試報告和結果的可讀性：由於 @ParameterizedTest 將多個測試組合在一起，測試報告和結果將更清晰和易讀。它將以一個測試方法的形式呈現每個輸入組合的結果，使得報告更容易理解並追踪測試結果。
+3. 提高測試覆蓋率：使用 `@ParameterizedTest` 可以為各種輸入條件和邊界情況設置不同的測試案例，從而增加測試覆蓋率。這有助於捕捉潛在的錯誤或不正確的行為，並提高程式碼的品質。
+4. 測試報告和結果的可讀性：由於 `@ParameterizedTest` 將多個測試組合在一起，測試報告和結果將更清晰和易讀。它將以一個測試方法的形式呈現每個輸入組合的結果，使得報告更容易理解並追踪測試結果。
 5. 擴展性和靈活性：JUnit 5 提供了多種參數提供者（Parameter Providers），如 @ValueSource、@CsvSource、@MethodSource 等。這使得可以靈活地指定不同的參數值來驗證測試邏輯，並根據需要擴展和定制參數化測試。
 
-總之，@ParameterizedTest 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
+總之，`@ParameterizedTest` 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
 
-### Lab: BMI
+#### Lab: Prime
+* 使用 `@ValueSource` 來測試 `Math.isPrime()`
 
-* 輸入身高體重，輸出 BMI，`bmi = h/(w**2)`
-* 使用參數化測試進行測試
+### CsvSource 
 
+```java
+    @ParameterizedTest
+    @CsvSource({
+            "apple,         1",
+            "banana,        2",
+            "'lemon, lime', 0xF1",
+            "strawberry,    700_000"
+    })
+    void testWithCsvSource(String fruit, int rank) {
+        assertNotNull(fruit);
+        assertNotEquals(0, rank);
+    }
+```    
 
-### Lab: Tomorrow
+#### Lab: Triangle
+
+* Test [demo/Triangle](../../Intellij/DemoJunit/src/main/java/demo/Triangle.java) using `@CsvSource`
+
+#### Lab: Tomorrow
 
 以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。
 
@@ -507,38 +512,48 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 *  變數 y1, m1, d1 分別對應到 1901, 1, 1,; y2, m2, d2 分別對應到 1901, 1, 2
 *  逐行讀入進行測試
 
-test by using csv file
 
-```java
-public class MyParaTest {
-    @ParameterizedTest
-    @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
-    void testWithCsvFileSourceFromClasspath(int a, int b, int r) {
-        Calculator c = new Calculator();
-        assertEquals(c.add(a, b), r);
-    }
-}
-```
-
-* .csv 檔案放在 /resource 下
-* 跳過第一行: numLinesToSkip = 1
 
 ![](https://hackmd.io/_uploads/SkhM5AEza.png)
 
+### CsvFileSource
+
+```java
+    @ParameterizedTest
+    @CsvFileSource(resources = "/two-columns.csv", numLinesToSkip = 1)
+    void testWithCsvFileSourceFromClasspath(String country, int reference) {
+        assertNotNull(country);
+        assertNotEquals(0, reference);
+    }
+```    
+* .csv 檔案放在 /resource 下
+* 跳過第一行: numLinesToSkip = 1
 
 
+#### Lab: Swimming pool
+以下是一個游泳池收費系統的規則：
 
-### Lab: Which day
+* 一般票價 200
+* 星期六日250元,除會員以外不打折
+* 12歲以下、60歲（含）以上打八折，限定 3-75 歲可入內游泳
+* 七點以前八折
+* 團體打七折
+* 會員打五折
+* 各打折不得重疊使用，以顧客最有利方案定價
+
+請用 CsvFileSource 來進行測試
+
+#### Lab: Which day
 
 2021/1/1 是星期五，輸入月份和日期（一樣是2021年），輸出是星期幾。
 1. 使用參數化測試進行測試 (CsvSource)
 2. 使用 CsvSourceFile 進行測試
 
-### Lab: Monday
+#### Lab: Monday
 * 一個 Currency 的類別，內封裝金額與幣值的屬性，幣值可以有 NT 和 US 兩種幣值，其匯率為 30。如果是台幣+美金則回傳台幣，若美金+台幣則回傳為美金（由第一個決定），請設計程式與測試案例。
 * 使用參數化測試進行測試
 
-```java=
+```java
 class Currency {
     int amount;
     String symbol;
@@ -657,55 +672,6 @@ public class AdditionTest {
 - 針對一個排序程式設計測試案例 SortTest，每一次測試之前會先做一些初始化：從檔案中讀取資料，寫到陣列 data[]中，SortTest 中的 testSort() 再針對 data[] 中的資料做排序。請利用 @Before 來完成此工作。
 - 寫一個無窮迴圈的程式，並使用 junit 來測試。利用 timeout 的參數來跳出迴圈。
 
-### mid-test-112-1
-112-1 期中考題
 
-#### Q1 MLB 世界大賽票價 (50%)
-
-MLB 世界大賽的票價嚇人，起碼 2 萬元起跳。假設規則如下：(1) 一般票價 20,000 (2) 比賽當天若為六日，則價格為 25,000 (3) 如果是內野票價，比上述票價再高 5,000 元; 貴賓席則貴 15,000 元。(4) 如果透過 Ticketmaster 購買可以打九折。
-
-- 請以等價分割的「強涵蓋」設計測試案例，以表格的方式描述測試案例。
-- 撰寫程式碼並用JUnit 進行完整測試，並說明測試結果與你的完成度。
-
-
-#### Q2 德州遊騎兵 (50%)
-
-2023 美國棒球大聯盟 MLB 落幕，恭喜德州遊騎兵打敗亞利桑那響尾蛇，拿到隊史成軍 63 年以來第一次的世界大賽冠軍。 `int score(inningA[], inningB[], playerA[], playerB[])` 會回傳 A 隊勝 B 隊的分數，其中：
-- `inningA[]`, `inningB[]` 分別紀錄各局的得分。原則上是打滿九局，但如果九上結束後攻者已經領先前攻者，則不需進行九下，分數以 -1 或 X 標記（不可標記為 0)。若九局結束仍然平分，則繼續進行第十局直到勝負。請檢查這兩個資料是否符合常規，若否則拋出例外。
-- `playerA[]`, `playerB[]` 分別紀錄兩隊隊員的得分，A 隊隊員得分之總和應與 `inningA[]` 之個局之總和相同，依此類推。若不符合常規則拋出例外。
-- 若資料檢查無誤，則回傳 A 隊勝 B 隊的分數。若為負數表示 A 隊輸，反之則 A 隊贏。不可能為零。
-- 撰寫程式碼並用 JUnit 進行完整測試，並說明測試結果與你的完成度。
-
-Hint
-
-- 九局正常結束（沒有提前）
-    - inningA, inningB, playerA, playerB
-    - [1,1,1,1,1,1,1,1][1,1,1,1,1,1,1,2] [2,0,1,1,1,1,0,2] [1,1,3,0,0,1,1,2] => -1 B win
-    - [1,1,1,1,1,1,1,2][1,1,1,1,1,1,1,1] [1,1,3,0,0,1,1,2] [2,0,1,1,1,1,0,2] => 1 A win
-
-- 至少九局，小於九局就拋出例外
-    - inningA[] = [1,2,3]; inningB[] = [3,4,5] ⇒ Exception(“局數小於九局”)
-
-- 九局有提前結束 (分數為 X)
-    - 如果第 9 局有 X 分數者，則該隊前 8 局的分數和大於另一對的 9 局分數和; 且 X 分者，必定為後攻球隊
-    - [1,1,1,1,1,1,1,1,1]  [1,1,1,1,1,1,1,3,X]⇒ -1 (差分 1; B win)
-    - [1,1,1,1,1,1,1,1,1]  [1,1,1,1,1,1,1,1,X]⇒ Exception(“不合理的提前結束”)
-
-- 延長
-    - 合理正常的延長
-        - [1,1,1,1,1,1,1,1,2][1,1,1,1,1,1,1,1,3] ⇒ -1 B win, 延長到 10局
-        - [1,1,1,1,1,1,1,1,3][1,1,1,1,1,1,1,1,2] ⇒  1 A win, 延長到 10局
-    - 無必要的延長
-        - [1,1,1,1,1,1,1,2,2][1,1,1,1,1,1,1,1,3] => Exception(“沒有必要的延長局”); 九局時 A win
-        - 延長局必定上下局都會打
-[1,1,1,1,1,1,1,1,1,2] [1,1,1,1,1,1,1,1,1,X]⇒ Exception(“提前結束只可能出現在九下”)
-
-- 所有全員的總得分 = 該隊為各局的總得分 
-    - [1,1,1,1,1,1,1,2][1,1,1,1,1,1,1,1] => 
-[1,1,3,0,0,1,1,2] [2,0,1,1,1,1,0,2] 
-⇒ A隊的總分為 10, 但Ａ隊全員的總得分只有 9 => Exception(“總分不一致”)
-
-- 必須分出勝負 （差分 !=0)
-    - [1,1,1,1,1,1,1,1][1,1,1,1,1,1,1,1] => Exception(不可以和局)
 
 
