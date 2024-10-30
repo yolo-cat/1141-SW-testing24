@@ -216,8 +216,8 @@ See Demo [demo/Calculator](../../Intellij/DemoJunit/src/main/java/demo/Calculato
 
 LAB: 
 1. 修改 Calculator, 增加 subtract() 減法
-2. 做一個會拋出例外的測試，例如 `5/0` （參考 [assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)）
-4. 參考 [Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
+2. 做一個會拋出例外的測試，例如 `5/0` （參考 [JUnit doc- assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)）
+4. 參考 [JUnit doc- Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
 5. 修改 Calculator, 增加 arrayAdd(), 針對兩個大小一樣的陣列進行相加，回傳結果。(`assertArrayEquals()`)
 
 Read more about my [assertAll()](#assertall)
@@ -245,7 +245,7 @@ Person 類別，內有
 * getFirstName(): String
 * getLastName(): String
 
-Read [AssertionDemo (Calculator, Person)](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)
+Read [JUnit doc- AssertionDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)
 * how String check
 * timeOut check
 
@@ -267,7 +267,7 @@ Lab
 
 ### Demo: Condition
 
-See [Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
+See [JUnit doc- Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
 * Some tests only execute on MAC environment
 * `@TestOnMac`
 
@@ -362,7 +362,7 @@ void exceptionTesting() {
 
 ### Demo: DisplayName
 
-See [DisplayNameDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-names)
+See [JUnit doc- DisplayNameDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-names)
 * 可以讓測試的結果顯示更清楚，口語化
 * 在 testing class 或 testing method 上面加上 `@DisplayName()` 的標記
 * 需 `import org.junit.jupiter.api.DisplayName;`
@@ -384,7 +384,7 @@ See my [DisplayNameTest](../../Intellij/DemoJunit/src/test/java/demo/DisplayName
 
 ### Demo: DisplayName Generator
 
-See [DisplayNameGeneratorDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator)
+See [JUnit doc- DisplayNameGeneratorDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-display-name-generator)
 * DisplayNameGenerator 共有四種
     * Standard: Matches the standard display name generation behavior in place since JUnit Jupiter 5.0 was released. (?)
     * Simple: 以方法的名稱顯示，但會去掉參數與括號 (?)
@@ -406,7 +406,7 @@ void if_it_is_negative(int year) {
 
 ### Nested Test
 
-See [TestingAStackDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested)
+See [JUnit doc- TestingAStackDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested)
 
 * class 內部有 class 形成結構，更方便組織測試
 * 內部的 class name 上方加上 `@Nested`; 才會進行測試
@@ -420,13 +420,13 @@ Result result:
 ![nest testing](https://hackmd.io/_uploads/r1_idz3W6.png)
 
 #### Lab: stack
-* 依上面的例子，設計一個 Stack class
+* 依上面的例子，設計一個 Stack class, 設定最多放五個元素
 * 應用 Nested test, 檢驗 stack isFull 的時候是否正確; 檢驗 isFull 時再 push() 是否會拋出 Exception
 
 
 ### Parameterized Test
 
-See [ParameterizedTest doc](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
+See [JUnit doc- ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
 
 `@ParameterizedTest` 是 JUnit 5 中的一個注解，用於執行參數化測試（Parameterized Tests）。它允許你在一個測試方法中使用不同的輸入參數運行多次測試，以驗證相同的測試邏輯對於不同的輸入產生正確的結果。
 
@@ -491,7 +491,7 @@ public class MathTest {
 
 #### Lab: Tomorrow
 
-以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。
+以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。See my [xdemo/MyDate](../../Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
 
 ```java
 @ParameterizedTest
@@ -512,8 +512,6 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 *  變數 y1, m1, d1 分別對應到 1901, 1, 1,; y2, m2, d2 分別對應到 1901, 1, 2
 *  逐行讀入進行測試
 
-
-
 ![](https://hackmd.io/_uploads/SkhM5AEza.png)
 
 ### CsvFileSource
@@ -528,7 +526,6 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 ```    
 * .csv 檔案放在 /resource 下
 * 跳過第一行: numLinesToSkip = 1
-
 
 #### Lab: Swimming pool
 以下是一個游泳池收費系統的規則：
@@ -569,7 +566,7 @@ Currency nt100 = new Currency(100, "NT");
 Currency us100 = new Currency(100, "US");
 ...
 ```
-:::
+
 
 ### Assume
 
