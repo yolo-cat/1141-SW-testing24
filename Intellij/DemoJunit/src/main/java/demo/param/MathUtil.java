@@ -1,9 +1,9 @@
 package demo.param;
 
-public class Math {
+public class MathUtil {
 
     // 檢驗是否為質數
-    public boolean isPrime(int n) {
+    public static boolean isPrime(int n) {
         // 排除小於2的數字，因為質數必須大於1
         if (n <= 1) {
             return false;

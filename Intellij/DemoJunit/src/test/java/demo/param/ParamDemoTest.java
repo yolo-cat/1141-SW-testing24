@@ -1,4 +1,4 @@
-package demo.para;
+package demo.param;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -10,8 +10,9 @@ import java.util.EnumSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParamDemoTest {
+
     @ParameterizedTest
-    @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba" })
+    @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba", "abxa" })
     void palindromes(String candidate) {
         assertTrue(StringUtils.isPalindrome(candidate));
     }
@@ -20,6 +21,18 @@ public class ParamDemoTest {
     @ValueSource(ints = { 1, 2, 3 })
     void testWithValueSource(int argument) {
         assertTrue(argument > 0 && argument < 4);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints={2,3,5,7,11})
+    void testPrime(int argument) {
+        assertTrue(MathUtil.isPrime((argument)));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints={1,4,6,9,51})
+    void testNotPrime(int argument) {
+        assertFalse(MathUtil.isPrime(argument));
     }
 
     // csv 是用 , 分開

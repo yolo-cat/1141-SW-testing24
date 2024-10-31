@@ -1,4 +1,4 @@
-package demo.para;
+package demo.param;
 
 public class StringUtils {
 
