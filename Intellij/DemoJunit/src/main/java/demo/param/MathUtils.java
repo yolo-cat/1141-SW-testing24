@@ -1,6 +1,6 @@
 package demo.param;
 
-public class MathUtil {
+public class MathUtils {
 
     // 檢驗是否為質數
     public static boolean isPrime(int n) {
