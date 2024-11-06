@@ -26,13 +26,13 @@ public class ParamDemoTest {
     @ParameterizedTest
     @ValueSource(ints={2,3,5,7,11})
     void testPrime(int argument) {
-        assertTrue(MathUtil.isPrime((argument)));
+        assertTrue(MathUtils.isPrime((argument)));
     }
 
     @ParameterizedTest
     @ValueSource(ints={1,4,6,9,51})
     void testNotPrime(int argument) {
-        assertFalse(MathUtil.isPrime(argument));
+        assertFalse(MathUtils.isPrime(argument));
     }
 
     // csv 是用 , 分開
