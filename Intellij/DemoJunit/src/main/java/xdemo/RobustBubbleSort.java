@@ -8,22 +8,17 @@ import java.util.Random;
  * 
  * @author nienlin hsueh
  */
-public final class RobustBubbleSort {
+public class RobustBubbleSort {
 
     // the singleton design pattern
-    private static final RobustBubbleSort INSTANCE = new RobustBubbleSort();
+    int[] data;
 
-    private RobustBubbleSort() {
+    public RobustBubbleSort(int[] data) {
+        this.data = new int[data.length];
+
+        System.arraycopy(data, 0, this.data, 0, data.length);
     }
 
-    /**
-     * This is a utility class, so always return the instance
-     * 
-     * @return th instance
-     */
-    public static RobustBubbleSort getInstance() {
-        return INSTANCE;
-    }
 
     /**
      * Generate the data randomly, and sort them
@@ -32,24 +27,24 @@ public final class RobustBubbleSort {
      */
     public static void main(String[] args) {
         // Generate an array of random integers
-        int[] data = generateRandomArray(10, 100);
-
-        System.out.println("\nBefore Sort");
-        printArray(data);
-
-        // Sort the array using bubble sort
-        bubbleSort(data);
-
-        // 故意改成沒有排序的資料
-        data = generateRandomArray(10, 100);
-
-        // check the correctness
-        checkSort(data);
-
-        assert sortOK(data);
-
-        System.out.println("\nAfter Sort");
-        printArray(data);
+//        int[] data = generateRandomArray(10, 100);
+//
+//        System.out.println("\nBefore Sort");
+//        printArray(data);
+//
+//        // Sort the array using bubble sort
+//        bubbleSort(data);
+//
+//        // 故意改成沒有排序的資料
+//        data = generateRandomArray(10, 100);
+//
+//        // check the correctness
+//        checkSort(data);
+//
+//        assert sortOK(data);
+//
+//        System.out.println("\nAfter Sort");
+//        printArray(data);
     }
 
     /**
@@ -118,12 +113,16 @@ public final class RobustBubbleSort {
         System.out.println();
     }
 
+    public int[] sorted() {
+        return this.data;
+    }
+
     /**
      * Sorts an array using the bubble sort algorithm.
      *
      * @param data the array to sort
      */
-    public static void bubbleSort(final int[] data) {
+    public void bubbleSort() {
         final int length = data.length;
 
         // Handle edge case: empty array

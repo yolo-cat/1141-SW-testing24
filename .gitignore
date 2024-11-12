@@ -1,5 +1,6 @@
 /HW/
 
+
 # Ignore Maven target directories in any sub-directory
 **/target/
 
