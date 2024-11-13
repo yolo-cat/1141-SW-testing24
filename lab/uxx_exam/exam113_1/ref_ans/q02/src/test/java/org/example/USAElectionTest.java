@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 class USAElectionTest {
-    private void getData(String path, List<ticketData> data) {
+    private void setData(String path, List<ticketData> data) {
         try (InputStream is = USAElectionTest.class.getResourceAsStream(path)) {
             assert is != null;
             try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
@@ -47,7 +47,7 @@ class USAElectionTest {
     @DisplayName("原始基本的測試資料 (Nebraska && Maine 進行比例分配)")
     void getElectionResult() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020.csv", data);
+        setData("/votes2020.csv", data);
 
         String[] expected = new String[]{"Biden", "307", "Align"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -58,7 +58,7 @@ class USAElectionTest {
     @DisplayName("非Nebraska 與 Maine 同票的測試資料")
     void testSameTicket() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_occur_state_same_votes.csv", data);
+        setData("/votes2020_occur_state_same_votes.csv", data);
 
         String expected = "不該出現同票的情況，請重新驗票";
         IllegalAccessException illegalAccessError = assertThrows(IllegalAccessException.class, () -> USAElection.getElectionResult(data));
@@ -69,7 +69,7 @@ class USAElectionTest {
     @DisplayName("平手的測試資料")
     void noWinner() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_NoWinner.csv", data);
+        setData("/votes2020_NoWinner.csv", data);
 
         String[] expected = new String[]{"NONE", "-1", "X"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -80,7 +80,7 @@ class USAElectionTest {
     @DisplayName("Biden Split的測試資料")
     void testBidenSplit() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_Biden_Split.csv", data);
+        setData("/votes2020_Biden_Split.csv", data);
 
         String[] expected = new String[]{"Biden", "318", "Split"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -91,7 +91,7 @@ class USAElectionTest {
     @DisplayName("Trump Align 的測試資料")
     void testTrumpAlign() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_Trump_Align.csv", data);
+        setData("/votes2020_Trump_Align.csv", data);
 
         String[] expected = new String[]{"Trump", "489", "Align"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -102,7 +102,7 @@ class USAElectionTest {
     @DisplayName("Trump Split 的測試資料")
     void testTrumpSplit() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_Trump_Split.csv", data);
+        setData("/votes2020_Trump_Split.csv", data);
 
         String[] expected = new String[]{"Trump", "489", "Split"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -113,7 +113,7 @@ class USAElectionTest {
     @DisplayName("測試 (Nebraska && Maine 比例分配) 是否有符合比例較大者 + 1 的條件 By 相同機率")
     void testBiggerProbabilityPlus1BySameProbability() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_probability_bigger_plus1_same.csv", data);
+        setData("/votes2020_probability_bigger_plus1_same.csv", data);
 
         String[] expected = new String[]{"Biden", "306", "Align"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
@@ -124,7 +124,7 @@ class USAElectionTest {
     @DisplayName("測試 (Nebraska && Maine 比例分配) 是否有符合比例較大者 + 1 的條件 By 相同機率")
     void testBiggerProbabilityPlus1ByBiggerProbability() throws IllegalAccessException {
         List<ticketData> data = new ArrayList<>();
-        getData("/votes2020_probability_bigger_plus1_bigger1.csv", data);
+        setData("/votes2020_probability_bigger_plus1_bigger1.csv", data);
 
         String[] expected = new String[]{"Biden", "307", "Align"};
         String[] actual = (String[]) USAElection.getElectionResult(data);
