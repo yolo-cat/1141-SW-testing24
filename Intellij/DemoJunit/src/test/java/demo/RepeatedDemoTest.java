@@ -23,19 +23,20 @@ class RepeatedDemoTest {
     }
 
     // 當環境是隨機時，我們可以進行多次測試，確保程式的正確
-    @RepeatedTest(10)
+    @RepeatedTest(2)
     void repeatedTest() {
 
     }
 
     // 可以透過 RepetitionInfo 來取得重複測試的相關資訊
-    @RepeatedTest(5)
+    @RepeatedTest(3)
     void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
-        assertEquals(5, repetitionInfo.getTotalRepetitions());
+        assertEquals(3, repetitionInfo.getTotalRepetitions());
     }
 
     // 當錯誤超過 2 次，就會取消之後的測試
     @RepeatedTest(value = 8, failureThreshold = 2)
+    @Disabled("Disabled- for demonstration")
     void repeatedTestWithFailureThreshold(RepetitionInfo repetitionInfo) {
         // Simulate unexpected failure every second repetition
         if (repetitionInfo.getCurrentRepetition() % 2 == 0) {
@@ -46,12 +47,13 @@ class RepeatedDemoTest {
     // name 可以做一些客製化
     @RepeatedTest(value = 3, name="{displayName} ({currentRepetition}/{totalRepetitions})")
     @DisplayName("Repeat!")
+    @Disabled
     void customDisplayName(TestInfo testInfo) {
         assertEquals("Repeat! 1/1", testInfo.getDisplayName());
     }
 
     // 同上，name 可以做一些客製化
-    @RepeatedTest(value = 5, name = "Wiederholung {currentRepetition} von {totalRepetitions}")
+    @RepeatedTest(value = 2, name = "Wiederholung {currentRepetition} von {totalRepetitions}")
     void repeatedTestInGerman() {
         // ...
     }

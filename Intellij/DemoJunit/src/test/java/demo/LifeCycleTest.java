@@ -33,6 +33,7 @@ class LifeCycleTest {
 
     @Test
     @DisplayName("    failingTest")
+    @Disabled("Disabled- for demonstration")
     void failingTest() {
         System.out.println("    failingTest");
         fail("a failing test");

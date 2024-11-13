@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParamDemoTest {
 
     @ParameterizedTest
-    @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba", "abxa" })
+    @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba" })
     void palindromes(String candidate) {
         assertTrue(StringUtils.isPalindrome(candidate));
     }

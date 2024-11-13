@@ -40,4 +40,33 @@
 
     </dependencies>
 
+    <build>
+    <plugins>
+        <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.12</version>
+        <executions>
+            <!-- 在測試之前準備 JaCoCo 代理 -->
+            <execution>
+                <id>prepare-agent</id> <!-- Specify a unique ID for the first execution -->
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+                <phase>prepare-package</phase>
+            </execution>
+            <!-- 在測試後生成報告 -->
+            <execution>
+                <id>report</id> <!-- Specify a unique ID for the first execution -->
+                <goals>
+                    <goal>report</goal>
+                </goals>
+                <phase>post-integration-test</phase>
+            </execution>
+        </executions>
+        </plugin>
+    </plugins>
+    </build>
+
+
 </project>
