@@ -69,30 +69,4 @@ public class ParamDemoTest {
         System.out.println(text);
         assertTrue(text == null || text.trim().isEmpty());
     }
-
-    // @EnumSource provides a convenient way to use Enum constants.
-    // ChronoUnit- 時間單位
-    @ParameterizedTest
-    @EnumSource(ChronoUnit.class)
-    void testWithEnumSource(TemporalUnit unit) {
-        System.out.println(unit);
-        assertNotNull(unit);
-    }
-
-    // 同上，可以省略 EnumSource 的指定
-    @ParameterizedTest
-    @EnumSource
-    void testWithEnumSourceWithAutoDetection(ChronoUnit unit) {
-        System.out.println(unit);
-        assertNotNull(unit);
-    }
-
-    @ParameterizedTest
-    @EnumSource(names = { "DAYS", "HOURS" })
-    void testWithEnumSourceInclude(ChronoUnit unit) {
-        System.out.println(unit);
-        assertTrue(EnumSet.of(ChronoUnit.DAYS, ChronoUnit.HOURS).contains(unit));
-    }
-
-
 }

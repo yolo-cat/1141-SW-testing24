@@ -16,7 +16,7 @@ public class ParamEnumDemoTest {
     @ParameterizedTest
     @EnumSource(ChronoUnit.class)
     void testWithEnumSource(TemporalUnit unit) {
-        System.out.println(unit);
+//        System.out.println(unit);
         assertNotNull(unit);
     }
 
@@ -24,14 +24,14 @@ public class ParamEnumDemoTest {
     @ParameterizedTest
     @EnumSource
     void testWithEnumSourceWithAutoDetection(ChronoUnit unit) {
-        System.out.println(unit);
+//        System.out.println(unit);
         assertNotNull(unit);
     }
 
     @ParameterizedTest
     @EnumSource(names = { "DAYS", "HOURS" })
     void testWithEnumSourceInclude(ChronoUnit unit) {
-        System.out.println(unit);
+//        System.out.println(unit);
         assertTrue(EnumSet.of(ChronoUnit.DAYS, ChronoUnit.HOURS).contains(unit));
     }
 }
