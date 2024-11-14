@@ -3,10 +3,6 @@ package demo.param;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.EnumSet;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParamDemoTest {

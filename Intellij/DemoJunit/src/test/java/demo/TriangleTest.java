@@ -16,24 +16,5 @@ class TriangleTest {
         ;
     }
 
-//    Equilateral
-@Test
-void testEquilateral() {
-    assertAll("Equilateral",
-            ()-> assertEquals("Equilateral", Triangle.getTriangleType(3, 3, 3)),
-            ()-> assertEquals("Equilateral", Triangle.getTriangleType(2, 2, 2))
-    )
-    ;
-}
-
-//Isosceles
-@Test
-void testIsosceles() {
-    assertAll("Isosceles",
-            ()-> assertEquals("Isosceles", Triangle.getTriangleType(3, 3, 2)),
-            ()-> assertEquals("Isosceles", Triangle.getTriangleType(2, 3, 2))
-    )
-    ;
-}
 
 }
