@@ -1,4 +1,4 @@
-package demo;
+package demo.mutant;
 
 /**
  * 撰寫一個 `getTriangleType` 方法，根據三邊長 `a`、`b`、`c` 的值來判斷三角形的類型：
