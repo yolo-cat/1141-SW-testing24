@@ -6,12 +6,12 @@ import demo.mutant.Triangle04;
 
 import java.util.ArrayList;
 
-public class Main {
+public class TriangleMuTest {
     ArrayList<String> mutations = new ArrayList<>();
 
     public static void main(String[] args) {
 
-        Main main = new Main();
+        TriangleMuTest main = new TriangleMuTest();
         main.mutations.add("r2");
         main.mutations.add("r3");
         main.mutations.add("r4");
