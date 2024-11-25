@@ -13,7 +13,7 @@ public class Triangle {
             }
 
             // Check for equilateral triangle
-            if (a == b && b == c) {
+            if (a == b && b == c & c==a) {
                 return "Equilateral";
             }
 

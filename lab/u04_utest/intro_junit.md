@@ -265,6 +265,18 @@ Lab
 1. Please refactoring the code, make it easy to test
 2. Use assertArrayEquals() to test your sort
 
+#### Lab: Binary Search
+
+> 設計一個 `BinarySearch` 類別，包含 `search(int key, int[] array)` 方法，該方法接受一個目標數字 `key` 和已排序的整數陣列 `array`，並回傳一個 `Result` 物件；`Result` 包含布林值 `Found`，表示是否找到目標數字，及整數 `index`，為目標數字在陣列中的索引位置（若未找到則為 -1）。
+
+ps. [Reference code](../../Intellij/DemoJunit/src/main/java/demo/BinarySearch.java) 
+
+> Write the test cases for testing the `BinarySearch` using Equivalence Partition method.
+
+ps. [Reference code](../../Intellij/DemoJunit/src/test/java/demo/BinarySearchTest.java) 
+
+Discuss: is the test case enough?
+
 ### Demo: Condition
 
 See [JUnit doc- Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
