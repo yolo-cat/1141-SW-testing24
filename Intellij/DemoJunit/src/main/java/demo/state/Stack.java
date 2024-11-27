@@ -1,4 +1,4 @@
-package demo;
+package demo.state;
 
 import java.util.EmptyStackException;
 import java.util.LinkedList;
