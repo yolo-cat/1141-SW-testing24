@@ -30,6 +30,7 @@ public class BinarySearchTest {
             System.out.println("\t bs02 is killed");
             mutations.remove("bs02");
         }
+
 //        if (bs01.search(key, data) != bs03.search(key, data)) {
 //            System.out.println("\t bs03 is killed");
 //            mutations.remove("bs03");

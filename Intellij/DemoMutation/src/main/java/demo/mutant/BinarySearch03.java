@@ -12,7 +12,7 @@ public class BinarySearch03 {
         int left = 0;
         int right = array.length - 1;
 
-        while (left >= right) { // MU
+        while (left >= right) { // MU <=
             int mid = left + (right - left) / 2;
 
             if (array[mid] == key) {

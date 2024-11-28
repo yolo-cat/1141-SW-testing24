@@ -23,9 +23,12 @@ Using PIT plugins for mutation test
 
 開啟 `Mutation4` 專案，注意 POM 檔，這個專案是用 Junit4 (JUnit 5 無支援)。
 * 執行 maven test 後，從 maven 視窗執行 Plugins/pitest/pitest:mutationCoverage
+* 從 maven 視窗執行 Plugins/pitest/pitest:report
 * 觀察 mutation score; 增加 Triangle 的測試案例，再觀察 mutation score
 * 同樣的測試案例，branch coverage 和 mutation score 的比較
 * Reference: [pitest doc](https://pitest.org/quickstart/mutators/)
+
+![](../img/mutationCoverage.png)
 
 ### Binary Search
 
@@ -33,6 +36,3 @@ Using PIT plugins for mutation test
 * 執行 maven test 後，從 maven 視窗執行 Plugins/pitest/pitest:mutationCoverage
 * 觀察 mutation score; 增加 Triangle 的測試案例，再觀察 mutation score
 * 同樣的測試案例，branch coverage 和 mutation score 的比較
-
-
-

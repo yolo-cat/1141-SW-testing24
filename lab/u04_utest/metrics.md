@@ -1,7 +1,10 @@
 
+# Code Metrics
 
-Install Cyclomatic Complexity metric to your Intellij
-* Intellij >> Settings >> Plugins >> Marketplace >> search "MetricsReloaded"
+## Install
+
+Install `Cyclomatic Complexity` metric to your Intellij
+* Intellij >> Settings >> Plugins >> Marketplace >> search `MetricsReloaded`
   * Install
   * Restart
   * Choolse a file, package or whole project
@@ -13,16 +16,6 @@ Install Cyclomatic Complexity metric to your Intellij
 ![](../img/calculate_metrics.png)
 
 ![](../img/complexity_metrics.png)
-
-
-
-
-
-
-
-
-
-
 
 
 ## Metrics
@@ -56,6 +49,7 @@ OCavg (Average Cyclomatic Complexity of Operations)
 
 - **Definition**: OCavg stands for the **average cyclomatic complexity of all methods** (or operations) within a class.
 - **Purpose**: This metric gives an indication of how complex the methods in a class are, on average.
+- `WMC/n`; n: number of methods in the class
 
 - **Implication**:
   - Higher values suggest a class contains methods that are overly complex, which may be harder to maintain or test.

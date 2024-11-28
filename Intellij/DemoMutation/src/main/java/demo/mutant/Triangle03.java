@@ -13,7 +13,7 @@ public class Triangle03 {
             }
 
             // Check for equilateral triangle
-            if (a != b && b == c && a == c) {
+            if (a != b && b == c && a == c) { // MU, a==b to a!=b
                 return "Equilateral";
             }
 

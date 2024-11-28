@@ -8,6 +8,7 @@ package demo.mutant;
 
 public class Triangle02 {
     public static String getTriangleType(double a, double b, double c) {
+            // MU a<=0 ==> a<0
             if (a < 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
                 return "Not a valid triangle";
             }

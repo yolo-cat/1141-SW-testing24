@@ -18,7 +18,7 @@ public class Triangle04 {
             }
 
             // Check for isosceles triangle
-            if (a != b || b == c || a == c) {
+            if (a != b || b == c || a == c) { // MU: a==b to a!=b
                 return "Isosceles";
             }
 
