@@ -12,7 +12,7 @@
 
 #### BinarySearch
 
-考慮 [Binary](../../Intellij/DemoMutation/src/main/java/demo/Binary.java) Example, 在 demo.mutant 下我們建立許多 mutants; BinarySearchMuTest 中我們設計測試案例以 kill 這些變異。
+考慮 [BinarySearch](../../Intellij/DemoMutation/src/main/java/demo/BinarySearch.java) Example, 在 demo.mutant 下我們建立許多 mutants; BinarySearchMuTest 中我們設計測試案例以 kill 這些變異。
 * 觀察 mutant 被刪除的狀況-- how to kill bs02?
 * When we add the bs03 mutant, what happen?
 * Is the mutant easy to build?
