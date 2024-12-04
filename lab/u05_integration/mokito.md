@@ -28,7 +28,7 @@
 
 ## 基本使用範例
 
-### 1. **模擬行為**
+### 1. 模擬行為
 
 ```java
     PrimeChecker mockChecker = mock(PrimeChecker.class);
@@ -46,12 +46,12 @@
     assertArrayEquals(new int[]{2, 3, 5}, result);
 ```
 
-### 2. **驗證交互**
+### 2. 驗證交互
 ```java
     verify(mockChecker, times(1)).isPrime(2);
 ```
 
-### 3. **處理異常**
+### 3. 處理異常
 ```java
     when(calculatorService.div(6, 0)).thenThrow(Ill);
 
@@ -197,6 +197,18 @@ public class OrderProcessorTest {
 3. **驗證呼叫行為**：
    - 確認 `refund()` 方法只在已付款訂單中被呼叫。
    - 確認 `cancelPayment()` 方法只在未付款訂單中被呼叫。
+
+## Lab: 斜坡上的力
+
+有一顆質量為 5kg 的球，靜止放在一個光滑的斜面上，斜面的傾角為 37。假設重力加速度 9.8。
+
+1. 求球在斜坡上的 **法向力**。
+2. 求球沿斜坡向下的 **滑動分力**。
+
+### 題目提示：
+- 假設 sin(37), cos(37) 分別為 0.6, 0.7 (用 mock)
+- **法向力**：斜面對物體的支持力。(m*g*cos())
+- **滑動分力**：重力在斜坡方向上的分量。(m*g*sin())
 
 ---
 
