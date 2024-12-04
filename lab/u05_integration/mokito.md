@@ -29,17 +29,31 @@
 ## 基本使用範例
 
 ### 1. **模擬行為**
-```java
 
+```java
+    PrimeChecker mockChecker = mock(PrimeChecker.class);
+
+    when(mockChecker.isPrime(2)).thenReturn(true);
+    when(mockChecker.isPrime(3)).thenReturn(true);
+    when(mockChecker.isPrime(4)).thenReturn(false);
+    when(mockChecker.isPrime(5)).thenReturn(true);
+
+    // 注入 mock 的依賴
+    Prime prime = new Prime(mockChecker);
+
+    // 測試結果
+    int[] result = prime.allPrime(5);
+    assertArrayEquals(new int[]{2, 3, 5}, result);
 ```
 
 ### 2. **驗證交互**
 ```java
-
+    verify(mockChecker, times(1)).isPrime(2);
 ```
 
 ### 3. **處理異常**
 ```java
+    when(calculatorService.div(6, 0)).thenThrow(Ill);
 
 ```
 

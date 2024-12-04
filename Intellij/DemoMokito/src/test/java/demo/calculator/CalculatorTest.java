@@ -85,8 +85,8 @@ public class CalculatorTest {
 
     @Test
     public void testDivideByZeroThrowsException() {
+        when(calculatorService.divide(6, 0)).thenThrow(IllegalArgumentException.class);
+
         assertThrows(IllegalArgumentException.class, () -> calculator.divide(6, 0));
-        // 測試當傳入 0 作為除數時，是否正確拋出 IllegalArgumentException。
-        // 這裡不需要 `when` 模擬，因為我們的測試邏輯直接測試目標類別的行為。
     }
 }
