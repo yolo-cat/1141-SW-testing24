@@ -1,4 +1,3 @@
-#noinspection CucumberPlusUndefinedStep
 Feature: Beer cans
 
   Scenario Outline: Logging
@@ -33,7 +32,4 @@ Feature: Beer cans
     And User enters invalid password "12345" into the password field
     And User clicks on the login button
     Then user should get an error message about invalid credentials
-
-
-
 
