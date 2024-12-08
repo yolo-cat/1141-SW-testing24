@@ -1,4 +1,4 @@
-package nlhsueh;
+package bmi;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,10 +35,11 @@ public class BMICalculatorVisibleTest {
     }
 
     @AfterEach
-    void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
+    void tearDown() throws InterruptedException {
+        if (driver != null) {
+            Thread.sleep(4000); // 延遲 4 秒
+            driver.quit();
+        }
     }
 
     @Test
