@@ -11,8 +11,8 @@ public class PrimeTest {
      */
     @Test
     public void testAllPrimeWithMyMock() {
-        PrimeChecker realCheck = new MockPrimeChecker();
-        Prime prime = new Prime(realCheck);
+        PrimeChecker mockedCheck = new MockPrimeChecker();
+        Prime prime = new Prime(mockedCheck);
         int[] result = prime.allPrime(5);
         assertArrayEquals(new int[]{2, 3, 5}, result);
     }
@@ -30,16 +30,17 @@ public class PrimeTest {
         when(mockChecker.isPrime(3)).thenReturn(true);
         when(mockChecker.isPrime(4)).thenReturn(false);
         when(mockChecker.isPrime(5)).thenReturn(true);
+        when(mockChecker.isPrime(7)).thenReturn(true);
 
         // 注入 mock 的依賴
         Prime prime = new Prime(mockChecker);
 
         // 測試結果
-        int[] result = prime.allPrime(5);
-        assertArrayEquals(new int[]{2, 3, 5}, result);
+        int[] result = prime.allPrime(10);
+        assertArrayEquals(new int[]{2, 3, 5, 7}, result);
 
         // 驗證 mock 的方法是否被正確呼叫
-//        verify(mockChecker, times(1)).isPrime(-1); // !!
+//        verify(mockChecker, times(1)).isPrime(1); // !!
         verify(mockChecker, times(1)).isPrime(2);
         verify(mockChecker, times(1)).isPrime(3);
         verify(mockChecker, times(1)).isPrime(4);
@@ -64,8 +65,8 @@ public class PrimeTest {
         Prime prime = new Prime(mockChecker);
 
         // 測試結果
-        int[] result = prime.allPrime(10);
-        assertArrayEquals(new int[]{2, 3, 5, 7}, result);
+        int[] result = prime.allPrime(5);
+        assertArrayEquals(new int[]{2, 3, 5}, result);
     }
 
     /**
@@ -95,7 +96,7 @@ public class PrimeTest {
     public void testAllPrimeWithRealPrimeChecker() {
         PrimeChecker realCheck = new RealPrimeChecker();
         Prime prime = new Prime(realCheck);
-        int[] result = prime.allPrime(5);
-        assertArrayEquals(new int[]{2, 3, 5}, result);
+        int[] result = prime.allPrime(10);
+        assertArrayEquals(new int[]{2, 3, 5, 7}, result);
     }
 }
