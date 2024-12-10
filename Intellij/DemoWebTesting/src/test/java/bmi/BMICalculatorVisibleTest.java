@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BMICalculatorVisibleTest {
     private WebDriver driver;
-    String testedURL= "http://127.0.0.1:5500/lab/u09_selenium/bmi.html";
+    String testedURL= "http://127.0.0.1:5500/lab/u09_web_testing/bmi.html";
 
     @BeforeEach
     void setUp() {
@@ -62,7 +62,7 @@ public class BMICalculatorVisibleTest {
         weightInput.sendKeys("67");
 
         // 提交
-        Thread.sleep(4000); // 延遲 4 秒
+        Thread.sleep(2000);
         submitButton.click();
 
         // 驗證結果
@@ -97,7 +97,7 @@ public class BMICalculatorVisibleTest {
         weightInput.sendKeys("67");
 
         // 按下提交
-        Thread.sleep(4000); // 延遲 4 秒
+        Thread.sleep(2000);
         submitButton.click();
 
         // 等待結果顯示
@@ -110,7 +110,7 @@ public class BMICalculatorVisibleTest {
 
         assertNotEquals("", bmiText);
 
-        Thread.sleep(4000); // 延遲 4 秒
+        Thread.sleep(2000); // 延遲 4 秒
         clearButton.click();
 
         // 驗證輸入欄位已清空
