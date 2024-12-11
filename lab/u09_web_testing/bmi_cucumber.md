@@ -1,4 +1,4 @@
-## **Cucumber 入門講義：以 BMI 測試實例為例**
+## **Cucumber：以 BMI 測試實例為例**
 
 ---
 
@@ -42,11 +42,6 @@ Cucumber 是一個基於行為驅動開發（Behavior-Driven Development, BDD）
         <artifactId>cucumber-junit-platform-engine</artifactId>
         <version>7.14.0</version>
     </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>5.10.0</version>
-    </dependency>
 
     <!-- Selenium 驅動 -->
     <dependency>
@@ -68,11 +63,11 @@ src
 ├── test
     ├── java
     │   └── bmi
-    │       ├── MyStepdefs.java     # 步驟定義
+    │       ├── MyStepdefs.java   # 步驟定義
     │       └── RunCucumberTest.java # 測試入口
     └── resources
         └── bmi
-            └── bmi.feature         # 測試場景
+            └── bmi.feature   # 測試場景
 ```
 
 ---

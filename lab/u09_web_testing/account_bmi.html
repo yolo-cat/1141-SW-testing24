@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login & BMI Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Login/Register Form -->
+        <div id="login-form" class="form">
+            <h2 id="form-title">Login</h2>
+            <div id="login-section">
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button id="login-btn">Login</button>
+                <button id="to-register-btn">Register</button>
+                <button id="forgot-password-btn">Forgot Password?</button>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" class="form hidden">
+            <h2>Register</h2>
+            <input type="text" id="register-username" placeholder="Username" required>
+            <input type="text" id="register-name" placeholder="Full Name" required>
+            <input type="email" id="register-email" placeholder="Email" required>
+            <input type="password" id="register-password" placeholder="Password" required>
+            <input type="text" id="register-hint" placeholder="Password Hint" required>
+            <button id="register-btn">Submit</button>
+            <button id="to-login-btn">Back to Login</button>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="reset-password-form" class="form hidden">
+            <h2>Reset Password</h2>
+            <input type="text" id="reset-username" placeholder="Username" required>
+            <input type="text" id="reset-hint" placeholder="Password Hint" required>
+            <input type="password" id="new-password" placeholder="New Password" required>
+            <button id="reset-btn">Reset Password</button>
+            <button id="to-login-from-reset-btn">Back to Login</button>
+        </div>
+
+        <!-- BMI Calculator -->
+        <div id="bmi-calculator" class="hidden">
+            <h2>Welcome, <span id="user-name"></span></h2>
+            <input type="number" id="height" placeholder="Height (cm)" required>
+            <input type="number" id="weight" placeholder="Weight (kg)" required>
+            <button id="calculate-bmi-btn">Calculate BMI</button>
+            <p id="bmi-result"></p>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

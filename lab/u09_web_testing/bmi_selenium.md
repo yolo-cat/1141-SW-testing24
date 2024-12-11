@@ -1,4 +1,4 @@
-# **Selenium 入門講義：以 BMI 測試範例為例**
+# **Selenium 介紹：以 BMI 測試範例為例**
 
 ---
 
@@ -31,33 +31,28 @@
 在 `pom.xml` 中新增以下依賴：
 
 ```xml
-<dependencies>
-    <!-- Selenium WebDriver -->
-    <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>4.15.0</version>
-    </dependency>
-    <!-- JUnit 5 -->
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>5.10.0</version>
-    </dependency>
-</dependencies>
+    <dependencies>
+        <!-- Selenium WebDriver -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.12.0</version>
+        </dependency>
+
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 ```
 
 ---
 
-### **2. 下載瀏覽器驅動程式**
-Selenium 需要瀏覽器驅動程式來控制瀏覽器。  
-以下以 ChromeDriver 為例：  
-- 下載 ChromeDriver：[https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)  
-- 將驅動程式放置於系統路徑（或專案路徑）中。
-
----
-
-### **3. 設定目錄結構**
+### **2. 設定目錄結構**
 
 ```plaintext
 src
@@ -66,7 +61,7 @@ src
 ├── test
     ├── java
     │   └── bmi
-    │       └── BMICalculatorVisibleTest.java  # 測試類別
+    │       └── BMICalculatorTest.java  # 測試類別
     └── resources
         └── bmi.html  # 測試目標 HTML 文件
 ```
@@ -109,14 +104,22 @@ public class BMICalculatorVisibleTest {
     String testedURL = "http://127.0.0.1:5500/lab/u09_web_testing/bmi.html";
 
     @BeforeEach
-    void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--headless"); // 若不需顯示瀏覽器，可啟用無頭模式
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
-        driver.manage().window().setSize(new Dimension(1200, 800));
-    }
+void setUp() {
+    // 創建 Chrome 瀏覽器選項物件
+    ChromeOptions options = new ChromeOptions();
+
+    // 設置允許遠端跨來源的請求
+    options.addArguments("--remote-allow-origins=*");
+    // 啟用無頭模式 (headless mode)，不顯示瀏覽器 UI（適合自動化測試或無需互動的場景）
+    options.addArguments("--headless"); 
+    // 使用帶有設定選項的 ChromeDriver 實例來初始化 driver
+    driver = new ChromeDriver(options);
+    // 設置隱式等待時間，等待元素加載最多 4000 毫秒
+    driver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));
+    // 設置瀏覽器視窗的大小為 1200 x 800 像素; headless 則不需要設置
+    driver.manage().window().setSize(new Dimension(1200, 800));
+}
+
 
     @AfterEach
     void tearDown() throws InterruptedException {
