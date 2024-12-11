@@ -212,15 +212,4 @@ public class OrderProcessorTest {
 
 ---
 
-## Install
-
-Enable dynamic agent loading
-
-Run >> Run configuration >> VM option:
-
-```
--XX:+EnableDynamicAgentLoading
-```
-
-
 

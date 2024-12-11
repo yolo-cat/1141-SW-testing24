@@ -130,7 +130,7 @@ Cucumber 與 BDD 是強大的需求開發和測試工具，通過自然語言和
 ---
 Demo: [BMI example](./bmi_cucumber.md)
 
-Lab: Login in
+## Lab: Login in
 *  請撰寫一個登入網頁，功能如下
    *  如果還沒有帳號，就申請一個，需要設定帳號密碼
    *  如果已經有了，就輸入帳號密碼，登入後會出現 <帳號>, Welcome
