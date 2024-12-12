@@ -36,6 +36,6 @@ Software Testing Course @ FCU
   * [DemoWebTesting](Intellij/DemoWebTesting/) 展示 BMI 的例子，透過 Selenium 來進行網頁自動化測試
 * [Intro to Cucumber](lab/u09_web_testing/intro_BDD.md)
 * [Intro to Behavior Driven Development (BDD)](lab/u09_web_testing/intro_BDD.md)
-  * [Demo web testing- Cucumber](Intellij/DemoCucumber/) 以 BMI 的例子，先透過 Cucumber 來進行故事的編寫，在撰寫 Selenium 的測試碼。
+  * [Demo web testing- Cucumber](Intellij/DemoCucumberBMI) 以 BMI 的例子，先透過 Cucumber 來進行故事的編寫，在撰寫 Selenium 的測試碼。
 
 
