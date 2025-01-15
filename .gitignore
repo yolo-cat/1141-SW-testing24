@@ -1,8 +1,7 @@
-/HW/
-
-**/HW_reference/
-
-/xBackup/
+/Lecture/*.pdf
+/exam/109/
+/exam/113_1/
+/hw/hw113_1
 
 # Ignore Maven target directories in any sub-directory
 **/target/

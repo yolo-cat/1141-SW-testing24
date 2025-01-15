@@ -1,0 +1,5 @@
+-[X] 以 Java 完成以上程式。由 gitHubRepo 取得 lines 和 wmc 的部分請宣告一個介面 (GitHubService) 來進行。(Hit: GitHubService.getLines(); GitHubservice.getWMC())
+-[X] 以 JUnit 進行測試; 透過 Mokito 的方式針對 GitHubService 進行測試的假設。
+-[X] 透過 Mokito 的 verify() 檢驗程式的互動
+-[X] 透過 JUnit 進行白箱測試，Branch coverage 達到 100%
+-[X] 產生 Jacoco 涵蓋度報告
