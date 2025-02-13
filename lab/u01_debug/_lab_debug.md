@@ -32,9 +32,8 @@ Debug Lab
 5. **中斷點觸發：** 當程式執行到您設置的中斷點時，它將自動暫停執行。此時，您可以檢查變數、查看堆疊追蹤，並使用調試工具欄上的控制按鈕（例如，單步執行、繼續、中止等）來控制程式的執行流程。
 6. **解除中斷點（選擇性）：** 一旦您完成了調試，您可以選擇是否保留中斷點。您可以右鍵單擊中斷點，然後選擇 "Toggle Breakpoint"（切換中斷點）來解除或重新設置中斷點。
 
-:::success
-Ex:ice_skate: 設計一個程式，要求使用者輸入一個直徑，然後輸出其面積
-
+## 🖥️ Demo
+設計一個程式，要求使用者輸入一個直徑，然後輸出其面積
 
 ```java
 import java.util.Scanner;
@@ -58,7 +57,7 @@ public class BreakpointDemo {
 
 大家覺得上面的程式有沒有問題？請用中斷點來除錯。
 
-### Lab01: bubble sort
+### 🚌 Lab01: bubble sort
 
 請利用 [BubbleSort](../../Intellij/DemoDebug/src/main/java/xdemo/BubbleSort.java) 的程式操作 breakpoint, 熟悉相關的工具操作
 
@@ -66,22 +65,22 @@ public class BreakpointDemo {
 * 使用 breakpoint 將程式中斷在兩個 for loop 的地方，透過 resume 快速的觀察每一個 path 的差異
 * 使用 conditional breakpoint 將程式中斷在接近迴圈尾端的地方，快速觀察變數的變化與執行
 
-### Lab02: GCD
+### 🚌 Lab02: GCD
 * 請用 while 和遞迴的方式寫一個最大公因數的程式
 * [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/GCD.java) （此程式有錯）
 
-### Lab03: LowestCommonAncestor
+### 🚌 Lab03: LowestCommonAncestor
 * 寫一個 binary tree (TreeNode)
 * 給定兩個點，求這兩個點的最低共同祖先節點
 * [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/LowestCommonAncestor.java) （此程式有錯）
 
-### Lab04: Sin
+### 🚌 Lab04: Sin
 * 透過泰勒展展開式計算 Sin(30)
 * [參考程式](../../Intellij/DemoDebug/src/main/java/xdemo/Sin.java) （此程式有錯）
 
 ---
 
-:question: 以下程式，當我們把 breakpoint 設在第 2 行時，variable 的視窗呈現 a 的值是多少？(1) 100 (2) 101
+❓以下程式，當我們把 breakpoint 設在第 2 行時，variable 的視窗呈現 a 的值是多少？(1) 100 (2) 101
 
 ```java
 int a = 100;
