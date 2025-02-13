@@ -1,6 +1,5 @@
 /Lecture/*.pdf
-/exam/109/
-/exam/113_1/
+**/exam/
 /hw/hw113_1
 /xBackup/
 
