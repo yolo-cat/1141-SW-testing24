@@ -1,10 +1,10 @@
 /Lecture/*.pdf
-**/exam/
+/exam/
 /hw/hw113_1
-/xBackup/
 
 # Ignore Maven target directories in any sub-directory
-**/target/
+**/target/ 
+**/.mvn/   
 
 # Ignore IDE directories and project files
 **/.idea/
