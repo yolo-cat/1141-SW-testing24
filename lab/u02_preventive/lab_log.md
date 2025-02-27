@@ -178,12 +178,72 @@ public class LoggingExample {
 }
 ```
 
-## Lab
+## Ex
 
-### Lab01: Medal
-* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MedalReader.java)
-* 除了金銀銅還有其他的？
-* 不是數字的金銀銅？
-* 用 Log 把錯誤寫到檔案中
+### **📌 Java `java.util.logging` 練習題**
+Java 提供 `java.util.logging`（JUL）作為內建的日誌記錄工具。這些練習題幫助學生學習如何在 Java 程式中使用 `Logger` 來記錄資訊、例外錯誤及日誌格式化。
+
+---
+
+### **🎯 練習題 1：基本日誌記錄**
+**題目描述：**  
+請撰寫一個 Java 程式，使用 `java.util.logging.Logger` 來記錄不同等級的日誌（`INFO`、`WARNING`、`SEVERE`）。
+
+**要求：**
+1. 創建 `Logger` 物件，命名為 `"MyLogger"`。
+2. 記錄以下級別的日誌：
+   - `INFO`："系統啟動成功"
+   - `WARNING`："可能的記憶體不足警告"
+   - `SEVERE`："系統崩潰！"
+3. 執行程式後，檢查 console 輸出結果。
+
+**提示：**
+- 使用 `Logger.getLogger()` 取得 Logger 物件。
+- 用 `logger.info()`、`logger.warning()`、`logger.severe()` 記錄日誌。
+
+---
+
+### **🎯 練習題 2：記錄例外錯誤**
+**題目描述：**  
+請撰寫一個 Java 程式，計算兩個整數的相除結果，並使用 `Logger` 記錄計算過程。如果發生 `ArithmeticException`（如除以零），則記錄 `SEVERE` 級別的錯誤。
+
+**要求：**
+1. 使用 `Scanner` 讀取兩個整數，並嘗試執行除法運算。
+2. 如果除數為 0，捕獲 `ArithmeticException`，並使用 `logger.log(Level.SEVERE, "錯誤：除數不能為零", e);` 記錄例外錯誤。
+3. 如果沒有錯誤，記錄 `INFO` 級別的運算結果。
+
+**提示：**
+- 使用 `try-catch` 捕獲異常，並用 `logger.log(Level.SEVERE, msg, exception)` 記錄錯誤。
+
+---
+
+### **🎯 練習題 3：將日誌輸出到檔案**
+**題目描述：**  
+請撰寫一個 Java 程式，讓 `Logger` 的輸出不僅顯示在 console，還要寫入到 `app.log` 檔案中。
+
+**要求：**
+1. 設定 `Logger` 物件，使其輸出到 `app.log` 檔案。
+2. 記錄 `INFO`、`WARNING` 和 `SEVERE` 級別的訊息。
+3. 執行程式後，檢查 `app.log` 檔案內容是否正確。
+
+**提示：**
+- 使用 `FileHandler` 來設定日誌輸出檔案：
+  ```java
+  FileHandler fileHandler = new FileHandler("app.log", true);
+  logger.addHandler(fileHandler);
+  ```
+- 使用 `SimpleFormatter` 讓輸出內容較易讀：
+  ```java
+  fileHandler.setFormatter(new SimpleFormatter());
+  ```
+
+---
+
+這些練習題幫助學生理解 `java.util.logging` 的基礎概念，包括：
+1. **如何記錄不同等級的日誌** (`INFO`、`WARNING`、`SEVERE`)。
+2. **如何記錄例外錯誤** (`logger.log(Level.SEVERE, msg, exception)`)。
+3. **如何將日誌輸出到檔案** (`FileHandler` + `SimpleFormatter`)。
+
+你可以進一步擴展這些練習，例如讓學生設定 `Logger` 的日誌等級、使用 `XMLFormatter`，或建立自訂的日誌處理器（Handler）。🚀
 
 
