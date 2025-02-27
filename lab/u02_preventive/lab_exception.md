@@ -179,6 +179,147 @@ public class TriangleException extends Exception {
 }
 ```
 
+###
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20241218154434430661/Exception-Handling-768.png)
+
+在 **Java 例外處理機制（Exception Handling）** 中，`Throwable` 是所有例外（Exception）和錯誤（Error）的根類別。Java 透過 `Throwable` 及其子類別來處理異常情況。以下是 Java 例外架構的層級關係：
+
+---
+## Throwable
+### **1️⃣ `Throwable`（可拋出的物件）**
+- **最頂層的類別**，所有可以被 `throw` 和 `catch` 的例外與錯誤都繼承自 `Throwable`。
+- 主要有兩大子類別：
+  1. `Exception`（異常）
+  2. `Error`（錯誤）
+
+```java
+public class Throwable extends Object implements Serializable
+```
+---
+
+### **2️⃣ `Exception`（異常，Checked Exception）**
+- **表示程式可預期的異常情況**，通常是因為用戶輸入錯誤、文件未找到、網絡連線問題等。
+- 需要 **顯式處理**（用 `try-catch` 或 `throws`）。
+- 常見子類別：
+  - `IOException`（輸入/輸出錯誤）
+  - `SQLException`（資料庫操作錯誤）
+  - `FileNotFoundException`（找不到檔案）
+  - `InterruptedException`（執行緒中斷）
+
+### **📌 Checked Exception 特點**
+- **編譯時檢查**：如果方法可能拋出 `Exception`，必須 **顯式** 使用 `try-catch` 或 `throws` 來處理，否則會編譯錯誤。
+
+**範例：IOException**
+```java
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CheckedExceptionExample {
+    public static void main(String[] args) {
+        try {
+            File file = new File("test.txt");
+            FileReader reader = new FileReader(file);
+        } catch (IOException e) {
+            System.out.println("檔案讀取失敗：" + e.getMessage());
+        }
+    }
+}
+```
+
+---
+
+### **3️⃣ `RuntimeException`（執行期異常，Unchecked Exception）**
+- `RuntimeException` 是 `Exception` 的 **子類別**，但它屬於 **非受檢異常（Unchecked Exception）**。
+- **不需要強制處理**，即可以不用 `try-catch` 或 `throws`。
+- 常見子類別：
+  - `NullPointerException`（空指標異常）
+  - `ArrayIndexOutOfBoundsException`（陣列索引超出範圍）
+  - `ArithmeticException`（算術錯誤，如除以 0）
+  - `ClassCastException`（類別轉型錯誤）
+
+#### **📌 Unchecked Exception 特點**
+- **執行期檢查**：編譯時不強制處理，但會在執行時發生錯誤。
+- 代表 **程式邏輯錯誤**，通常應該透過修正程式碼來避免，而不是用 `try-catch` 掩蓋。
+
+**範例：NullPointerException**
+```java
+public class UncheckedExceptionExample {
+    public static void main(String[] args) {
+        String str = null;
+        System.out.println(str.length()); // 會拋出 NullPointerException
+    }
+}
+```
+
+---
+
+### **4️⃣ `Error`（錯誤）**
+- 代表 **JVM 無法恢復的嚴重錯誤**，如記憶體不足、系統崩潰等。
+- **不應該在程式中捕獲或處理**，通常代表程式已進入無法修復的狀態。
+- 常見子類別：
+  - `OutOfMemoryError`（記憶體溢出）
+  - `StackOverflowError`（堆疊溢出，通常是無窮遞迴）
+  - `VirtualMachineError`（JVM 內部錯誤）
+  - `AssertionError`（`assert` 斷言錯誤）
+
+**範例：StackOverflowError（無窮遞迴）**
+```java
+public class ErrorExample {
+    public static void recursiveMethod() {
+        recursiveMethod(); // 無窮遞迴，會導致 StackOverflowError
+    }
+
+    public static void main(String[] args) {
+        recursiveMethod();
+    }
+}
+```
+**🛑 注意：Error 通常不應該用 `try-catch` 捕獲！**
+
+---
+
+### **🎯 總結：Java Exception 層級**
+```
+Throwable
+├── Exception (受檢異常 Checked Exception)
+│   ├── IOException
+│   ├── SQLException
+│   ├── InterruptedException
+│   ├── RuntimeException (未受檢異常 Unchecked Exception)
+│       ├── NullPointerException
+│       ├── ArithmeticException
+│       ├── ArrayIndexOutOfBoundsException
+│       ├── ClassCastException
+│       ├── IllegalArgumentException
+│
+└── Error (致命錯誤)
+    ├── OutOfMemoryError
+    ├── StackOverflowError
+    ├── VirtualMachineError
+    ├── AssertionError
+```
+
+---
+
+### **🔹 何時使用哪種例外？**
+| 類別               | 是否必須處理？          | 代表意義                              | 典型情境                                                                    |
+| ------------------ | ----------------------- | ------------------------------------- | --------------------------------------------------------------------------- |
+| `Exception`        | ✅ 必須處理（Checked）   | 可預期的異常，應該 **適當處理**       | 檔案不存在 (`FileNotFoundException`)、網路錯誤 (`IOException`)              |
+| `RuntimeException` | ❌ 可不處理（Unchecked） | 代表程式邏輯錯誤，應該 **修正程式碼** | 陣列超界 (`ArrayIndexOutOfBoundsException`)、除以零 (`ArithmeticException`) |
+| `Error`            | 🚨 不應處理              | JVM 無法恢復的錯誤，應該 **避免發生** | 記憶體溢出 (`OutOfMemoryError`)、遞迴太深 (`StackOverflowError`)            |
+
+---
+
+### **✨ 總結**
+1. **`Throwable` 是所有異常和錯誤的根類別**。
+2. **`Exception` 是受檢異常（Checked Exception）**，必須用 `try-catch` 或 `throws` 處理。
+3. **`RuntimeException` 是未受檢異常（Unchecked Exception）**，通常代表程式設計錯誤，應修正程式碼。
+4. **`Error` 是 JVM 層級的錯誤**，通常是系統問題，應避免發生而非捕獲。
+
+這樣的架構讓 Java 具有強大的異常處理能力，同時保持程式的健壯性。希望這個解釋能幫助你清楚理解 Java 例外的設計原則！💡🚀
+
 ## Lab
 
 ### Lab01: People
@@ -189,11 +330,84 @@ public class TriangleException extends Exception {
 * [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/Triangle.java)
 * 當長度是負的！
 
-### Lab03: LowestCommonAncestor
-* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/LowestCommonAncestor.java)
-* 並沒有在樹上
+```java
+public class Triangle {
 
-### Lab04: Medal
-* [參考程式碼](../../Intellij/DemoPreventive/src/main/java/xdemo/MedalReader.java)
-* 除了金銀銅還有其他的？
-* 不是數字的金銀銅？
+    public static void main(String[] args) {
+        System.out.println(Triangle.checkTriangle(10, 23, 11));
+        System.out.println(Triangle.checkTriangle(1, 1, 1));
+        System.out.println(Triangle.checkTriangle(2, 2, 3));
+        System.out.println(Triangle.checkTriangle(3, 2, 2));
+        System.out.println(Triangle.checkTriangle(0, -1, -2));
+        System.exit(0);
+    }
+
+    public static String checkTriangle(int a, int b, int c) {
+        if (a <= 0 || b <= 0 || c <= 0) {
+            System.out.println("長度不可以是負的");
+        }
+        if (a + b > c && b + c > a && c + a > b) {
+            if (a == b)
+                if (b == c) {
+                    return "正三角形";
+                } else
+                    return "等腰三角形";
+            else if (b == c) {
+                return "等腰三角形";
+            }
+            return "三角形";
+        }
+        return "非三角形";
+    }
+}
+```
+
+ ## Ex
+
+ 這裡有兩個關於 **Java 例外處理（Exception Handling）** 的練習題，適合用於教學或學生練習：
+
+---
+
+### Ex01: 處理除零異常
+**題目：**
+請撰寫一個 Java 程式，要求使用者輸入兩個整數，並計算它們的相除結果。如果使用者輸入的除數為 0，請捕獲 `ArithmeticException` 並顯示適當的錯誤訊息，而不是讓程式崩潰。
+
+**要求：**
+- 使用 `Scanner` 讀取使用者輸入的兩個整數。
+- 嘗試進行除法運算，並使用 `try-catch` 捕獲 `ArithmeticException`。
+- 如果發生異常，請顯示「錯誤：除數不能為零！」，否則顯示計算結果。
+
+---
+
+### Ex02: 處理數字格式異常
+**題目：**
+請撰寫一個 Java 程式，要求使用者輸入一個數字，並將其轉換為整數。如果使用者輸入的內容不是有效的數字，請捕獲 `NumberFormatException`，並提示使用者輸入有效的數字。
+
+**要求：**
+- 使用 `Scanner` 讀取使用者輸入的字串。
+- 嘗試將該字串轉換為 `int`。
+- 使用 `try-catch` 捕獲 `NumberFormatException`，並提示「錯誤：請輸入有效的數字！」。
+- 如果輸入有效，則顯示轉換後的數字。
+
+---
+
+這兩個練習題可以幫助學生理解：
+1. 如何使用 `try-catch` 處理異常。
+2. `ArithmeticException` 和 `NumberFormatException` 的使用場景。
+3. 提高程式的健壯性，避免因輸入錯誤導致程式崩潰。
+
+---
+
+### Ex03: 帳戶提款異常
+**題目描述：**  
+請設計一個 `BankAccount` 類別，具有 `balance`（餘額）屬性和 `withdraw(double amount)` 方法。當提款金額超過餘額時，應該拋出 **自訂例外 `InsufficientFundsException`**，並顯示適當的錯誤訊息。
+
+**要求：**
+1. 創建一個 `InsufficientFundsException`，繼承 `Exception`，並包含：
+   - 建構子 `public InsufficientFundsException(String message)` 來傳遞錯誤訊息。
+2. 在 `BankAccount` 類別：
+   - `withdraw(double amount)` 方法應檢查餘額，若不足則拋出 `InsufficientFundsException`。
+3. 在 `main()` 方法：
+   - 創建一個 `BankAccount` 物件，餘額設為 5000。
+   - 嘗試提領 6000，並捕獲 `InsufficientFundsException` 來顯示錯誤訊息。
+

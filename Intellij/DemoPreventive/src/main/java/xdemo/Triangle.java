@@ -18,8 +18,6 @@ public class Triangle {
 
     public static String checkTriangle(int a, int b, int c) {
         if (a <= 0 || b <= 0 || c <= 0) {
-
-            // ? 用 println 好嗎？
             System.out.println("長度不可以是負的");
         }
         if (a + b > c && b + c > a && c + a > b) {

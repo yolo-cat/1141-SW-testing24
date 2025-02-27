@@ -1,3 +1,7 @@
+
+
+
+
 # 預防性程設
 
 > 就像排骨牌一樣，我們會設許多斷點，預防錯誤的擴散。
@@ -27,11 +31,11 @@ assert grade <= 100;
 assert grade <= 100 : "錯誤的總成績" ; 
 ```
 
-其中 Expression1 是一個 boolean 表示式。errMessage 是一個含有值的表示式，當斷言不成立時，會拋出 java.lang.AssertionError 的例外，並把 errMessage 的值呈現出來。
+其中 Expression1 是一個 boolean 表示式。errMessage 是一個含有值的表示式，當斷言不成立時，會拋出 `java.lang.AssertionError` 的例外，並把 errMessage 的值呈現出來。
 
 除此以外，斷言也可以幫助提升程式的可閱讀。如果你不用斷言，你的程式碼可能會出現：
 
-:-1: 不好的寫法：
+不好的寫法：
 ```java
 if (grade > 100) then
    print("奇怪！");
