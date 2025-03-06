@@ -4,6 +4,8 @@
 
 PMD 可以與多種構建工具集成，**Maven** 是其中之一。在 Maven 專案中，我們可以透過設定 `pom.xml` 文件，使用 **PMD Maven Plugin** 來自動檢查專案中的程式碼品質。
 
+[Java check rule in PMD](https://docs.pmd-code.org/latest/pmd_rules_java.html)
+
 ### PMD 如何提升程式品質
 
 PMD 能檢查程式碼中的許多常見問題，從而提升程式碼的可讀性、維護性及效能。其主要作用包括：
@@ -29,9 +31,6 @@ PMD（Programming Mistake Detector）是一款靜態程式碼分析工具，用�
 - **`UseTryWithResources`** – 使用 `try-with-resources` 管理資源  
   *Bad Smell:* 手動管理資源時，若沒有正確關閉流，可能會導致記憶體洩漏。
 
-- **`EqualsHashCode`** – 確保 `hashCode()` 和 `equals()` 方法一致  
-  *Bad Smell:* 若只重寫 `equals()` 而未重寫 `hashCode()`，集合類（如 `HashMap`）的行為可能會異常。
-
 - **`EmptyCatchBlock`** – 避免空的 `catch` 區塊  
   *Bad Smell:* 空的 `catch` 區塊會吞掉異常，導致錯誤難以發現和排查。
 
@@ -52,17 +51,36 @@ PMD（Programming Mistake Detector）是一款靜態程式碼分析工具，用�
 
 - **`AvoidInstantiatingObjectsInLoops`** – 避免在迴圈中創建不必要的物件  
   *Bad Smell:* 在迴圈內部頻繁創建物件會導致不必要的記憶體分配，應在迴圈外部初始化以提高效能。
+
 - **`AbstractClassWithoutAbstractMethod`** – 抽象類中沒有抽象方法  
   *Bad Smell:* 若類沒有抽象方法，則應考慮是否應該是普通類，而非抽象類。
 
 - **`AvoidDuplicateLiterals`** – 避免重複的字面值  
   *Bad Smell:* 多次重複相同的字符串或數值會降低可維護性，應將其提取為常數。
 
+```java
+public class OrderProcessor {
+    private static final String PENDING = "PENDING";
+    private static final String SHIPPED = "SHIPPED";
+    private static final String DELIVERED = "DELIVERED";
+
+    public void processOrder(String status) {
+        if (status.equals(PENDING)) {
+            System.out.println("Order is still pending.");
+        } else if (status.equals(SHIPPED)) {
+            System.out.println("Order has been shipped.");
+        } else if (status.equals(DELIVERED)) {
+            System.out.println("Order has been delivered.");
+        }
+    }
+}
+```
+
 - **`GodClass`** – 避免「上帝類」  
   *Bad Smell:* 單個類擁有過多的責任，應拆分為多個類以提高可讀性與可維護性。
 
-- **`TooManyMethods`** – 避免類中方法數量過多  
-  *Bad Smell:* 當類的方法數量過多時，可能意味著職責過於複雜，應考慮拆分。
+- **`TooManyMethods`** – 避免類別中方法數量過多  
+  *Bad Smell:* 當類別的方法數量過多時，可能意味著職責過於複雜，應考慮拆分。
 
 - **`ExcessiveParameterList`** – 避免過多的參數列表  
   *Bad Smell:* 方法參數過多（如超過 4-5 個）會降低可讀性，應考慮使用物件封裝。
@@ -108,7 +126,7 @@ PMD（Programming Mistake Detector）是一款靜態程式碼分析工具，用�
 - **`VariableNamingConventions`** – 變數命名應符合規範  
   *Bad Smell:* 變數名稱應使用小寫開頭的駝峰命名，如 `orderCount`，避免 `Order_Count` 或 `ORDERCOUNT`。
 
-- **`FieldNamingConventions`** – 類的成員變數應遵循駝峰命名法  
+- **`FieldNamingConventions`** – 類別的成員變數應遵循駝峰命名法  
   *Bad Smell:* `private int TotalAmount;` 應改為 `private int totalAmount;`。
 
 - **`ConstantNamingConventions`** – 常數應使用全大寫命名，並以 `_` 分隔  
@@ -503,24 +521,22 @@ public class Main {
        <failOnViolation>true</failOnViolation>
        <minimumPriority>3</minimumPriority> <!-- Set to 3 for "warning" and below -->
    </configuration>
+```   
 
 在 PMD 的 `configuration` 部分，這兩行設定的作用如下：
 
-1. **`<failOnViolation>true</failOnViolation>`**  
+1. `<failOnViolation>true</failOnViolation>`
    這表示當 PMD 檢查程式碼時，如果發現任何違規（即不符合規則的程式碼），構建過程將失敗（例如 Maven build 會停止）。設定為 `true` 意味著發現的任何問題都會導致構建失敗，確保這些問題在繼續構建之前必須先行修復。
 
-2. **`<minimumPriority>3</minimumPriority>`**  
+2. `<minimumPriority>3</minimumPriority>`
    這設定了 PMD 規則的最低優先級。PMD 中的優先級範圍是從 1 到 5，1 表示最高優先級，5 表示最低優先級。當設置為 `minimumPriority` 為 3 時，PMD 只會報告優先級為 3 或更高的違規行為，較低優先級的違規（4 和 5）將會被忽略，不會報告。
 
 此配置的目的是控制 PMD 檢查的嚴格程度，以及哪些問題會導致構建失敗。
 
+如果您想控制 PMD 對違規嚴重程度的行為，您可以調整「pom.xml」中的設定。以下是一些選項：
 
-If you'd like to control the behavior of PMD regarding the severity of violations, you can adjust the configuration in your `pom.xml`. Here are a few options:
+1. **Set Minimum Severity**: 您可以設定最低嚴重性級別，必須違反該級別 PMD 才能導致建置失敗。例如，您可以指定僅在「error」等級違規時失敗：
 
-1. **Set Minimum Severity**: You can set a minimum severity level that must be violated for PMD to fail the build. For example, you can specify only to fail on "error" level violations:
-
-  
-   ```
 
 2. **Fail on Violations**: If you want to ensure that the build fails only if there are "critical" issues, you can manage this through configurations like:
 
