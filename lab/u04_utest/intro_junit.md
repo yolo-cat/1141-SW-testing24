@@ -345,23 +345,26 @@ Learn:
 
 ### Lab: Triangle (非獨立邊界測試)
 
-三邊的腸都接於 1-10 之間，寫一個程式判斷是何種三角形。
+三邊的長都接於 1-10 之間，寫一個程式判斷是何種三角形。
 * 應用獨立非強固的邊界測試方法來進行測試
-* 先用 excel 規劃測試案例，再轉成 JUnit 進行測試
-* 討論：此問題是否適合採用「獨立非強固的邊界測試」方法測試？如果不合適，請說明
-  * 設計一個錯誤的程式，此測試方法是找不到錯誤的
+* 可先用 excel 規劃測試案例，再轉成 JUnit 進行測試
+  * min, min+, max, max-
+* 討論：
+  * 如果邊界寫錯了 (<=10, 寫成 <10); 測試案例是否可以找出來？
+  * 此問題是否適合採用「獨立非強固的邊界測試」方法測試？如果不合適，請說明
+    * Hint: 需要兩個邊界都出錯，才會顯示呈現錯誤嗎？
 
-### Lab: People (限制檢核)
+### Lab: People (誤差與狀態改變)
 
 My [xdemo/People](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
 
 Learn
-* assertEquals with delta
-* constraint checking
+* 允許誤差的比對
+* 物件改變狀態後的檢查
 
 Lab:
 1. 針對進行 BMI 的測試，注意小數點誤差的情況，可使用 delta 的參數。
-2. 增加 addChild(People) 的功能，進行 getFather() 的測試。
+2. 增加 addChild(People) 的功能，進行 getFather() 的測試。(father 的出生年應該比 child 小，如果沒有，應拋出例外)
 3. 增加 isSibling(People) 的功能，並進行測試。
 
 
