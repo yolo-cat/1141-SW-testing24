@@ -1,5 +1,5 @@
-
-## JUnit Automatic Testing
+JUnit Automatic Testing
+===
 
 > [Junit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 
@@ -50,37 +50,38 @@ JUnit 是一個用於 Java 程序的單元測試框架。它是開發人員用�
     </dependency>
 </dependencies>
 ```
+ps. see [mvnrepository](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.12.0)
 
-3. Reload to download the Junit packages
-4. Go to the file to be tested
-5. Navigate >> Test OR right-click the mouse, choose Go To, and choose Test
-6. Select the function you want to test
+3. 重新載入以下載 JUnit 套件
+4. 前往要測試的檔案
+5. 導覽 >> 測試 OR 按滑鼠右鍵，選擇「Go」，然後選擇「Test」
+6. 選擇您想要測試的函數
 
-**JUnit 5** is a popular testing framework in the Java ecosystem that allows developers to write and execute unit tests for their Java applications. It is the latest version of the JUnit framework, offering significant improvements over its predecessor, JUnit 4. JUnit 5 is modular, extensible, and designed to support modern testing needs, making it a go-to choice for Java developers.
+**JUnit 5** 是 Java 生態系統中廣受歡迎的測試框架，它讓開發人員能夠為其 Java 應用程式編寫和執行單元測試。它是 JUnit 框架的最新版本，相較於其前身 JUnit 4 提供了顯著的改進。JUnit 5 具有模組化、可擴展性，並且專為支援現代測試需求而設計，使其成為 Java 開發人員的首選。
 
-#### JUnit modules
+#### JUnit 5 modules
 
-JUnit 5 is composed of three main modules:
+JUnit 5 由三個主要模組組成：
 
-1. **JUnit Platform**:
-   - **Role**: The foundation for launching testing frameworks on the JVM.
-   - **Features**:
-     - Launches test frameworks.
-     - Defines the `TestEngine` API for developing testing frameworks that run on the platform.
-     - Integrates with build tools like Maven, Gradle, and IDEs like IntelliJ IDEA and Eclipse.
+1. **JUnit Platform**：
+   - **角色**：在 JVM 上啟動測試框架的基礎。
+   - **特色**：
+     - 啟動測試框架。
+     - 定義用於開發在平台上運行的測試框架的 `TestEngine` API。
+     - 與 Maven、Gradle 等建構工具以及 IntelliJ IDEA 和 Eclipse 等 IDE 整合。
 
-2. **JUnit Jupiter**:
-   - **Role**: Provides the new programming model and extension model for writing tests.
-   - **Features**:
-     - Contains the JUnit 5 API for writing tests (e.g., `@Test`, `@BeforeEach`).
-     - Introduces new annotations and test lifecycle methods.
-     - Supports parameterized tests, nested tests, and dynamic tests.
+2. **JUnit Jupiter**：
+   - **角色**：提供用於編寫測試的新程式設計模型和擴展模型。
+   - **特色**：
+     - 包含用於編寫測試的 JUnit 5 API（例如，`@Test`、`@BeforeEach`）。
+     - 引入新的註解和測試生命週期方法。
+     - 支援參數化測試、巢狀測試和動態測試。
 
-3. **JUnit Vintage**:
-   - **Role**: Provides backward compatibility with JUnit 3 and JUnit 4 tests.
-   - **Features**:
-     - Allows you to run older JUnit 3 and 4 tests alongside JUnit 5 tests.
-     - Useful for projects migrating from JUnit 3/4 to JUnit 5.
+3. **JUnit Vintage**：
+   - **角色**：提供與 JUnit 3 和 JUnit 4 測試的向後相容性。
+   - **特色**：
+     - 允許您與 JUnit 5 測試一起運行較舊的 JUnit 3 和 4 測試。
+     - 對於從 JUnit 3/4 遷移到 JUnit 5 的專案很有用。
 
 
 #### An Example
@@ -155,8 +156,95 @@ class StandardTests {
 }
 ```
 
+## You Should Know
 
-## JUnit Demo & Lab (I)
+### Lazy Evaluating Message
+
+在 JUnit 中，Lazily evaluating message 是一種技巧，用於在斷言（assertions）中延遲評估訊息（lazy evaluating message）的建立，僅在斷言失敗時才進行評估。這種技巧可以提高執行效能，避免不必要的訊息建立和字串連接操作，特別是當訊息建立的過程很耗時或者涉及複雜的計算時。
+
+以下是一個使用 Lazily evaluating message 的例子：
+
+```java
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+public class CalculatorTest {
+    
+    @Test
+    public void testAddition() {
+        Calculator calculator = new Calculator();
+        int result = calculator.add(2, 2);
+        assertEquals(5, result, () -> "計算結果錯誤: " + calculator.getLastOperation());
+    }
+}
+```
+
+在上述範例中，我們使用了 JUnit 5 的 `assertEquals` 斷言方法，並傳遞了一個 lambda 運算式作為第三個參數。該 lambda 運算式將在斷言失敗時才執行，用於動態建立訊息。
+
+假設 `Calculator` 類具有一個 `getLastOperation` 方法，該方法將返回上一個計算操作的字串描述。在此範例中，如果斷言失敗（即計算結果不等於 5），則會執行 lambda 運算式，並將計算器的最後一個操作訊息連接到錯誤訊息中。
+
+這種方式可以避免在每次斷言時都執行 `getLastOperation` 方法，而僅在斷言失敗時才執行，從而節省了不必要的計算和訊息建立操作。
+
+### `assertAll()`
+
+在 JUnit 中，`assertAll()` 方法是一個非常有用的斷言方法，它用於同時執行多個斷言，並在所有斷言完成後報告所有失敗的斷言。這對於進行多個相關斷言的測試非常有用，因為它可以讓你一次性檢查多個條件，而不需要分開處理每個斷言。
+
+以下程式碼，assertion 1 若沒有通過，不會中斷 assertion 2, 3 的執行。
+
+```java
+    assertAll("name of the assertion",
+            ()-> assertEquals(exp, actural),        // assertion 1
+            ()-> assertEquals(1, c.plus(-1, 1)),    // assertion 2
+            ()-> assertEquals(5, c.plus(1, -1))     // assertion 3
+    );
+```
+
+以下是 `assertAll()` 方法的應用範例：
+
+```java
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+public class CalculatorTest {
+    
+    void plusTest() {
+        System.out.println("\t Here is plus test...");
+
+        int actualValue = c.plus(1, 1);
+        int expectedValue = 2;
+        assertAll("plus",
+                ()-> assertEquals(expectedValue, actualValue),
+                ()-> assertEquals(1, c.plus(-1, 1)),
+                ()-> assertEquals(5, c.plus(1, -1))
+        );
+
+    }
+```
+
+`assertAll()` 方法的第一個參數是一個描述性的名稱，用於識別這組相關的斷言。接下來的參數是多個 lambda 運算式，每個運算式都是一個斷言。
+
+當執行 `assertAll()` 方法時，它將依次執行每個斷言。如果其中任何一個斷言失敗，將記錄錯誤訊息，並將所有失敗的斷言結果一起報告。這使得你可以一次檢查多個斷言，並且在所有斷言完成後一次性獲得所有失敗的結果。
+
+這在以下情況下特別有用：
+- 測試方法中有多個相關的斷言，並且你想一次檢查它們。
+- 你想要避免在第一個斷言失敗後中止測試，並希望繼續檢查其他斷言。
+- 你想要清晰地顯示所有失敗的斷言，而不是一個接一個地報告。
+
+### Testing Exception
+
+```java
+@Test
+void exceptionTesting() {
+    Exception exception = assertThrows(ArithmeticException.class, () ->
+    calculator.divide(1, 0));
+    assertEquals("/ by zero", exception.getMessage());
+}
+```    
+
+
+## JUnit Demo & Lab 
 
 以下是 JUnit 5 中常用的斷言方法及其簡單說明：
 
@@ -206,169 +294,97 @@ class StandardTests {
 
 > Google `junit api` 來找出更多 Assertion 的方法。
 
-### Demo: Calculator
+### Demo01: Calculator
 寫一個 Calculator 的類別，內有 
 * add(int, int): int
 * multiply(int, int): int
 * divide(int, int): double 
 
-See Demo [demo/Calculator](../../Intellij/DemoJunit/src/main/java/demo/Calculator.java)
+See Demo [demo/Calculator](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/demo/Calculator.java)
 
 LAB: 
 1. 修改 Calculator, 增加 subtract() 減法
 2. 做一個會拋出例外的測試，例如 `5/0` （參考 [JUnit doc- assertThrows()](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)）
-4. 參考 [JUnit doc- Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
-5. 修改 Calculator, 增加 arrayAdd(), 針對兩個大小一樣的陣列進行相加，回傳結果。(`assertArrayEquals()`)
+3. 參考 [JUnit doc- Assertion](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions), 採用 assertAll() 進行多個測試。說明 assertAll() 的好處
+4. 修改 Calculator, 增加 arrayAdd(), 針對兩個大小一樣的陣列進行相加，回傳結果。(`assertArrayEquals()`)
 
 Read more about my [assertAll()](#assertall)
 
-### Demo: Life Cycle
+### Lab: Improve Testability (程式碼重構)
 
-為了讓每一次的測試可以在一個乾淨的環境，我們可以設定 @BeforeEach, @AfterEach:
+My [xdemo/Triangle](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) is a code for checking type of Triangle. But it is not easy to test- I can't use JUnit to test it.
+
+Lab
+1. Please refactoring the code, make it easy to test
+2. Use Juit to test your sort
+
+### Demo02: Life Cycle (測試執行順序)
+
+Learn
+* JUnit testing life cycle (BeforeEach, AfterEach ,...)
+
+為了讓每一次的測試可以在一個乾淨的環境，我們可以設定 @BeforeEach, @AfterEach。
 
 ![test life cycle](../img/junit_life_cycle.png)
 
-See Demo [demo/Life cycle](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java)
+See Demo [demo/Life cycle](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java)
 
-#### Lab: People
+### Demo03: Person (多個測試指令)
 
-My [xdemo/People](../../Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
+Person 類別，內有
+* getFirstName(): String
+* getLastName(): String
+
+檢查這些方法是否正確。Read [JUnit doc- AssertionDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions). 
+
+Learn:
+* 字串比對測試
+* 結構性的 `assertAll()`
+* 例外測試
+* 執行超時測試
+
+### Lab: Triangle (非獨立邊界測試)
+
+三邊的腸都接於 1-10 之間，寫一個程式判斷是何種三角形。
+* 應用獨立非強固的邊界測試方法來進行測試
+* 先用 excel 規劃測試案例，再轉成 JUnit 進行測試
+* 討論：此問題是否適合採用「獨立非強固的邊界測試」方法測試？如果不合適，請說明
+  * 設計一個錯誤的程式，此測試方法是找不到錯誤的
+
+### Lab: People (限制檢核)
+
+My [xdemo/People](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/People.java) 封裝了姓名、身高、體重、BMI、還有父親的關係。這個程式可能有錯誤。
+
+Learn
+* assertEquals with delta
+* constraint checking
 
 Lab:
 1. 針對進行 BMI 的測試，注意小數點誤差的情況，可使用 delta 的參數。
 2. 增加 addChild(People) 的功能，進行 getFather() 的測試。
 3. 增加 isSibling(People) 的功能，並進行測試。
 
-### Demo: Person
 
-Person 類別，內有
-* getFirstName(): String
-* getLastName(): String
+### Lab: Testing array (陣列檢核)
 
-Read [JUnit doc- AssertionDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions)
-* how String check
-* timeOut check
-
-#### Lab: Improve Testability
-
-My [xdemo/Triangle](../../Intellij/DemoJunit/src/main/java/xdemo/Triangle.java) is a code for checking type of Triangle. But it is not easy to test- I can't use JUnit to test it.
-
-Lab
-1. Please refactoring the code, make it easy to test
-2. Use Juit to test your sort
-
-#### Lab: Testing array
-
-My [RobustBubbleSort](../../Intellij/DemoJunit/src/main/java/xdemo/RobustBubbleSort.java) is a code for sorting data. But it is not easy to test- I can't use JUnit to test it.
+My [RobustBubbleSort](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/RobustBubbleSort.java) is a code for sorting data. But it is not easy to test- I can't use JUnit to test it.
 
 Lab
 1. Please refactoring the code, make it easy to test
 2. Use assertArrayEquals() to test your sort
 
-#### Lab: Binary Search
+### Lab: Binary Search (等價分割)
 
 > 設計一個 `BinarySearch` 類別，包含 `search(int key, int[] array)` 方法，該方法接受一個目標數字 `key` 和已排序的整數陣列 `array`，並回傳一個 `Result` 物件；`Result` 包含布林值 `Found`，表示是否找到目標數字，及整數 `index`，為目標數字在陣列中的索引位置（若未找到則為 -1）。
 
-ps. [Reference code](../../Intellij/DemoJunit/src/main/java/demo/BinarySearch.java) 
+ps. [Reference code](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/demo/BinarySearch.java) 
 
 > Write the test cases for testing the `BinarySearch` using Equivalence Partition method.
 
-ps. [Reference code](../../Intellij/DemoJunit/src/test/java/demo/BinarySearchTest.java) 
+ps. [Reference code](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/test/java/demo/BinarySearchTest.java) 
 
 Discuss: is the test case enough?
 
-### Demo: Condition
-
-See [JUnit doc- Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
-* Some tests only execute on MAC environment
-* `@TestOnMac`
-
-### You Should Know
-
-#### Lazy Evaluating Message
-
-在 JUnit 中，Lazily evaluating message 是一種技巧，用於在斷言（assertions）中延遲評估訊息（lazy evaluating message）的建立，僅在斷言失敗時才進行評估。這種技巧可以提高執行效能，避免不必要的訊息建立和字串連接操作，特別是當訊息建立的過程很耗時或者涉及複雜的計算時。
-
-以下是一個使用 Lazily evaluating message 的例子：
-
-```java
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
-public class CalculatorTest {
-    
-    @Test
-    public void testAddition() {
-        Calculator calculator = new Calculator();
-        int result = calculator.add(2, 2);
-        assertEquals(5, result, () -> "計算結果錯誤: " + calculator.getLastOperation());
-    }
-}
-```
-
-在上述範例中，我們使用了 JUnit 5 的 `assertEquals` 斷言方法，並傳遞了一個 lambda 運算式作為第三個參數。該 lambda 運算式將在斷言失敗時才執行，用於動態建立訊息。
-
-假設 `Calculator` 類具有一個 `getLastOperation` 方法，該方法將返回上一個計算操作的字串描述。在此範例中，如果斷言失敗（即計算結果不等於 5），則會執行 lambda 運算式，並將計算器的最後一個操作訊息連接到錯誤訊息中。
-
-這種方式可以避免在每次斷言時都執行 `getLastOperation` 方法，而僅在斷言失敗時才執行，從而節省了不必要的計算和訊息建立操作。
-
-#### `assertAll()`
-
-在 JUnit 中，`assertAll()` 方法是一個非常有用的斷言方法，它用於同時執行多個斷言，並在所有斷言完成後報告所有失敗的斷言。這對於進行多個相關斷言的測試非常有用，因為它可以讓你一次性檢查多個條件，而不需要分開處理每個斷言。
-
-以下程式碼，assertion 1 若沒有通過，不會中斷 assertion 2, 3 的執行。
-
-```java
-    assertAll("name of the assertion",
-            ()-> assertEquals(exp, actural),        // assertion 1
-            ()-> assertEquals(1, c.plus(-1, 1)),    // assertion 2
-            ()-> assertEquals(5, c.plus(1, -1))     // assertion 3
-    );
-```
-
-以下是 `assertAll()` 方法的應用範例：
-
-```java
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-public class CalculatorTest {
-    
-    void plusTest() {
-        System.out.println("\t Here is plus test...");
-
-        int actualValue = c.plus(1, 1);
-        int expectedValue = 2;
-        assertAll("plus",
-                ()-> assertEquals(expectedValue, actualValue),
-                ()-> assertEquals(1, c.plus(-1, 1)),
-                ()-> assertEquals(5, c.plus(1, -1))
-        );
-
-    }
-```
-
-`assertAll()` 方法的第一個參數是一個描述性的名稱，用於識別這組相關的斷言。接下來的參數是多個 lambda 運算式，每個運算式都是一個斷言。
-
-當執行 `assertAll()` 方法時，它將依次執行每個斷言。如果其中任何一個斷言失敗，將記錄錯誤訊息，並將所有失敗的斷言結果一起報告。這使得你可以一次檢查多個斷言，並且在所有斷言完成後一次性獲得所有失敗的結果。
-
-這在以下情況下特別有用：
-- 測試方法中有多個相關的斷言，並且你想一次檢查它們。
-- 你想要避免在第一個斷言失敗後中止測試，並希望繼續檢查其他斷言。
-- 你想要清晰地顯示所有失敗的斷言，而不是一個接一個地報告。
-
-#### Testing Exception
-
-```java
-@Test
-void exceptionTesting() {
-    Exception exception = assertThrows(ArithmeticException.class, () ->
-    calculator.divide(1, 0));
-    assertEquals("/ by zero", exception.getMessage());
-}
-```    
 
 ## JUnit Demo & Lab (II)
 
@@ -389,9 +405,9 @@ class DisplayNameDemo {
     }
 ```
 
-See my [LifeCycleTest](../../Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java) to see how it works.
+See my [LifeCycleTest](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/test/java/demo/LifeCycleTest.java) to see how it works.
 
-See my [DisplayNameTest](../../Intellij/DemoJunit/src/test/java/demo/DisplayNameTest.java) to see how it works.
+See my [DisplayNameTest](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/test/java/demo/DisplayNameTest.java) to see how it works.
 
 
 ### Demo: DisplayName Generator
@@ -416,7 +432,11 @@ void if_it_is_negative(int year) {
 }
 ```
 
-### Nested Test
+### Lab: Binary Search (非強固獨立邊界測試, DisplayName)
+
+針對 BinarySearch 的程式，請改以獨立測試方法進行測試，並用 DisplayName 來美化測試結果的顯示
+
+### Demo: Nested Test
 
 See [JUnit doc- TestingAStackDemo](https://junit.org/junit5/docs/current/user-guide/#writing-tests-nested)
 
@@ -431,12 +451,12 @@ class structure
 Result result:
 ![nest testing](https://hackmd.io/_uploads/r1_idz3W6.png)
 
-#### Lab: stack
+### Lab: stack (巢狀測試)
 * 依上面的例子，設計一個 Stack class, 設定最多放五個元素
 * 應用 Nested test, 檢驗 stack isFull 的時候是否正確; 檢驗 isFull 時再 push() 是否會拋出 Exception
 
 
-### Parameterized Test
+### Demo: Parameterized Test
 
 See [JUnit doc- ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
 
@@ -481,7 +501,7 @@ public class MathTest {
 #### Lab: Prime
 * 使用 `@ValueSource` 來測試 `Math.isPrime()`
 
-### CsvSource 
+### Demo: CsvSource 
 
 ```java
     @ParameterizedTest
@@ -499,11 +519,11 @@ public class MathTest {
 
 #### Lab: Triangle
 
-* Test [demo/Triangle](../../Intellij/DemoJunit/src/main/java/demo/Triangle.java) using `@CsvSource`
+* Test [demo/Triangle](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/demo/Triangle.java) using `@CsvSource`
 
 #### Lab: Tomorrow
 
-以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。See my [xdemo/MyDate](../../Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
+以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。See my [xdemo/MyDate](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
 
 ```java
 @ParameterizedTest
@@ -526,7 +546,7 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 
 ![](https://hackmd.io/_uploads/SkhM5AEza.png)
 
-### CsvFileSource
+### Demo: CsvFileSource
 
 ```java
     @ParameterizedTest
@@ -578,9 +598,14 @@ Currency nt100 = new Currency(100, "NT");
 Currency us100 = new Currency(100, "US");
 ...
 ```
+### Demo: Condition
+
+See [JUnit doc- Conditional Test Execution](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution)
+* Some tests only execute on MAC environment
+* `@TestOnMac`
 
 
-### Assume
+### Demo: Assume
 
 在JUnit 5中，Assumptions（前提條件）是一種用於定義測試前提條件的機制。它允許你在執行測試之前檢查某些條件，如果條件不滿足，則可以將測試視為已經通過，跳過執行測試。這在某些情況下非常有用，例如當測試需要特定的環境或資源時，如果條件不滿足，測試就沒有意義。
 
@@ -680,7 +705,3 @@ public class AdditionTest {
 - 寫一個程式判斷三角形。輸入的參數是三邊的長，若不符合三角形定義（任兩邊和大於第三邊）則會拋出例外。否則回傳 "一般三角形"、"等腰三角形"、"正三角形"等。開發之前，請先建立 JUnit 測試案例，並使用 @Test(expected=...) 的方式來測試例外。
 - 針對一個排序程式設計測試案例 SortTest，每一次測試之前會先做一些初始化：從檔案中讀取資料，寫到陣列 data[]中，SortTest 中的 testSort() 再針對 data[] 中的資料做排序。請利用 @Before 來完成此工作。
 - 寫一個無窮迴圈的程式，並使用 junit 來測試。利用 timeout 的參數來跳出迴圈。
-
-
-
-
