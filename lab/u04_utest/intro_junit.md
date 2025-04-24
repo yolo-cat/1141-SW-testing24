@@ -244,7 +244,7 @@ void exceptionTesting() {
 ```    
 
 
-## JUnit Demo & Lab 
+## JUnit- Basic 
 
 以下是 JUnit 5 中常用的斷言方法及其簡單說明：
 
@@ -389,7 +389,7 @@ ps. [Reference code](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/
 Discuss: is the test case enough?
 
 
-## JUnit Demo & Lab (II)
+## JUnit- Display
 
 ### Demo: DisplayName
 
@@ -435,9 +435,9 @@ void if_it_is_negative(int year) {
 }
 ```
 
-### Lab: Binary Search (非強固獨立邊界測試, DisplayName)
+### Lab: Binary Search (DisplayName)
 
-針對 BinarySearch 的程式，請改以獨立測試方法進行測試，並用 DisplayName 來美化測試結果的顯示
+針對 BinarySearch 的程式，請加上 DisplayName 來美化測試結果的顯示
 
 ### Demo: Nested Test
 
@@ -458,6 +458,10 @@ Result result:
 * 依上面的例子，設計一個 Stack class, 設定最多放五個元素
 * 應用 Nested test, 檢驗 stack isFull 的時候是否正確; 檢驗 isFull 時再 push() 是否會拋出 Exception
 
+### Lab: Binary Search (Nested)
+針對 BinarySearch 的程式，改以 Nested 的方式 來進行結構化測試。
+
+## JUnit- Parameterized test
 
 ### Demo: Parameterized Test
 
@@ -501,8 +505,14 @@ public class MathTest {
 
 總之，`@ParameterizedTest` 提供了一種有效的方式來處理多個輸入組合下的測試情境，減少了重複的測試程式碼，提高了測試覆蓋率和測試結果的可讀性。它還提供了靈活的擴展性，以適應各種不同的參數化測試需求。
 
-#### Lab: Prime
+#### Lab: Prime (ValueSource)
 * 使用 `@ValueSource` 來測試 `Math.isPrime()`
+
+#### Lab: Swimming pool ticket (ValueSource)
+
+一個游泳池標準收費為 100 元。 (1) 星期六日200元, 除會員以外不打折。(2) 清晨6:00 以前所有人打八折; 中午11:00-13:00 九折 ▫ (3) 會員一律打五折。各打折不可重複，以最低價為主。
+* 使用 all-pair testing 的方式規劃測試案例
+* 使用 `@ValueSource` 來測試票價計算是否正確
 
 ### Demo: CsvSource 
 
@@ -520,13 +530,20 @@ public class MathTest {
     }
 ```    
 
-#### Lab: Triangle
+#### Lab: Triangle (CsvFile)
 
-* Test [demo/Triangle](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/demo/Triangle.java) using `@CsvSource`
+撰寫一個 `getTriangleType` 方法，根據三邊長 `a`、`b`、`c` 的值來判斷三角形的類型：
+ * 若任一邊長小於等於 0 或兩邊之和小於等於第三邊，回傳 "Not a valid triangle"；
+ * 若三邊相等，回傳 "Equilateral"；若兩邊相等，回傳 "Isosceles"；若三邊皆不相等，回傳 "Scalene"。
+ * 參考程式碼：[demo/Triangle](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/demo/Triangle.java)
+
+撰寫以下測試案例：
+ * 使用等價分割，對此問題進行測試案例設計
+ * 使用 CsvSource 進行測試案例的安排，並進行測試
 
 #### Lab: Tomorrow
 
-以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。See my [xdemo/MyDate](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
+以下範例是對 `tomorrow()` 進行測試， csv 內部前三個參數是輸入的日期，後三個數字是預期的輸出。輸出的結果我們都轉為 String 一次比較年月日是否相同。
 
 ```java
 @ParameterizedTest
@@ -544,6 +561,9 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
     assertEquals(expected_tomorrow.toString(), today.tomorrow().toString());
 }
 ```
+
+* 參考程式碼：[xdemo/MyDate](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
+* 
 *  變數 y1, m1, d1 分別對應到 1901, 1, 1,; y2, m2, d2 分別對應到 1901, 1, 2
 *  逐行讀入進行測試
 
