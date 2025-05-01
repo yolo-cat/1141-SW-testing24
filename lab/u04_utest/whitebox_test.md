@@ -1,5 +1,20 @@
 ## White box testing (LAB)
 
+### Basic coverage
+
+針對課堂案例，進行涵蓋度測試的分析：
+```java
+input A,B,X 
+if (A>1) and (B=0) then
+  Y=A 
+if (A=2) or (X>1) then
+  Y=X 
+print Y
+```
+
+* 使用 Intellij 工具
+* 使用 Jacoco 外掛工具
+
 ### Triangle
 
 使用白箱測試的技巧，對以下的程式進行測試：
@@ -77,8 +92,8 @@ The updated POM file：
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -99,17 +114,11 @@ The updated POM file：
         </dependency>
 
 
-        <!-- read JSON file -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.17.1</version>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -133,7 +142,6 @@ The updated POM file：
             </plugin>
         </plugins>
     </build>
-
 </project>
 ```
 
@@ -153,32 +161,44 @@ The updated POM file：
 ![](img/cal_coverage.png)
 
 
-
-
 ### Maven lifecycle
 
-1. **validate** – Checks the project and ensures it is correct and all necessary information is available.
-2. **initialize** – Initializes the build state, setting up any necessary properties.
-3. **generate-sources** – Generates any source code that needs to be included in compilation.
-4. **process-sources** – Processes the source code (e.g., filtering properties).
-5. **generate-resources** – Generates any resources needed by the project.
-6. **process-resources** – Copies and processes resources into the output directory, ready for packaging.
-7. **compile** – Compiles the source code of the project.
-8. **process-classes** – Post-processes the compiled bytecode, if necessary.
-9. **generate-test-sources** – Generates any test source code.
-10. **process-test-sources** – Processes the test source code.
-11. **generate-test-resources** – Creates resources needed for testing.
-12. **process-test-resources** – Copies and processes test resources into the test output directory.
-13. **test-compile** – Compiles the test source code.
-14. **process-test-classes** – Post-processes the compiled test bytecode.
-15. **test** – Runs the unit tests using a testing framework (e.g., JUnit).
-16. **prepare-package** – Performs any necessary operations before packaging.
-17. **package** – Packages the compiled code (e.g., into a JAR or WAR).
-18. **pre-integration-test** – Executes any steps needed before integration tests.
-19. **integration-test** – Deploys the package to an environment where integration tests can run.
-20. **post-integration-test** – Executes cleanup steps after integration tests have run.
-21. **verify** – Runs checks to ensure the quality of the package.
-22. **install** – Installs the package into the local Maven repository (for use as a dependency in other projects).
-23. **deploy** – Copies the final package to a remote repository for sharing with other developers or projects.
+好的，這是一份 Maven 專案生命週期的階段說明，以下用繁體中文解釋：
 
-These phases represent the default lifecycle, meaning they are executed in this order if no specific configuration overrides them. Each phase is executed only if it and any previous phases are triggered as part of a build (e.g., running `mvn install` would trigger all phases up to and including `install`).
+這份列表描述了 Maven 專案的預設生命週期，也就是說，如果沒有特別設定去覆寫，這些階段會依照這個順序執行。只有當該階段以及所有之前的階段被觸發（例如，執行 `mvn install` 會觸發所有直到包含 `install` 的階段）時，每個階段才會被執行。
+
+* **clean** - 清理專案建置產生的檔案。
+    * **pre-clean** – 執行清理前需要的設定。
+    * **clean** – 移除先前建置產生的所有檔案，例如 `target` 目錄。
+    * **post-clean** – 執行清理後需要的處理。
+* **validate** - 驗證專案是否正確，所有必要的資訊是否可用。
+    * **validate** – 檢查專案的 `pom.xml` 檔案是否有效，以及建置環境是否滿足基本要求。
+* **compile** - 編譯專案的原始碼。
+    * **generate-sources** – 產生任何需要在編譯過程中包含的原始碼。
+    * **process-sources** – 處理原始碼，例如進行屬性過濾。
+    * **compile** – 將專案的 `.java` 原始碼編譯成 `.class` 位元組碼。
+* **test** - 執行專案的單元測試。
+    * **generate-test-sources** – 產生任何需要的測試原始碼。
+    * **process-test-sources** – 處理測試原始碼。
+    * **generate-test-resources** – 建立測試所需的資源檔案。
+    * **process-test-resources** – 複製並處理測試資源檔案到測試輸出目錄。
+    * **test-compile** – 編譯測試原始碼。
+    * **process-test-classes** – 對已編譯的測試位元組碼進行後續處理。
+    * **test** – 使用配置的單元測試框架（例如 JUnit）執行測試。
+* **package** - 將編譯後的程式碼打包成可發布的格式（例如 JAR、WAR 等）。
+    * **prepare-package** – 在打包之前執行任何必要的準備操作。
+    * **package** – 將編譯後的類別和資源檔案組合成最終的發布包。
+* **verify** - 驗證打包的檔案是否有效且符合品質標準。
+    * **pre-integration-test** – 執行整合測試前需要的任何設定。
+    * **integration-test** – 執行整合測試，通常在部署的環境中進行。
+    * **post-integration-test** – 在整合測試完成後執行清理步驟。
+    * **verify** – 執行檢查以驗證包的完整性和品質。
+* **install** - 將打包好的檔案安裝到本地 Maven 儲存庫中，以便其他本地專案可以使用。
+    * **install** – 將打包好的工件（例如 JAR 檔案）及其 POM 檔案複製到本地 Maven 儲存庫的適當位置。
+* **site** - 產生專案的網站文件。
+    * **pre-site** – 執行產生網站前需要的設定。
+    * **site** – 根據專案的配置和插件產生網站文件。
+    * **post-site** – 執行產生網站後需要的處理。
+    * **site-deploy** – 將產生的網站部署到指定的伺服器。
+* **deploy** - 將最終的發布包部署到遠端 Maven 儲存庫，以便與其他開發人員或專案共享。
+    * **deploy** – 將最終的工件及其 POM 檔案上傳到配置的遠端 Maven 儲存庫。
