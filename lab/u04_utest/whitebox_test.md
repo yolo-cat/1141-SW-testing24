@@ -1,6 +1,4 @@
-
-
-## White box testing
+## White box testing (LAB)
 
 ### Triangle
 

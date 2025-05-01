@@ -563,7 +563,6 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 ```
 
 * 參考程式碼：[xdemo/MyDate](https://github.com/nlhsueh/sw-testing24/blob/main/Intellij/DemoJunit/src/main/java/xdemo/MyDate.java)
-* 
 *  變數 y1, m1, d1 分別對應到 1901, 1, 1,; y2, m2, d2 分別對應到 1901, 1, 2
 *  逐行讀入進行測試
 
@@ -582,18 +581,20 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 * .csv 檔案放在 /resource 下
 * 跳過第一行: numLinesToSkip = 1
 
-#### Lab: Swimming pool
+#### Lab: Swimming pool (全成對)
 以下是一個游泳池收費系統的規則：
 
 * 一般票價 200
-* 星期六日250元,除會員以外不打折
-* 12歲以下、60歲（含）以上打八折，限定 3-75 歲可入內游泳
+* 星期六日250元, 除會員以外不打折
+* 12（含）歲以下、60歲（含）以上打八折，限定 3-75 歲可入內游泳
 * 七點以前八折
 * 團體打七折
 * 會員打五折
 * 各打折不得重疊使用，以顧客最有利方案定價
 
-請用 CsvFileSource 來進行測試
+請用 
+1. 請用 All-pair testing 方法論，應用 excel 工具規劃測試案例
+2. 將 excel 轉為 csv file, 使用 JUnit `CsvFileSource` 來進行測試
 
 #### Lab: Which day
 
@@ -601,7 +602,7 @@ void testTomorrow(int y1, int m1, int d1, int y2, int m2, int d2) {
 1. 使用參數化測試進行測試 (CsvSource)
 2. 使用 CsvSourceFile 進行測試
 
-#### Lab: Monday
+#### Lab: Currency
 * 一個 Currency 的類別，內封裝金額與幣值的屬性，幣值可以有 NT 和 US 兩種幣值，其匯率為 30。如果是台幣+美金則回傳台幣，若美金+台幣則回傳為美金（由第一個決定），請設計程式與測試案例。
 * 使用參數化測試進行測試
 
