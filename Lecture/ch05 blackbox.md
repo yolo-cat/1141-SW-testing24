@@ -18,7 +18,7 @@ Input -> System : Data
 System -> Output : Processed Data
 
 @enduml
-```
+```	
 
 ## 5.1 🧑‍💻Lab: JUnit
 
