@@ -39,13 +39,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId></groupId>
-            <artifactId>sel</artifactId>
-        </dependency>
-
-
-
     </dependencies>
 
 </project>
