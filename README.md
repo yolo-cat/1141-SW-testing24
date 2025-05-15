@@ -2,6 +2,8 @@
 Software Testing Course @ FCU
 ===
 
+See [github](https://github.com/nlhsueh/sw-testing24)
+
 [Course materials](https://hackmd.io/@nlhsueh/HySQsoBR2/https%3A%2F%2Fhackmd.io%2F%40nlhsueh%2FrkyXWjrC3)
 
 ### Lab and Intellj demo
