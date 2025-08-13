@@ -45,6 +45,7 @@ public class BMICalculatorTest {
         WebElement weightInput = driver.findElement(By.id("weight"));
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
 
+        System.out.println("Plan to fill form");
         // 填寫表單
         nameInput.clear();
         nameInput.sendKeys("Nick");
