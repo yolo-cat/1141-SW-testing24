@@ -17,6 +17,10 @@ Ch02 錯與除錯
 (取自溫伯格的「軟體管理學」第一卷 系統化思考)。
 :::
 
+![image](https://hackmd.io/_uploads/SyPN4Bpcex.png)
+
+[弘德皇帝與程式工程師](https://g.co/gemini/share/fdd83982f1a8)
+
 ## 2.1 臭蟲與錯誤
 
 ### 2.1.1 臭蟲
@@ -306,6 +310,10 @@ $installK \wedge onWindow10 \Rightarrow Abnormal$
 
 寫小程式時完全不感覺寫程式是困難的，也覺得「軟體品質」和自己沒有關係，但程式一旦大到一定程度，就會難以控制。
 
+### AI 輔助除錯
+
+
+
 ## 🧑‍💻2.3 除錯工具
 
 [除錯工具- Java 實作](https://github.com/nlhsueh/sw-testing24/blob/main/lab/u01_debug/lab_debug.md)
@@ -336,6 +344,10 @@ $installK \wedge onWindow10 \Rightarrow Abnormal$
 
 
 ### 2.5.1 大樓的燈 :bulb:
+
+![image](https://hackmd.io/_uploads/rJuA7H6qxl.png)
+
+[26 樓的燈光之戰](https://g.co/gemini/share/c381192abfd4)
 
 「26 樓會議室的燈亮著。應該關掉吧。」bug 的備註裡寫道「請 5 分鐘內搞定，只要按一下開關就好了。」(取自 [reddit: When someone gives you a bug。](http://www.reddit.com/r/ProgrammerHumor/comments/2spd2s/when_someone_gives_you_a_bug_long))
 

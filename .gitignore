@@ -1,6 +1,10 @@
 /Lecture/*.pdf
 /exam/
 /hw/hw113_1
+/hw/hw113_2
+
+/SQA quiz/
+**/*.zip
 
 # Ignore Maven target directories in any sub-directory
 **/target/ 
