@@ -110,11 +110,7 @@
 > :+1: 品質不是動作，是一種習慣
 > Quality is not an act. It is a habit- Aristotle)
 
-
-<iframe src="https://app.sli.do/event/bwiTYxP38Vjp3LV9uxThzF/embed/polls/7ccbf6d8-eb15-414a-8dba-1d139ec243b1" width="300" height="400"></iframe>
-
 ### 1.2.1 軟體品質
-
 
 軟體有其獨特性，其品質的定義也略有不同。我們看以下三種軟體品質的定義：
 
@@ -384,8 +380,9 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 
 ### 瑞穗證券的烏龍指
 
-{%youtube BnBGh5wcpXo%}
+![image](https://hackmd.io/_uploads/HJJuIb1olg.png)
 
+[Story](https://g.co/gemini/share/022dd19085b9)
 
 2015 年 9 月 3 日，一個長達 10 年的訴訟終於畫下了句號。這個判例將對 IT 行業產生深遠的影響：如果程式的 bug 導致了巨大的經濟損失，應該由誰來承擔？用戶？運營商？還是系統開發商？(本文取自 [程序bug導致了天大的損失，要槍斃程序猿嗎？](https://kb.cnblogs.com/page/541805/))
 
@@ -464,9 +461,6 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 (1) 瑞穗：沒有他們的犯錯，根本不會有這個災難
 (2) 東證：他們是系統的負責單位，該負全責
 (3) 富士通：程式是他們寫的，明顯的錯誤卻沒有找出來，釀成災害
-
-<iframe src="https://app.sli.do/event/gvxw2BJxwdia9fqG6ozt9d/embed/polls/b743446c-ab4c-46a2-aaff-0d1057e6c8ec" width="300" height="400"></iframe>
-
 
 ❓ 身為軟體工程師的你，受到什麼啟示？
 
