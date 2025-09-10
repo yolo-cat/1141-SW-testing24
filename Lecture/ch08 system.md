@@ -116,7 +116,7 @@ A testing conducted on a complete, integrated system to evaluate the system's co
 - $BF$, $AF_3$, $AF_4$.
 
 
-## 行為驅動開發與 Cucumber 測試
+## 🧑‍💻 行為驅動開發與 Cucumber 測試
 
 ![image](https://hackmd.io/_uploads/HJkRVZhH6.png)
 
@@ -546,7 +546,7 @@ Lab: 錄製器 II。
 ## 回復性測試
 暫略
 
-## 練習
+## ✍️ 練習
 
 #### 使用案例測試
 

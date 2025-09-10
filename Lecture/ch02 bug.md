@@ -19,7 +19,7 @@ Ch02 錯與除錯
 
 ![image](https://hackmd.io/_uploads/SyPN4Bpcex.png)
 
-[弘德皇帝與程式工程師](https://g.co/gemini/share/fdd83982f1a8)
+[📖 弘德皇帝與程式工程師](https://g.co/gemini/share/fdd83982f1a8)
 
 ## 2.1 臭蟲與錯誤
 
@@ -32,7 +32,7 @@ Ch02 錯與除錯
 1947 年 9 月 9 日下午 3 點 45 分，**Grace Murray Hopper** 在她的筆記本上記下了史上第一個電腦 bug ——在 Harvard Mark II 電腦裡找到的一隻飛蛾，她把飛蛾貼在日記本上，並寫道「First actual case of bug being found」。這個發現奠定了 Bug 這個詞在電腦世界的地位，變成無數苦逼程式設計師的噩夢。 從那以後，bug 這個詞在電腦世界表示電腦程式中的錯誤或者疏漏，它們會使程式計算出莫名其妙的結果，甚至引起程式的崩潰。Grace Murray Hopper 是Harvard Mark I上第一個專職程式設計師，創造了現代第一個編譯器A-0 系統，以及第一個高級商用電腦程式語言「COBOL」，被譽為「COBOL 之母」，被稱為「不可思議的葛麗絲（Amazing Grace）」。
 
 ![](https://hackmd.io/_uploads/rJVf7nYR3.png)
-:barber: The first bug
+The first bug
 
 這是流傳最廣的關於電腦 bug 的故事，可是歷史的真相是，bug 這個詞早在發明家湯瑪斯·愛迪生的年代就被廣泛用於指機器的故障，這在愛迪生本人的 1870 年左右的筆記裡面也能看得到。而電氣電子工程師學會 IEEE 也將 bug 這一詞的引入歸功於愛迪生哪些臭名昭彰的軟體 bug 名留青史？
 
@@ -343,7 +343,7 @@ $installK \wedge onWindow10 \Rightarrow Abnormal$
 ## 2.5 缺陷的管理
 
 
-### 2.5.1 大樓的燈 :bulb:
+### 📖 2.5.1 大樓的燈
 
 ![image](https://hackmd.io/_uploads/rJuA7H6qxl.png)
 
@@ -498,7 +498,7 @@ BTS 主要的功能如下：
 {%youtube IFE8n6fhfRA %}
 
 
-## 2.6 練習
+## ✍️ 2.6 練習
 
 - 以下何者正確	
 	- 只要程式的邏輯沒有出錯，就是一個沒有缺陷的系統。

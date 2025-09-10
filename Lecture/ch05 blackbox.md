@@ -20,7 +20,7 @@ System -> Output : Processed Data
 @enduml
 ```	
 
-## 5.1 🧑‍💻Lab: JUnit
+## 🧑‍💻 5.1 Lab: JUnit
 
 <!-- [JUnit](https://hackmd.io/@nlhsueh/HJIj6Ea01e) -->
 [JUnit on GitHub](
@@ -622,7 +622,7 @@ assertTrue(s.isEmpty());
 See [DemoJUnit](https://github.com/nlhsueh/sw-testing24/tree/main/Intellij/DemoJunit) 下 `state/Stack` 的完整程式碼與測試碼。
 
 
-## 5.Check
+## ✨ Check
   
 1. T/F: 規格書對於黑箱測試尤為重要，因為測試案例的設計通常是基於規格書的。
 
@@ -658,7 +658,7 @@ See [DemoJUnit](https://github.com/nlhsueh/sw-testing24/tree/main/Intellij/DemoJ
    - 狀態涵蓋度百分百，則事件涵蓋度必定百分百。
    - 對於 Stack 而言，push 是一個事件，full 是一個狀態。
 
-## 5.Exercise
+## ✍️ 練習
 
 ### 5.ex.spec 設計規格
 一個功能模組的「規格」包含該模組的參數、回傳型態、前置條件、後置條件。寫出以下功能的規格，嘗試以正規的方式來描述之。並設計期測試案例。	

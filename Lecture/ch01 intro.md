@@ -27,27 +27,25 @@
 
 事後調查發現，這個失敗導因於一個低級錯誤：兩個研究團隊使用的度量單位不同，一個用英制，一個用公制，導致探測器的控制程式出現混亂：原本應該從距地面140公里高度穿過火星大氣層，最後卻低於60公里，導致探測器經不起劇烈的大氣摩擦而焚燬 (資料取自 維基百科)。
 
-
-FIG: Mars Climate Orbiter (MCO) crash in 1998 
-
 ![](https://hackmd.io/_uploads/ByBqT9KRn.png)
 
+👉 Mars Climate Orbiter (MCO) crash in 1998 
 
 #### 華航名古屋空難
 
 1994年4月26日，華航編號為B-1816的空中巴士A300-622R型客機由桃園國際機場飛往名古屋的班機，搭載271名乘客及機組員（包含正駕駛王樂琦，副駕駛莊孟容及飛航工程師），在名古屋機場降落時不幸墬毀，造成264人死亡。根據1995年1月9日聯合報引述日本名古屋空難調查委員會的調查結果，空難原因為「副駕駛在操縱飛機降落時，不小心誤將飛機設定在「重飛」（go-around，意思是中止降落重新爬升），而因駕駛員一直不知飛機設定在「重飛」的自動操作狀態下，駕駛員努力用手動操作，想要將機首壓低，而因電腦在「重飛」爬升自動操作狀態，電腦將機尾的水平安定面（horizontal stabilizer）設定到機首上升的狀態「糾正」駕駛員「錯」的壓低機首的手動操作，結果在電腦與駕駛員操作機首角度的爭鬥中，飛機向上衝的攻角過大而失去平衡，最後失速墜毀。
 
-FIG: 1994 名古屋空難
 
 ![1994 名古屋空難](https://attach.setn.com/newsimages/2021/04/26/3128315-PH.jpg)
 
+👉 1994 名古屋空難
+
 一審判決忽略空中巴士公司的飛機設計問題，名古屋高等法院裁定，名古屋空難完全是因為華航駕駛操縱失誤所造成。為免再發生類似的航空事件，歐洲空中巴士公司發出維修指令，*修改A300系列的電腦程式以防止駕駛員與電腦互搶操控權而衝突*。
 
-
+---
 
 歷史上有很多軟體設計不良所造成的災害：
 
-  
 - 1991，愛國者飛彈失效 Patriot Missile Defense System;
 - 1994 –1995，迪士尼的聖誕節電腦遊戲 Disney’s Lion King;
 - 1999，NASA Mars Polar Lander;
@@ -64,7 +62,7 @@ FIG: 1994 名古屋空難
 > 軟體和教堂非常相似——建成之後我們就開始祈禱。
 > Software and cathedrals are much the same – first we build them, then we pray. (Sam Redwine)}
 
-:question: 有哪些你印象深刻的軟體品質事件？
+❓ 有哪些你印象深刻的軟體品質事件？
 
 ## 1.2 軟體品質
 
@@ -98,7 +96,7 @@ FIG: 1994 名古屋空難
 - **價值觀點** Valued based view。顧客是否願意掏錢出來買。customers' willingness to pay for a software.
 :::
 
-:question: 在你接觸的事物或軟體中，哪些是品質優良的？為什麼？符合 Garvin 的哪一個觀點呢？
+❓在你接觸的事物或軟體中，哪些是品質優良的？為什麼？符合 Garvin 的哪一個觀點呢？
 
 ```
 > 手機啊
@@ -159,9 +157,9 @@ FIG: 不同物品的品質特性各有不同
 ISO 9126 將品質分為六大特性，如 Fig ISO ，每一個特性下又分為若干個次因子，以下分項說明。
 
 
-FIG ISO: ISO 9126 軟體品質模型
 ![](https://hackmd.io/_uploads/r1YdmoB03.png)
 
+👉 ISO: ISO 9126 軟體品質模型
 
 #### 一、功能性 Functionality
 
@@ -265,8 +263,7 @@ FIG ISO: ISO 9126 軟體品質模型
     - 我們在 Blackboard 系統上開發了許多與學習相關的功能（例如點名），但這些系統是用 Blackboard 的 Building Block 框架來做的，是一個特有的框架。當我們移植到 Moodle 的系統後這些功能就不能用了。許多後期開發的模組是一般的 web 程式（建構在 .Net上），它就很容易的與新的 Moodle 整合。
     * Eclipse 這個開發工具平台採取的架構就是可以擴充的 plug in 架構，所以許多第三方的開發者可以自己開發許多套件來整合。EclEmma，一種測試包含度的外掛，就是其中一個例子。
 
-:question: 軟體會不會生鏽？
-
+❓ 軟體會不會生鏽？
 
 :::success
 :thinking_face: 出勤刷卡系統的移植
@@ -332,8 +329,6 @@ ISO 9126 除了定義有哪些品質項目以外，它還定義了這些品質�
 
 ### 軟體品質控制與確保
 
-FIG_SQA
-
 ![](https://hackmd.io/_uploads/BJYnNoBR2.png)
 
 一個不成熟的軟體公司，就如同 FIG_SQA 第一階段一樣，軟體開發完後就直接發佈了，但這種方法會產生很多問題，甚至導致退貨賠款，於是知道開發完後需要做一些測試（code review, testing）- 此時公司進步到第二階段。
@@ -358,7 +353,7 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 > ==Quality Assurance (QA)== would not take any part in the manufacture process itself (including Quality Control of the product) but would audit the *process} to make sure the established guidelines and standards were being followed. The QA group would then give input (metrics or measures) into a process of continuous improvement. 
 
  
-> :cry: 如果建築工人像工程師寫軟體那樣蓋房子，那第一隻飛來的啄木鳥就能毀掉人類文明。
+> 😢 如果建築工人像工程師寫軟體那樣蓋房子，那第一隻飛來的啄木鳥就能毀掉人類文明。
 > If builders built buildings the way programmers wrote programs, then the first woodpecker that came along wound destroy civilization. (Gerald Weinberg)
 
 建立品質文化，文化是每個習以為常，不需要制度去規範就會去做的事。
@@ -374,7 +369,7 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 
 一般而言-- 就像我們的健康一樣-- 預防成本與檢驗成本都比失效成本來得低，所以我們應該進行預防與定期的檢驗。但這並不容易，學校及社會不斷的宣導預防與檢驗的重要性，這幾年大家才慢慢的重視。軟體品質活動也是一樣，需要不斷的宣導。
 
-> :+1: 預防重於治療，在軟體工程也適用。
+> 👍 預防重於治療，在軟體工程也適用。
 
 
 各工具的介紹將會分散在不同的章節中。
@@ -385,7 +380,7 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 - :book: Patton, Ron. Software testing. Vol. 2. Indianapolis: Sams, 2001. 
 - :book: Kaner, Cem, James Bach, and Bret Pettichord. Lessons learned in software testing. John Wiley \& Sons, 2008.
 
-## 1.5 案例
+## 📖 1.5 案例
 
 ### 瑞穗證券的烏龍指
 
@@ -465,7 +460,7 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 
 最終，東京地方法院判定：... 
 
-:question: 上述案例，你覺得誰給負最大責任
+❓ 上述案例，你覺得誰給負最大責任
 (1) 瑞穗：沒有他們的犯錯，根本不會有這個災難
 (2) 東證：他們是系統的負責單位，該負全責
 (3) 富士通：程式是他們寫的，明顯的錯誤卻沒有找出來，釀成災害
@@ -473,9 +468,9 @@ SQA 通常被翻譯成「軟體品質保證」，或「品保」，但這樣的�
 <iframe src="https://app.sli.do/event/gvxw2BJxwdia9fqG6ozt9d/embed/polls/b743446c-ab4c-46a2-aaff-0d1057e6c8ec" width="300" height="400"></iframe>
 
 
-:question: 身為軟體工程師的你，受到什麼啟示？
+❓ 身為軟體工程師的你，受到什麼啟示？
 
-## 練習 :football: 
+## ✍️ 1.6 練習
 
 ### 軟體危機
 

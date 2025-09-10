@@ -578,7 +578,7 @@ for tc in t:
 * [nlh lab](https://github.com/nlhsueh/sw-testing24/blob/main/lab/u04_utest/mutation_test.md)
 * [PIT mutation test](http://pitest.org/)
 
-## 練習
+## ✍️ 練習
  
 ### 測試涵蓋度
 - 下列何者為真？
