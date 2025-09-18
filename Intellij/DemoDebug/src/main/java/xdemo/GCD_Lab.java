@@ -3,11 +3,11 @@ package xdemo;
 /**
  * Use break/watch to debug and watch program execution
  */
-public class GCD {
+public class GCD_Lab {
 
     public static void main(String[] args) {
         int r;
-        GCD g = new GCD();
+        GCD_Lab g = new GCD_Lab();
         r = g.gcd(24,18);
         System.out.println(r);
 
@@ -29,8 +29,8 @@ public class GCD {
         if (n == 0)
             return m;
         else {
-            gcd2(n, m % n);
+            return gcd2(n, m % n);
         }
-        return m;
+//        return n;
     }
 }
