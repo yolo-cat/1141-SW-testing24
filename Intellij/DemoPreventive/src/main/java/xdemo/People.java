@@ -21,23 +21,24 @@ public class People {
 
     // 計算 BMI (體重 / 身高的平方)
     public double bmi() {
-
-        // ? 應該要先確定一下 bmi 有沒有算錯
+        // 應該要先確定一下 bmi 有沒有算錯
+        assert height > 0 : "Height must be greater than 0"; // 防止除以零或負值
         return weight / (height * height);
     }
 
     // 設定生日年，並透過 assert 確保生日年的合理性 (例如：應在1900-今年之間)
     public void setBirthdayYear(int birthdayYear) {
         int currentYear = java.time.Year.now().getValue();
-
-        // ? 透過 assert 確保生日年的合理性 (例如：應在1900-今年之間)
+        assert birthdayYear >= 1900 && birthdayYear <= currentYear : "Birthday year must be between 1900 and current year";
         this.birthdayYear = birthdayYear;
     }
 
     public void setFather(People father) {
         this.father = father;
-
-        // ? 應該確定一下父親的 birthdayYear 應該小於自己的
+        // 應該確定一下父親的 birthdayYear 應該小於自己的
+        if (father != null) {
+            assert father.birthdayYear < this.birthdayYear : "Father's birthday year must be less than child's birthday year";
+        }
     }
 
     public People getFather() {
