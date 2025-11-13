@@ -17,9 +17,25 @@ class TriangleTest {
                 ()-> assertEquals("Not a valid triangle", Triangle.getTriangleType(-1, 2, 3)),
                 ()-> assertEquals("Not a valid triangle", Triangle.getTriangleType(2, -2, 3)),
                 ()-> assertEquals("Not a valid triangle", Triangle.getTriangleType(2, 2, -3))
-                )
-        ;
+                );
     }
 
+    @Test
+    void equilateral_triangle() {
+        assertEquals("Equilateral", Triangle.getTriangleType(2, 2, 2));
+    }
 
+    @Test
+    void isosceles_triangle() {
+        assertAll("isosceles",
+                ()-> assertEquals("Isosceles", Triangle.getTriangleType(2, 2, 3)),
+                ()-> assertEquals("Isosceles", Triangle.getTriangleType(2, 3, 2)),
+                ()-> assertEquals("Isosceles", Triangle.getTriangleType(3, 2, 2))
+        );
+    }
+
+    @Test
+    void scalene_triangle() {
+        assertEquals("Scalene", Triangle.getTriangleType(2, 3, 4));
+    }
 }
