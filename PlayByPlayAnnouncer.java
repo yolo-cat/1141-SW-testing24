@@ -179,107 +179,7 @@ public class PlayByPlayAnnouncer {
             System.err.println("無法寫入 log 檔案: " + e.getMessage());
         }
     }
-    // --- 核心業務邏輯（可測試）---
-    /**
-     * 計算一局比賽的統計結果
-     * @param events 事件陣列
-     * @return InningSummary 物件，包含得分、安打、出局、殘壘等資訊
-     * @throws ScoringException 當發生速記錯誤時
-     */
-    public static InningSummary getInningSummary(String[] events) {
-        resetState();
-
-        for (String event : events) {
-            processEvent(event);
-        }
-
-        return new InningSummary(runs, hits, outs, calculateLOB(), bases);
-    }
-
-    /**
-     * 處理單一事件（不包含輸出邏輯）
-     * @param event 速記代碼
-     * @throws ScoringException 當發生速記錯誤時
-     */
-    private static void processEvent(String event) {
-        // 檢查 3 Out 之後的速記錯誤
-        if (outs == 3) {
-            String errorMessage = String.format("速記錯誤：局數已達 3 Out，但仍有事件 '%s' 發生。", event);
-            logError(errorMessage);
-            throw new ScoringException(errorMessage);
-        }
-
-        String currentBatter = DODGERS_BATTERS_LIST[batterIndex % DODGERS_BATTERS_LIST.length];
-
-        int eventRuns = extractRuns(event); // 提取事件中的得分
-        runs += eventRuns;
-
-        int hitCount = -1; // -1: 出局, 0: BB/E, 1: 1B, 2: 2B, 3: 3B, 4: HR
-        boolean BB = false;  // bad ball
-        boolean E = false;   // error
-
-        boolean advBase = event.startsWith("BB") || event.startsWith("E");
-        advBase = advBase || event.startsWith("1B") || event.startsWith("2B");
-        advBase = advBase || event.startsWith("3B") || event.startsWith("HR");
-
-        if (advBase) {
-            if (event.startsWith("BB")) {
-                hitCount = 0;
-                BB = true;
-            } else if (event.startsWith("E")) {
-                hitCount = 0;
-                E = true;
-            } else if (event.startsWith("1B")) {
-                hits++;
-                hitCount = 1;
-            } else if (event.startsWith("2B")) {
-                hits++;
-                hitCount = 2;
-            } else if (event.startsWith("3B")) {
-                hits++;
-                hitCount = 3;
-            } else if (event.startsWith("HR")) {
-                hits++;
-                hitCount = 4;
-            }
-            batterIndex++;
-            updateBases(hitCount, BB, E);
-        } else {
-            if (event.matches("^K.*")) {
-                outs++;
-                batterIndex++;
-            } else if (event.matches("^F[0-9].*") || event.matches("^[0-9]-[0-9].*")) {
-                outs++;
-                batterIndex++;
-            } else {
-                String errorMessage = String.format("無法解析的速記代碼: '%s'，來自打者: %s", event, currentBatter);
-                logError(errorMessage);
-                throw new ScoringException(errorMessage);
-            }
-        }
-    }
-
-    /**
-     * 顯示局數總結報告
-     * @param summary InningSummary 物件
-     */
-    public static void show(InningSummary summary) {
-        System.out.println("\n==========================================");
-        System.out.println("               本局總結報告               ");
-        System.out.println("==========================================");
-        System.out.printf("最終得分 (R)：%d\n", summary.getRuns());
-        System.out.printf("總安打數 (H)：%d\n", summary.getHits());
-        System.out.printf("最終出局數 (O)：%d\n", summary.getOuts());
-        System.out.printf("殘壘數 (LOB)：%d (%s)\n", summary.getLob(), summary.getBaseStateDesc());
-        System.out.println("==========================================");
-    }
-
-    // --- 核心播報邏輯（向後相容）---
-    /**
-     * 播報一局比賽（包含逐打席播報和總結）
-     * @param events 事件陣列
-     * @throws ScoringException 當發生速記錯誤時
-     */
+    // --- 核心播報邏輯 ---
     public static void announceInning(String[] events) {
         resetState();
 
@@ -287,12 +187,14 @@ public class PlayByPlayAnnouncer {
         System.out.println("        MLB 即時播報：道奇 vs 藍鳥          ");
         System.out.println("==========================================");
 
+        //  【學生作答區: 例外處理】
         for (String event : events) {
             // 檢查 3 Out 之後的速記錯誤
             if (outs == 3) {
                 String errorMessage = String.format("速記錯誤：局數已達 3 Out，但仍有事件 '%s' 發生。", event);
                 logError(errorMessage);
                 throw new ScoringException(errorMessage);
+//                Mid-E2：Q2a
             }
 
             String currentBatter = DODGERS_BATTERS_LIST[batterIndex % DODGERS_BATTERS_LIST.length];
@@ -301,14 +203,15 @@ public class PlayByPlayAnnouncer {
                     (batterIndex % DODGERS_BATTERS_LIST.length) + 1, currentBatter);
             System.out.printf("   (當前: %d 出局, 壘上狀態: %s)\n", outs, getBaseStateDesc());
 
-            int eventRuns = extractRuns(event);
+            int eventRuns = extractRuns(event); // 提取事件中的得分
             runs += eventRuns;
 
             String outcome = getAnnounceOutcome(event, eventRuns, currentBatter);
 
-            int hitCount = -1;
-            boolean BB = false;
-            boolean E = false;
+            int oldOuts = outs;
+            int hitCount = -1; // -1: 出局, 0: BB/E, 1: 1B, 2: 2B, 3: 3B, 4: HR
+            boolean BB = false;  // bad ball
+            boolean E = false;   // error
 
             boolean advBase = event.startsWith("BB") || event.startsWith("E");
             advBase = advBase || event.startsWith("1B") || event.startsWith("2B");
@@ -336,7 +239,8 @@ public class PlayByPlayAnnouncer {
                 }
                 batterIndex++;
                 updateBases(hitCount, BB, E);
-            } else {
+            }
+            else {
                 if (event.matches("^K.*")) {
                     outs++;
                     batterIndex++;
@@ -347,6 +251,7 @@ public class PlayByPlayAnnouncer {
                     String errorMessage = String.format("無法解析的速記代碼: '%s'，來自打者: %s", event, currentBatter);
                     logError(errorMessage);
                     throw new ScoringException(errorMessage);
+//                    Mid-E2：Q2b
                 }
             }
 
@@ -358,9 +263,14 @@ public class PlayByPlayAnnouncer {
             }
         }
 
-        // 使用新的 show 方法顯示總結
-        InningSummary summary = new InningSummary(runs, hits, outs, calculateLOB(), bases);
-        show(summary);
+        System.out.println("\n==========================================");
+        System.out.println("               本局總結報告               ");
+        System.out.println("==========================================");
+        System.out.printf("最終得分 (R)：%d\n", runs);
+        System.out.printf("總安打數 (H)：%d\n", hits);
+        System.out.printf("最終出局數 (O)：%d\n", outs);
+        System.out.printf("殘壘數 (LOB)：%d (%s)\n", calculateLOB(), getBaseStateDesc());
+        System.out.println("==========================================");
     }
 
 
