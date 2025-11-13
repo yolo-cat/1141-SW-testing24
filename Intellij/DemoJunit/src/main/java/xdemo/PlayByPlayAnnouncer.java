@@ -261,12 +261,6 @@ public class PlayByPlayAnnouncer {
                 System.out.printf(" >> ！！%s 為球隊帶回分數！！本次打席總共獲得 %d 分。累計得分：R=%d, H=%d, O=%d\n",
                         currentBatter.split(" ")[1], eventRuns, runs, hits, outs);
             }
-
-            // 在當前事件處理後，如果達到 3 Out，則中斷迴圈
-            if (outs == 3) {
-                System.out.println("\n--- 三出局，本局結束 ---");
-                break;
-            }
         }
 
         System.out.println("\n==========================================");
@@ -292,7 +286,7 @@ public class PlayByPlayAnnouncer {
         } else if (event.startsWith("F")) {
             int pos = Integer.parseInt(event.substring(1).replaceAll("[^0-9]", ""));
             String fielder = BLUE_JAYS_DEFENSE_MAP.getOrDefault(pos, "外野手");
-            String fielderName = fielder.split("")[1];
+            String fielderName = fielder.split(" ")[1];
 //            Mid-E2:Q1a: String fielderName = fielder.split("-")[1];
 
             return String.format("%s 高飛球，被 %s (%s) 穩穩接殺出局 (F%d)！",
